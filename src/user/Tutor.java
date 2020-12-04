@@ -1,6 +1,6 @@
 package user;
 
-<<<<<<< HEAD
+
 import problem.subject;
 
 import java.util.ArrayList;
@@ -31,10 +31,6 @@ public class Tutor extends User{
 
 	}
 	public void calculateRevenue(){
-=======
-
-public class Tutor {
->>>>>>> main
 
 	}
 
