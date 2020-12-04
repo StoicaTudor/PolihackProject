@@ -1,0 +1,27 @@
+.root{
+    -fx-background-color: #383838;
+    -fx-background-image: url(Webp.net-resizeimage_1.png);
+    -height: 500px;
+    -background-position: center;
+    -background-repeat: no-repeat;
+    -background-size: cover;
+}
+.label{
+    -fx-text-fill: #e8e8e8;
+}
+.text-field{
+    -fx-background-color: #D3D3D3;
+}
+.button{
+    -fx-background-color: #AB4642;
+    -fx-text-fill: #FFFFFF;
+    -fx-background-radius: 4;
+}
+.button-blue{
+    -fx-background-color: #7cafc2;
+    -fx-text-fill: #FFFFFF;
+    -fx-background-radius: 4;
+}
+#bold-label{
+    -fx-font-weight: bold;
+}
