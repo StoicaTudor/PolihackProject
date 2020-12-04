@@ -1,6 +1,5 @@
 package user;
-
-
+import problem.subject;
 import java.util.ArrayList;
 
 public abstract class User {
@@ -12,9 +11,10 @@ public abstract class User {
 	private String email;
 	private ArrayList<Integer> attemptedProblems;
 	private Statistics statistics;
+	private ArrayList<subject> preferredSubjects;
 
 
-	public User(int id, String username, String password, String country, String email, ArrayList<Integer> attemptedProblems, Statistics statistics) {
+	public User(int id, String username, String password, String country, String email, ArrayList<Integer> attemptedProblems, Statistics statistics, ArrayList<subject> preferredSubjects) {
 		this.id=id;
 		this.password=password;
 		this.username=username;
@@ -22,6 +22,7 @@ public abstract class User {
 		this.email=email;
 		this.attemptedProblems=attemptedProblems;
 		this.statistics=statistics;
+		this.preferredSubjects=preferredSubjects;
 	}
 
 	public int getId() {
