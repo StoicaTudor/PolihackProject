@@ -2,16 +2,16 @@ package problem;
 
 
 public enum subject {
-    Mathematics,
-    Physics,
-    ComputerScience,
-    English,
-    German,
-    Spanish,
-    French,
-    Chemistry,
-    Economy,
-    Biology,
-    History,
-    Geography
+    MATHEMATICS,
+    PHYSICS,
+    COMPUTER_SCIENCE,
+    ENGLISH,
+    GERMAN,
+    SPANISH,
+    FRENCH,
+    CHEMISTRY,
+    ECONOMY,
+    BIOLOGY,
+    HISTORY,
+    GEOGRAPHY
 }
