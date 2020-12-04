@@ -1,5 +1,6 @@
 package problem;
 
+
 public enum subject {
     Mathematics,
     Physics,
