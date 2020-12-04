@@ -64,11 +64,11 @@ public abstract class User {
 		this.email = email;
 	}
 
-	public ArrayList<Integer> getAttempedProblems() {
+	public ArrayList<Integer> getNrOfAttemptedProblems() {
 		return attemptedProblems;
 	}
 
-	public void setAttempedProblems(ArrayList<Integer> attempedProblems) {
+	public void setNrOfAttemptedProblems(ArrayList<Integer> attempedProblems) {
 		this.attemptedProblems = attempedProblems;
 	}
 
