@@ -1,86 +1,82 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="BranchesTreeState">
-    <expand>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-    </expand>
-    <select />
-  </component>
   <component name="ChangeListManager">
-    <list default="true" id="73a6cc4f-458a-4617-b427-367a78dd89cb" name="Default Changelist" comment="">
+    <list default="true" id="f0aa95b3-00b7-42f9-ab2b-9385a8a383f4" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/ui/SignInMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/problem/subject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/problem/subject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/user/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/user/Student.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/user/Tutor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/user/Tutor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/user/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/user/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolihackProject.iml" beforeDir="false" afterPath="$PROJECT_DIR$/PolihackProject.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/Stage.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Class" />
-        <option value="Enum" />
-      </list>
-    </option>
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectId" id="1lCIOFsOTsluHBQHAcYu8eCDxiT" />
+  <component name="ProjectId" id="1lCrzJBMLHXDEbQmleSpoSGIRzp" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="project.structure.last.edited" value="Project" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../../javafx-sdk-15.0.1/lib" />
+    <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="ui" />
+    </key>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ui.Main" />
+      <module name="PolihackProject" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ui.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="73a6cc4f-458a-4617-b427-367a78dd89cb" name="Default Changelist" comment="" />
-      <created>1607094617416</created>
+      <changelist id="f0aa95b3-00b7-42f9-ab2b-9385a8a383f4" name="Default Changelist" comment="" />
+      <created>1607112178079</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1607094617416</updated>
-      <workItem from="1607102376523" duration="689000" />
-      <workItem from="1607103187665" duration="2435000" />
+      <updated>1607112178079</updated>
+      <workItem from="1607112181764" duration="4694000" />
     </task>
     <servers />
   </component>
@@ -97,27 +93,5 @@
         </entry>
       </map>
     </option>
-  </component>
-  <component name="WindowStateProjectService">
-<<<<<<< HEAD
-    <state x="574" y="113" key="#com.intellij.ide.util.MemberChooser" timestamp="1607105913212">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="574" y="113" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1607105913212" />
-    <state x="277" y="0" key="SettingsEditor" timestamp="1607106520201">
-=======
-    <state x="574" y="113" key="#com.intellij.ide.util.MemberChooser" timestamp="1607105423863">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="574" y="113" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1607105423863" />
-    <state x="277" y="57" key="SettingsEditor" timestamp="1607102717732">
->>>>>>> main
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="277" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1607106520201" />
-    <state x="360" y="33" key="new project wizard" timestamp="1607102425333">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="360" y="33" key="new project wizard/0.0.1536.824@0.0.1536.824" timestamp="1607102425333" />
   </component>
 </project>
