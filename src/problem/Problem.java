@@ -1,13 +1,7 @@
 package problem;
 
-//class problemthumbnail-->>>
-
-import java.sql.SQLOutput;
 import java.util.ArrayList;
-import java.util.Scanner;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.BufferedReader;
+
 
 public class Problem {
 
@@ -19,10 +13,13 @@ public class Problem {
 	private difficulty problemDifficulty;
 	private subject problemSubject;
 	private ArrayList <Solution> solutions;
+	private int proposerID;
+	private int grade;
 
 
 		//Problem() constructor
-		public Problem(String problemName,int problemID,String task,String solution, double popularity, difficulty problemDifficulty,subject problemSubject, ArrayList<Solution> solutions) {
+		public Problem(String problemName,int problemID,String task,String solution, double popularity, difficulty problemDifficulty,subject problemSubject, ArrayList<Solution> solutions,int proposerID,int grade) {
+		this.proposerID=proposerID;
 		this.problemName=problemName;
 		this.problemID=problemID;
 		this.task=task;
@@ -31,6 +28,7 @@ public class Problem {
 		this.problemDifficulty=problemDifficulty;
 		this.problemSubject=problemSubject;
 		this.solutions=solutions;
+		this.grade=grade;
 	}
 
 	public String getProblemName() {
