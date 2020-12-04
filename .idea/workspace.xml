@@ -52,7 +52,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1607094617416</updated>
-      <workItem from="1607102376523" duration="343000" />
+      <workItem from="1607102376523" duration="689000" />
     </task>
     <servers />
   </component>
@@ -64,9 +64,13 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="574" y="113" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1607097546024" />
-    <state x="277" y="57" key="SettingsEditor" timestamp="1607094973012">
+    <state x="277" y="57" key="SettingsEditor" timestamp="1607102717732">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="277" y="57" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1607094973012" />
+    <state x="277" y="57" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1607102717732" />
+    <state x="360" y="33" key="new project wizard" timestamp="1607102425333">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="360" y="33" key="new project wizard/0.0.1536.824@0.0.1536.824" timestamp="1607102425333" />
   </component>
 </project>
