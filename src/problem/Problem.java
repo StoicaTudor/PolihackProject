@@ -12,14 +12,14 @@ public class Problem implements Comparable<Problem> {
 	private int popularity;
 	private Difficulty problemDifficulty;
 	private Subject problemSubject;
-	private ArrayList<Solution> solutions;
 	private int proposerID;
-	private int grade;
+	public int grade;
 
 	// Problem() constructor
 	public Problem(String problemName, int problemID, String task, String solution, int popularity,
-			Difficulty problemDifficulty, Subject problemSubject, ArrayList<Solution> solutions, int proposerID,
+			Difficulty problemDifficulty, Subject problemSubject, int proposerID,
 			int grade) {
+		
 		this.proposerID = proposerID;
 		this.problemName = problemName;
 		this.problemID = problemID;
@@ -28,7 +28,6 @@ public class Problem implements Comparable<Problem> {
 		this.popularity = popularity;
 		this.problemDifficulty = problemDifficulty;
 		this.problemSubject = problemSubject;
-		this.solutions = solutions;
 		this.grade = grade;
 	}
 
@@ -88,14 +87,6 @@ public class Problem implements Comparable<Problem> {
 		this.problemSubject = problemSubject;
 	}
 
-	public ArrayList<Solution> getSolutions() {
-		return solutions;
-	}
-
-	public void setSolutions(ArrayList<Solution> solutions) {
-		this.solutions = solutions;
-	}
-
 	@Override
 	public int compareTo(Problem problem) {
 		return (this.getPopularity() < problem.getPopularity()) ? 1 : 0;
@@ -104,5 +95,26 @@ public class Problem implements Comparable<Problem> {
 	public void setTaskThumbnail() {
 		// TO DO MIRUNA
 		
+	}
+	
+	public static Difficulty getDifficulty(int difficulty) {
+
+		switch (difficulty) {
+
+		case 1:
+			return Difficulty.EASY;
+
+		case 2:
+			return Difficulty.MEDIUM;
+
+		case 3:
+			return Difficulty.HARD;
+
+		case 4:
+			return Difficulty.IVAN;
+
+		default:
+			return Difficulty.EASY;
+		}
 	}
 }

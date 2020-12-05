@@ -54,4 +54,9 @@ public class DatabaseQueryMaker {
 		return new String("SELECT * FROM problem");
 	}
 
+	public String getRetrieveSubjectByIDQuery(int subjectID) {
+		
+		return new StringBuilder("SELECT subject.name FROM subject WHERE subject.id = ").append(subjectID).toString();
+	}
+
 }
