@@ -38,7 +38,5 @@ public class LogIn {
         signUp.setScene(event);
     }
 
-
-
 }
 

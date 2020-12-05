@@ -93,7 +93,7 @@ public class DataFromDatabase {
 				break;
 
 			case "French":
-				preferredSubjects.add(Subject.SPANISH);
+				preferredSubjects.add(Subject.FRENCH);
 				break;
 
 			case "Chemistry":
