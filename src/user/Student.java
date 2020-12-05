@@ -1,11 +1,22 @@
 package user;
 
-public class Student {
+import problem.subject;
 
-	public Student() {
-		// TODO Auto-generated constructor stub
+import java.util.ArrayList;
+
+public class Student extends User{
+
+
+	public Student(int id, String username, String password, String country, String email, ArrayList<Integer> attemptedProblems, Statistics statistics, ArrayList<subject> preferredSubjects) {
+		super(id,username,password,country,email,attemptedProblems,statistics,preferredSubjects);
+
 	}
+	public void solveProblem(){
 
+	}
+	public void submitSolution(){
+
+	}
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
