@@ -1,4 +1,7 @@
 package ui;
+import user.Student;
+import user.Statistics;
+
 
 public class StudentsRanking {
 
