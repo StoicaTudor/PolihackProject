@@ -1,7 +1,7 @@
 package problem;
 
 
-public enum subject {
+public enum Subject {
     MATHEMATICS,
     PHYSICS,
     COMPUTER_SCIENCE,

@@ -1,36 +1,31 @@
 package user;
 
-
-import problem.subject;
+import problem.Subject;
 
 import java.util.ArrayList;
+import java.util.Set;
 
-public class Tutor extends User{
+public class Tutor extends User {
 
-	private double monthlyIncome;
-	public Tutor(int id, String username, String password, String country, String email, ArrayList<Integer> attemptedProblems, Statistics statistics, ArrayList<subject> preferredSubjects, double monthlyIncome) {
-		super(id,username,password,country,email,attemptedProblems,statistics,preferredSubjects);
-		this.monthlyIncome=monthlyIncome;
+	public Tutor(int id, String username, String password, String country, String email,
+			ArrayList<Integer> attemptedProblems, Statistics statistics, Set<Subject> preferredSubjects) {
+
+		super(id, username, password, country, email, attemptedProblems, statistics, preferredSubjects);
 	}
 
-	public double getMonthlyIncome() {
-		return monthlyIncome;
-	}
-
-	public void setMonthlyIncome(double monthlyIncome) {
-		this.monthlyIncome = monthlyIncome;
-	}
-
-	public void accomplishModeratorCriteria(){
+	public void accomplishModeratorCriteria() {
 
 	}
-	public void giveFeedback(){
+
+	public void giveFeedback() {
 
 	}
-	public void proposeProblem(){
+
+	public void proposeProblem() {
 
 	}
-	public void calculateRevenue(){
+
+	public void calculateRevenue() {
 
 	}
 

@@ -1,13 +1,14 @@
 package user;
 
-import problem.subject;
+import problem.Subject;
 
 import java.util.ArrayList;
+import java.util.Set;
 
 public class Student extends User{
 
 
-	public Student(int id, String username, String password, String country, String email, ArrayList<Integer> attemptedProblems, Statistics statistics, ArrayList<subject> preferredSubjects) {
+	public Student(int id, String username, String password, String country, String email, ArrayList<Integer> attemptedProblems, Statistics statistics, Set<Subject> preferredSubjects) {
 		super(id,username,password,country,email,attemptedProblems,statistics,preferredSubjects);
 
 	}

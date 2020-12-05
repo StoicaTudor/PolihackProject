@@ -5,23 +5,22 @@ import java.time.LocalDate;
 
 public class Statistics {
 
-	private int nrOfAttemptedProblems;
-	private int nrOfCorrectProblems;
-	private int hoursActive;
-	private double successRatio;
-	private double averageRating;
-	private LocalDate dateJoined;
+	public int nrOfAttemptedProblems;
+	public int nrOfCorrectProblems;
+	public int hoursActive;
+	public double averageRating;
+	public LocalDate dateJoined;
 
-	public Statistics(int nrOfAttemptedProblems, int nrOfCorrectProblems, int hoursActive, int successRatio,
-			int averageRating, LocalDate dateJoined) {
+	public Statistics(int nrOfAttemptedProblems, int nrOfCorrectProblems, int hoursActive,
+			double averageRating, LocalDate dateJoined) {
 		
 		this.nrOfAttemptedProblems = nrOfAttemptedProblems;
 		this.nrOfCorrectProblems = nrOfCorrectProblems;
 		this.hoursActive = hoursActive;
-		this.successRatio = successRatio;
 		this.averageRating = averageRating;
 		this.dateJoined = dateJoined;
 	}
+
 
 	public int getNrOfAttemptedProblems() {
 		return nrOfAttemptedProblems;
@@ -62,7 +61,7 @@ public class Statistics {
 	public void setRating(double averageRating) {
 		this.averageRating = averageRating;
 	}
-=======
+
 public class Statistics {
 
     private int nrOfAttemptedProblems;
@@ -117,4 +116,5 @@ public class Statistics {
     public void setRating(double averageRating) {
         this.averageRating = averageRating;
     }
+
 }
