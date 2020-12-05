@@ -2,17 +2,26 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f0aa95b3-00b7-42f9-ab2b-9385a8a383f4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/ui/SignInMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PolihackProject.iml" beforeDir="false" afterPath="$PROJECT_DIR$/PolihackProject.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/Stage.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/LogIn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/LogIn.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/MyAccount.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/MyAccount.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/MyAccount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/MyAccount.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/StudentMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/StudentMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/studentMenu.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/studentMenu.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+        <option value="FxmlFile" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -27,10 +36,11 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../../javafx-sdk-15.0.1/lib" />
-    <property name="project.structure.last.edited" value="Libraries" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../Program Files/Java/javafx-sdk-15.0.1/lib" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -41,12 +51,7 @@
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ui.Main" />
       <module name="PolihackProject" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="ui.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
+      <option name="VM_PARAMETERS" value="--module-path &quot;C:\Program Files\Java\javafx-sdk-15.0.1\lib&quot;  --add-modules javafx.controls,javafx.fxml,javafx.base" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -77,6 +82,11 @@
       <option name="presentableId" value="Default" />
       <updated>1607112178079</updated>
       <workItem from="1607112181764" duration="4694000" />
+      <workItem from="1607172886063" duration="48000" />
+      <workItem from="1607172980906" duration="6600000" />
+      <workItem from="1607180073772" duration="14106000" />
+      <workItem from="1607197932168" duration="15000" />
+      <workItem from="1607197966391" duration="6109000" />
     </task>
     <servers />
   </component>
@@ -93,5 +103,6 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>
