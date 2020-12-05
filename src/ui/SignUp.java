@@ -31,7 +31,7 @@ public class SignUp {
     public void setScene(ActionEvent event) {
         Parent menu=null;
         try {
-            menu = FXMLLoader.load(getClass().getResource("signup.fxml")); //pui fxml de la scena pe care vrei sa o incarci
+            menu = FXMLLoader.load(getClass().getResource("signUp.fxml")); //pui fxml de la scena pe care vrei sa o incarci
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -49,7 +49,7 @@ public class SignUp {
         studentMenu.setScene(event);
         }
         else{
-            TutorMenu tutorMenu=new TutorMenu();
+            TutorMenu tutorMenu =new TutorMenu();
             tutorMenu.setScene(event);
         }
     }
