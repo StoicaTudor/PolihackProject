@@ -31,7 +31,7 @@ public class SignUp {
     public void setScene(ActionEvent event) {
         Parent menu=null;
         try {
-            menu = FXMLLoader.load(getClass().getResource("signup.fxml"));
+            menu = FXMLLoader.load(getClass().getResource("signup.fxml")); //pui fxml de la scena pe care vrei sa o incarci
         } catch (IOException e) {
             e.printStackTrace();
         }

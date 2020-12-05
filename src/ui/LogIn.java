@@ -37,23 +37,6 @@ public class LogIn {
         SignUp signUp=new SignUp();
         signUp.setScene(event);
     }
-    @FXML
-    public TextField getUsername() {
-        return username;
-    }
-
-    public void setUsername(TextField username) {
-        this.username = username;
-    }
-    @FXML
-    public TextField getPassword() {
-        return password;
-    }
-
-    public void setPassword(TextField password) {
-        this.password = password;
-    }
-
 
 }
 
