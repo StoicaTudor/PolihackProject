@@ -53,6 +53,9 @@ public class MyAccount {
 	private Label failedTasks;
 	String failedTasksString=new String("failed from DB");
 
+	@FXML
+	Button backToMainPage;
+
 
 	public void setScene(ActionEvent event) {
 
@@ -102,16 +105,12 @@ public class MyAccount {
 		window.show();
 
 	}
-
-
-
-	public MyAccount() {
-		// TODO Auto-generated constructor stub
+	public void backToMainPage(ActionEvent event) throws Exception{
+		StudentMenu studentMenu =new StudentMenu();
+		studentMenu.setScene(event);
 	}
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 
-	}
+
 
 }
