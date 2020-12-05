@@ -1,0 +1,4 @@
+TO-DO LIST:
+
+1. in Statistics -> camp dateJoined de tipul LocalDate
+2. redenumit clasa UserDetails in MyAccount
