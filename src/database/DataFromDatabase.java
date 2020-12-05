@@ -126,5 +126,17 @@ public class DataFromDatabase {
 
 		return null;
 	}
+	
+	public User validateSignIn(String username, String password) {
+		
+		for(User user : this.users) {
+			
+			if(user.getUsername() == username && user.getPassword() == password) {
+				return user;
+			}
+		}
+		
+		return null;
+	}
 
 }

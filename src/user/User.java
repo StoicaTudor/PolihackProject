@@ -51,4 +51,9 @@ public abstract class User {
 		// TODO Auto-generated method stub
 	}
 
+	public String getPassword() {
+		
+		return this.password;
+	}
+
 }
