@@ -23,9 +23,13 @@ public class DataFromDatabase {
 	private Connection connection0;
 	private Statement statement0;
 	private ResultSet resultSet0;
+
 	public Set<User> users = new HashSet<User>();
 	public Set<Subject> subjects = new HashSet<Subject>();
-	public Queue<String> problems;
+	public Queue<Problem> problems;
+
+	int sessionUserID = -1;
+	public Utility utility = new Utility();
 
 	public DataFromDatabase(Connection connectio0n, Statement statement0, ResultSet resultSet0) {
 
@@ -44,130 +48,52 @@ public class DataFromDatabase {
 	}
 
 	protected User getPersonalizedUser(int userType, int userID, String userName, String password, String nationality,
-			String email, ArrayList<Integer> attemptedProblems, Statistics statistics, Set<String> preferredSubjects) {
-		System.out.println(preferredSubjects.size());
+			String email, ArrayList<Integer> attemptedProblems, Statistics statistics, Set<String> preferredSubjects,
+			int grade) {
+
 		switch (userType) {
 
 		case 1: // student
 			return new Student(userID, userName, password, nationality, email,
 					new ArrayList<Integer>(attemptedProblems), statistics,
-					convertStringSetToSubjectSet(preferredSubjects));
+					utility.convertStringSetToSubjectSet(preferredSubjects), grade);
 
 		case 2: // tutor
 			return new Tutor(userID, userName, password, nationality, email, new ArrayList<Integer>(attemptedProblems),
-					statistics, convertStringSetToSubjectSet(preferredSubjects));
+					statistics, utility.convertStringSetToSubjectSet(preferredSubjects), grade);
 
 		case 3: // moderator
 			return new Moderator(userID, userName, password, nationality, email,
 					new ArrayList<Integer>(attemptedProblems), statistics,
-					convertStringSetToSubjectSet(preferredSubjects));
+					utility.convertStringSetToSubjectSet(preferredSubjects), grade);
 
 		default:
 			return null;
 		}
 	}
 
-	protected Set<Subject> convertStringSetToSubjectSet(Set<String> subjectsListString) {
-
-		Set<Subject> preferredSubjects = new HashSet<Subject>();
-
-		for (String subject : subjectsListString) {
-
-			switch (subject) {
-
-			case "Mathematics":
-				preferredSubjects.add(Subject.MATHEMATICS);
-				break;
-
-			case "Physics":
-				preferredSubjects.add(Subject.PHYSICS);
-				break;
-
-			case "ComputerScience":
-				preferredSubjects.add(Subject.COMPUTER_SCIENCE);
-				break;
-
-			case "English":
-				preferredSubjects.add(Subject.ENGLISH);
-				break;
-
-			case "German":
-				preferredSubjects.add(Subject.GERMAN);
-				break;
-
-			case "Spanish":
-				preferredSubjects.add(Subject.SPANISH);
-				break;
-
-			case "French":
-				preferredSubjects.add(Subject.FRENCH);
-				break;
-
-			case "Chemistry":
-				preferredSubjects.add(Subject.CHEMISTRY);
-				break;
-
-			case "Economy":
-				preferredSubjects.add(Subject.ECONOMY);
-				break;
-
-			case "Biology":
-				preferredSubjects.add(Subject.BIOLOGY);
-				break;
-
-			case "Geography":
-				preferredSubjects.add(Subject.GEOGRAPHY);
-				break;
-
-			case "History":
-				preferredSubjects.add(Subject.HISTORY);
-				break;
-
-			default:
-
-				break;
-			}
-		}
-
-		return preferredSubjects;
-	}
-
-	public User validateSignIn(String username, String password) {
+	public boolean validateSignIn(String username, String password) {
 
 		for (User user : this.users) {
 
 			if (user.getUsername() == username && user.getPassword() == password) {
-				return user;
+				this.sessionUserID = user.id;
+				return true;
 			}
 		}
 
-		return null;
+		return false;
 	}
 
-	public Difficulty getDifficulty(int difficulty) {
+//	// order all students by their Student -> User -> Statistics -> public double
+//	// averageRating;
+//	public Set<Student> generateRanking() {
+//		// TO DO
+//	}
+//
+//	public ArrayList<Problem> getProblemsByFiltersForStudentID(Set<String> filteredSubjects, int filterGrade,
+//			String filteredDifficulty) {
+//
+//	}
 
-		switch (difficulty) {
-
-		case 1:
-			return Difficulty.EASY;
-
-		case 2:
-			return Difficulty.MEDIUM;
-
-		case 3:
-			return Difficulty.HARD;
-
-		case 4:
-			return Difficulty.IVAN;
-
-		default:
-			return Difficulty.EASY;
-		}
-	}
-
-	// order all students by their Student -> User -> Statistics -> public double averageRating;
-	public Set<Student> generateRanking(){
-		// TO DO
-	}
-	
 }

@@ -14,8 +14,8 @@ public class Student extends User {
 	public Student(int id, String username, String password, String country, String email,
 			ArrayList<Integer> attemptedProblems, Statistics statistics, Set<Subject> preferredSubjects, int grade) {
 
-		super(id, username, password, country, email, attemptedProblems, statistics, preferredSubjects);
-		this.currentGrade = currentGrade;
+		super(id, username, password, country, email, attemptedProblems, statistics, preferredSubjects, grade);
+		this.currentGrade = grade;
 	}
 
 	public void solveProblem() {
@@ -34,7 +34,7 @@ public class Student extends User {
 	// initially, this method will be called by the student's preferred subjects and
 	// student's grade
 	// additionally, we MUST check for the problems which are NOT attempted
-	public Set<Problem> filterProblems(Set<Subject> filteredSubjects, int filterGrade, Difficulty filteredDifficulty) {
+	public ArrayList<Problem> filterProblems(Set<String> filteredSubjects, int filterGrade, String filteredDifficulty) {
 		// TO DO MIRUNA
 		return null;
 	}

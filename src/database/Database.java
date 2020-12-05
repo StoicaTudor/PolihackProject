@@ -73,6 +73,7 @@ public class Database {
 				String nationality = resultSet0.getString(5);
 				String email = resultSet0.getString(6);
 				LocalDate dateJoined = LocalDate.ofEpochDay(resultSet0.getLong(7));
+				int grade = resultSet0.getInt(8);
 
 				List<Integer> attemptedProblems = new ArrayList<Integer>();
 				Set<String> preferredSubjects = new HashSet<String>();
@@ -127,7 +128,7 @@ public class Database {
 				}
 
 				User user = data.getPersonalizedUser(userType, userID, userName, password, nationality, email,
-						new ArrayList<Integer>(attemptedProblems), statistics, preferredSubjects);
+						new ArrayList<Integer>(attemptedProblems), statistics, preferredSubjects, grade);
 
 				data.users.add(user); // add user to the great Set<User> users
 
@@ -153,7 +154,7 @@ public class Database {
 				preferredSubjects.add(resultSet0.getString(1));
 			}
 
-			data.subjects = data.convertStringSetToSubjectSet(preferredSubjects);
+			data.subjects = data.utility.convertStringSetToSubjectSet(preferredSubjects);
 
 			// testSubjects(data.subjects);
 
@@ -178,19 +179,28 @@ public class Database {
 				String solution = resultSet0.getString(4);
 				int proposerID = resultSet0.getInt(5);
 				int popularity = resultSet0.getInt(6);
-				Difficulty difficulty = data.getDifficulty(resultSet0.getInt(7));
+				Difficulty difficulty = Problem.getDifficulty(resultSet0.getInt(7));
 				int grade = resultSet0.getInt(8);
 				int subjectID = resultSet0.getInt(9);
 
-				problems.add(new Problem(problemName,problemID,task,solution,popularity,));
+				try {
+					resultSet1 = statement1.executeQuery(queryMaker.getRetrieveSubjectByIDQuery(subjectID));
+					resultSet1.next();
+					String stringSubject = resultSet1.getString(1);
+
+					problems.add(new Problem(problemName, problemID, task, solution, popularity, difficulty,
+							data.utility.convertStringSubjectToEnumSubject(stringSubject), proposerID, grade));
+				} catch (SQLException ex) {
+					ex.printStackTrace();
+				}
 			}
 
 			data.problems = problems;
 
-			testProblems(data.problems);
+			// testProblems(data.problems);
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 		System.gc();
@@ -202,6 +212,7 @@ public class Database {
 	}
 
 	private void testUser(User user) {
+		
 		System.out.println("------------------------------------------------------");
 		System.out.println(user.getUsername());
 		System.out.println(user.getCountry());
@@ -238,7 +249,7 @@ public class Database {
 
 		System.out.println();
 
-		System.out.println("------------------------------------------------------\n\n");
+		System.out.println("------------------------------------------------------");
 	}
 
 	private void testSubjects(Set<Subject> subjects) {
@@ -250,7 +261,20 @@ public class Database {
 	}
 
 	private void testProblems(Queue<Problem> problems) {
+
+		System.out.println("-----------------------------------");
+
+		for (Problem currentProblem : problems) {
+
+			System.out.println(currentProblem.getProblemID());
+			System.out.println(currentProblem.getProblemName());
+			System.out.println(currentProblem.getSolution());
+			System.out.println(currentProblem.getPopularity());
+			System.out.println(currentProblem.getProblemID());
+			System.out.println(currentProblem.grade);
+			System.out.println();
+		}
 		
-		for(String)
+		System.out.println("-----------------------------------");
 	}
 }
