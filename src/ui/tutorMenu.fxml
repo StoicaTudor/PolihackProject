@@ -4,16 +4,15 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-
 <AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.TutorMenu">
    <children>
       <VBox layoutX="221.0" layoutY="57.0" prefHeight="484.0" prefWidth="358.0" spacing="30.0">
          <children>
-            <Button mnemonicParsing="false" prefHeight="62.0" prefWidth="358.0" text="MyAccount" />
-            <Button mnemonicParsing="false" prefHeight="62.0" prefWidth="358.0" text="Review solutions" />
-            <Button mnemonicParsing="false" prefHeight="62.0" prefWidth="358.0" text="Propose new task" />
-            <Button mnemonicParsing="false" prefHeight="62.0" prefWidth="358.0" text="Feedback other tutors" />
-            <Button mnemonicParsing="false" prefHeight="62.0" prefWidth="358.0" text="Log Out" textFill="#ff0600" />
+            <Button fx:id="myAcc" mnemonicParsing="false" onAction="#myAccPressed" prefHeight="62.0" prefWidth="358.0" text="MyAccount" />
+            <Button fx:id="reviewSolutions" mnemonicParsing="false" onAction="#reviewSolutionsPressed" prefHeight="62.0" prefWidth="358.0" text="Review solutions" />
+            <Button fx:id="proposeNew" mnemonicParsing="false" onAction="#proposeNewPressed" prefHeight="62.0" prefWidth="358.0" text="Propose new task" />
+            <Button fx:id="feedbackTutor" mnemonicParsing="false" onAction="#feedbackTutorPressed" prefHeight="62.0" prefWidth="358.0" text="Feedback other tutors" />
+            <Button fx:id="logOut" mnemonicParsing="false" onAction="#logOutPressed" prefHeight="62.0" prefWidth="358.0" text="Log Out" textFill="#ff0600" />
          </children>
       </VBox>
    </children>

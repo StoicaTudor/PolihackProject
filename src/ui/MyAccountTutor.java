@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.stage.Stage;
@@ -40,6 +41,8 @@ public class MyAccountTutor {
     String feedbackGivenString=new String("feedbackGiven nr from DB");
     @FXML
     private ProgressBar moderatorProgress;
+    @FXML
+    private Button goBack;
 
     public void setScene(ActionEvent event){
 
@@ -88,7 +91,7 @@ public class MyAccountTutor {
         moderatorProgress.setProgress(0.5);
     }
 
-    private void backToMain(ActionEvent event){
+    public void backToMain(ActionEvent event){
         TutorMenu tutorMenu =new TutorMenu();
         tutorMenu.setScene(event);
     }

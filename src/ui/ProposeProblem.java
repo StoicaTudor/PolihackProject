@@ -1,5 +1,7 @@
 package ui;
 
+import javafx.event.ActionEvent;
+
 public class ProposeProblem {
 
 	public ProposeProblem() {
@@ -11,4 +13,6 @@ public class ProposeProblem {
 
 	}
 
+    public void setScene(ActionEvent action) {
+    }
 }

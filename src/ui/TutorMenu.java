@@ -30,7 +30,7 @@ public class TutorMenu {
     public void setScene(ActionEvent event) {
         Parent root= null;
         try {
-            root = FXMLLoader.load(getClass().getResource("myAccountTutor.fxml"));
+            root = FXMLLoader.load(getClass().getResource("tutorMenu.fxml"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -59,7 +59,7 @@ public class TutorMenu {
 
     }
     public void logOutPressed (ActionEvent action){
-        SignInMenu backToSignIn=new SignInMenu();
-        backToSignIn.start(action);
+        LogIn backToSignIn=new LogIn();
+        backToSignIn.setScene(action);
     }
 }
