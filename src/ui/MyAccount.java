@@ -1,8 +1,8 @@
 package ui;
 
-public class UserDetails {
+public class MyAccount {
 
-	public UserDetails() {
+	public MyAccount() {
 		// TODO Auto-generated constructor stub
 	}
 
