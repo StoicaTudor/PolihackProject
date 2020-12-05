@@ -1,6 +1,8 @@
 package user;
-import problem.subject;
+
+import problem.Subject;
 import java.util.ArrayList;
+import java.util.Set;
 
 public abstract class User {
 
@@ -11,85 +13,39 @@ public abstract class User {
 	private String email;
 	private ArrayList<Integer> attemptedProblems;
 	private Statistics statistics;
-	private ArrayList<subject> preferredSubjects;
+	private Set<Subject> preferredSubjects;
 
-
-	public User(int id, String username, String password, String country, String email, ArrayList<Integer> attemptedProblems, Statistics statistics, ArrayList<subject> preferredSubjects) {
-		this.id=id;
-		this.password=password;
-		this.username=username;
-		this.country=country;
-		this.email=email;
-		this.attemptedProblems=attemptedProblems;
-		this.statistics=statistics;
-		this.preferredSubjects=preferredSubjects;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
+	public User(int id, String username, String password, String country, String email,
+			ArrayList<Integer> attemptedProblems, Statistics statistics, Set<Subject> preferredSubjects) {
 		this.id = id;
-	}
-
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
 		this.password = password;
-	}
-
-	public String getCountry() {
-		return country;
-	}
-
-	public void setCountry(String country) {
+		this.username = username;
 		this.country = country;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
 		this.email = email;
-	}
-
-	public ArrayList<Integer> getNrOfAttemptedProblems() {
-		return attemptedProblems;
-	}
-
-	public void setNrOfAttemptedProblems(ArrayList<Integer> attempedProblems) {
-		this.attemptedProblems = attempedProblems;
-	}
-
-	public ArrayList<Integer> getAttemptedProblems() {
-		return attemptedProblems;
-	}
-
-	public void setAttemptedProblems(ArrayList<Integer> attemptedProblems) {
 		this.attemptedProblems = attemptedProblems;
-	}
-
-	public Statistics getStatistics() {
-		return statistics;
-	}
-
-	public void setStatistics(Statistics statistics) {
 		this.statistics = statistics;
+		this.preferredSubjects = preferredSubjects;
 	}
-
-
+	
+	public String getUsername() {
+		return this.username;
+	}
+	
+	public String getCountry() {
+		return this.country;
+	}
+	
+	public ArrayList<Integer> getAttemptedProblemsList(){
+		return this.attemptedProblems;
+	}
+	
+	public Statistics getStatistics() {
+		return this.statistics;
+	}
+	
+	public Set<Subject> getPreferredSubjects(){
+		return this.preferredSubjects;
+	}
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub

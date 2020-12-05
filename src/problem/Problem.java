@@ -11,14 +11,14 @@ public class Problem {
 	private String solution;
 	private double popularity;
 	private difficulty problemDifficulty;
-	private subject problemSubject;
+	private Subject problemSubject;
 	private ArrayList <Solution> solutions;
 	private int proposerID;
 	private int grade;
 
 
 		//Problem() constructor
-		public Problem(String problemName,int problemID,String task,String solution, double popularity, difficulty problemDifficulty,subject problemSubject, ArrayList<Solution> solutions,int proposerID,int grade) {
+		public Problem(String problemName,int problemID,String task,String solution, double popularity, difficulty problemDifficulty,Subject problemSubject, ArrayList<Solution> solutions,int proposerID,int grade) {
 		this.proposerID=proposerID;
 		this.problemName=problemName;
 		this.problemID=problemID;
@@ -79,11 +79,11 @@ public class Problem {
 		this.problemDifficulty = problemDifficulty;
 	}
 
-	public subject getProblemSubject() {
+	public Subject getProblemSubject() {
 		return problemSubject;
 	}
 
-	public void setProblemSubject(subject problemSubject) {
+	public void setProblemSubject(Subject problemSubject) {
 		this.problemSubject = problemSubject;
 	}
 
