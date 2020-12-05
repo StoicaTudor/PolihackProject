@@ -35,9 +35,9 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/.project" />
-    <property name="project.structure.last.edited" value="Libraries" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -45,14 +45,6 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="ui.Main" />
-      <module name="PolihackProject" />
-      <option name="VM_PARAMETERS" value="--module-path &quot;C:\Program Files\Java\javafx-sdk-15.0.1\lib&quot;  --add-modules javafx.controls,javafx.fxml" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -60,6 +52,14 @@
         </value>
       </option>
       <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ui.Main" />
+      <module name="PolihackProject" />
+      <option name="VM_PARAMETERS" value="--module-path &quot;D:\PoliHack\javafx-sdk-11.0.2\lib&quot;  --add-modules javafx.controls,javafx.fxml" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -98,5 +98,31 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1607183672962">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1607183672962" />
+    <state width="1493" height="211" key="GridCell.Tab.0.bottom" timestamp="1607188417167">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="211" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1607188417167" />
+    <state width="1493" height="211" key="GridCell.Tab.0.center" timestamp="1607188417166">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="211" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1607188417166" />
+    <state width="1493" height="211" key="GridCell.Tab.0.left" timestamp="1607188417166">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="211" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1607188417166" />
+    <state width="1493" height="211" key="GridCell.Tab.0.right" timestamp="1607188417167">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="211" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1607188417167" />
+    <state x="249" y="0" key="SettingsEditor" timestamp="1607183633965">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="249" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1607183633965" />
   </component>
 </project>
