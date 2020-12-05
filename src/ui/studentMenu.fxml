@@ -9,7 +9,7 @@
    <children>
       <HBox layoutX="600.0" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
          <children>
-            <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="85.0" text="My Account" />
+            <Button fx:id="myAccountButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#goToMyAcc" prefHeight="30.0" prefWidth="85.0" text="My Account" />
             <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="85.0" text="Log Out" />
          </children>
          <padding>
