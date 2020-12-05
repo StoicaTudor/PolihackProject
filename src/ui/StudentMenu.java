@@ -82,7 +82,7 @@ public class StudentMenu {
 	@FXML
 	public void goToMyAcc(ActionEvent event) throws IOException{
 
-				MyAccount myacc = new MyAccount();
+				MyAccountStudent myacc = new MyAccountStudent();
 				myacc.setScene(event);
 
 	}

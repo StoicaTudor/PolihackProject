@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.MyAccountTutor">
+    <children>
+        <VBox layoutX="46.0" layoutY="63.0" prefHeight="428.0" prefWidth="567.0" spacing="19.0">
+            <children>
+                <HBox prefHeight="0.0" prefWidth="154.0">
+                    <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Name :" wrappingWidth="59.0418701171875">
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                        </Text>
+                        <Label fx:id="name" prefHeight="24.0" prefWidth="482.0" />
+                    </children>
+                </HBox>
+                <HBox layoutX="10.0" layoutY="219.0" prefHeight="0.0" prefWidth="154.0">
+                    <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Occupation :" wrappingWidth="107.92779541015625">
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                        </Text>
+                        <Label fx:id="occupation" prefHeight="24.0" prefWidth="396.0" />
+                    </children>
+                </HBox>
+                <HBox layoutX="10.0" layoutY="261.0" prefHeight="0.0" prefWidth="154.0">
+                    <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Country : " wrappingWidth="78.93668365478516">
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                        </Text>
+                        <Label fx:id="country" prefHeight="24.0" prefWidth="430.0" />
+                    </children>
+                </HBox>
+                <HBox layoutX="10.0" layoutY="140.0" prefHeight="0.0" prefWidth="154.0">
+                    <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Email : " wrappingWidth="61.733612060546875">
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                        </Text>
+                        <Label fx:id="email" prefHeight="24.0" prefWidth="442.0" />
+                    </children>
+                </HBox>
+                <HBox layoutX="10.0" layoutY="304.0" prefHeight="0.0" prefWidth="154.0">
+                    <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Date Joined :" wrappingWidth="117.733642578125">
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                        </Text>
+                        <Label fx:id="date_joined" prefHeight="24.0" prefWidth="414.0" />
+                    </children>
+                </HBox>
+                <HBox prefHeight="0.0" prefWidth="490.0">
+                    <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="All-time Rating : " wrappingWidth="135.92776489257812">
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                        </Text>
+                        <Label fx:id="allTimeRating" prefHeight="24.0" prefWidth="482.0" />
+                    </children>
+                </HBox>
+                <HBox layoutX="10.0" layoutY="405.0" prefHeight="0.0" prefWidth="154.0">
+                    <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Sent Tasks : " wrappingWidth="103.33358764648438">
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                        </Text>
+                        <Label fx:id="sentTasks" prefHeight="24.0" prefWidth="457.0" />
+                    </children>
+                </HBox>
+                <HBox layoutX="10.0" layoutY="467.0" prefHeight="0.0" prefWidth="154.0">
+                    <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Feedback Given : " wrappingWidth="141.3366470336914">
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                        </Text>
+                        <Label fx:id="feedbackGiven" prefHeight="24.0" prefWidth="363.0" />
+                    </children>
+                </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Progress until becoming a moderator : " wrappingWidth="318.1366882324219">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+                  <ProgressBar fx:id="moderatorProgress" prefHeight="30.0" prefWidth="248.0" progress="0.0" />
+               </children>
+            </HBox>
+            </children>
+        </VBox>
+        <Text layoutX="291.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="My Account" textAlignment="CENTER" underline="true">
+            <font>
+                <Font size="37.0" />
+            </font>
+        </Text>
+        <Button fx:id="goBack" layoutX="312.0" layoutY="531.0" mnemonicParsing="false" onAction="#backToMain" text="Back to Main Page">
+            <font>
+                <Font size="16.0" />
+            </font>
+        </Button>
+    </children>
+</AnchorPane>

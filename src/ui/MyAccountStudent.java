@@ -17,7 +17,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class MyAccount {
+public class MyAccountStudent {
 
 	@FXML
 	private Label name;
@@ -61,7 +61,7 @@ public class MyAccount {
 
 		Parent root = null;
 		try {
-			root = FXMLLoader.load(getClass().getResource("MyAccount.fxml"));
+			root = FXMLLoader.load(getClass().getResource("MyAccountStudent.fxml"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
