@@ -89,6 +89,8 @@ public class MyAccountTutor {
 
         moderatorProgress=(ProgressBar)scene.lookup("#moderatorProgress");
         moderatorProgress.setProgress(0.5);
+        //aici trebuie sa pui progress in functie de ce constrainturi am stabilit
+        //,i.e cat ii mai ia sa ajunga un moderator
     }
 
     public void backToMain(ActionEvent event){
