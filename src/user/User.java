@@ -29,6 +29,10 @@ public abstract class User {
 		this.currentGrade = grade;
 	}
 
+	public int getGrade() {
+		return this.currentGrade;
+	}
+
 	public String getUsername() {
 		return this.username;
 	}

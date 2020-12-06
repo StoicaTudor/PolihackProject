@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Queue;
 import java.util.Set;
 
@@ -21,6 +22,7 @@ import problem.Solution;
 
 public class DataFromDatabase {
 
+	private DatabaseQueryMaker queryMaker;
 	private Connection connection0;
 	private Statement statement0;
 	private ResultSet resultSet0;
@@ -38,6 +40,7 @@ public class DataFromDatabase {
 		this.connection0 = connection0;
 		this.statement0 = statement0;
 		this.resultSet0 = resultSet0;
+		this.queryMaker = new DatabaseQueryMaker();
 	}
 
 	public void getData() {
@@ -96,17 +99,23 @@ public class DataFromDatabase {
 
 	public void addNewUser(User user) {
 
-		/*
-		 * !!!!!!!!!!!!!!!!!!!!!!!! TUDOR TODO BAGA IN DB IA ID USER SI BAGA IN
-		 * VARIABILA DE CLASA USER (UPDATE LA ID USER PT CA E TRIMIS CA -1)
-		 */
 		try {
-			this.resultSet0 = this.statement0.executeQuery("");
+			this.resultSet0 = this.statement0.executeQuery(queryMaker.studentInsertQuery(),
+					statement0.RETURN_GENERATED_KEYS);
+
+			if (resultSet0.next()) {
+				int lastIDInserted = resultSet0.getInt(1);
+				user.id = lastIDInserted;
+			}
+
+			this.users.add(user);
+
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
-		this.users.add(user);
+
+		System.gc();
 	}
 
 //	// order all students by their Student -> User -> Statistics -> public double
@@ -115,9 +124,58 @@ public class DataFromDatabase {
 //		// TO DO
 //	}
 //
-//	public ArrayList<Problem> getProblemsByFiltersForStudentID(Set<String> filteredSubjects, int filterGrade,
-//			String filteredDifficulty) {
-//
-//	}
+	public ArrayList<Problem> getProblemsByFiltersForStudentID(String filteredSubjects, Integer filterGrade,
+			String filteredDifficulty) {
 
+		ArrayList<Problem> filteredProblems = new ArrayList<>();
+
+		for (Problem currentProblem : problems) {
+
+			if (!solutions.contains(currentProblem) && currentProblem.grade == filterGrade
+					&& currentProblem.getProblemDifficulty() == Problem.getDifficultyString(filteredDifficulty)
+					&& currentProblem.getProblemSubject() == this.utility
+							.convertStringSubjectToEnumSubject(filteredSubjects)) {
+
+				filteredProblems.add(currentProblem);
+			}
+		}
+		System.gc();
+		return filteredProblems;
+	}
+
+	public ArrayList<Problem> getInitialListOfProblems() {
+
+		User currentUser = null;
+		Iterator<User> userIterator = users.iterator();
+
+		while (userIterator.hasNext()) {
+
+			User currentUserInIteration = userIterator.next();
+
+			if (currentUserInIteration.id == this.sessionUserID) {
+
+				currentUser = currentUserInIteration;
+			}
+		}
+
+		ArrayList<Problem> initialProblems = new ArrayList<>();
+
+		for (Problem currentProblem : problems) {
+
+			if (!solutions.contains(currentProblem) && currentProblem.grade == currentUser.getGrade()) {
+
+				for (Subject preferredSubjects : currentUser.getPreferredSubjects()) {
+
+					if (currentProblem.getProblemSubject() == preferredSubjects) {
+						initialProblems.add(currentProblem);
+						break;
+					}
+				}
+
+			}
+		}
+
+		System.gc();
+		return initialProblems;
+	}
 }

@@ -143,9 +143,10 @@ public class StudentMenu {
 		}
 	}
 
-	public void showTasks(ActionEvent event){
+	public void showTasks(ActionEvent event) {
 
-		problems=database.getProblemsByFiltersFromStudentID(String subject.getValue(), Integer section.getValue(), String difficulty.getValue());//implement in backend
+		problems = data.getProblemsByFiltersFromStudentID(subject.getValue(), section.getValue(),
+				difficulty.getValue());
 		showInitialTasks();
 	}
 
@@ -160,7 +161,7 @@ public class StudentMenu {
 		difficulty = (ChoiceBox<String>) scene.lookup("#difficulty");
 		difficulty.setValue("medium");
 		difficulty.getItems().addAll("easy", "medium", "hard");
-		problems = database.getInitialListOfProblems();// implement in backend
+		problems = data.getInitialListOfProblems();// implement in backend
 		showInitialTasks();
 
 	}
