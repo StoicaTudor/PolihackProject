@@ -10,7 +10,7 @@ public abstract class User {
 	private String username;
 	private String password;
 	private String country;
-	private String email;
+	public String email;
 	private ArrayList<Integer> attemptedProblems;
 	private Statistics statistics;
 	private Set<Subject> preferredSubjects;
