@@ -65,29 +65,16 @@ public class DatabaseQueryMaker {
 		return new String("SELECT * FROM attemptedproblems");
 	}
 
-
-
-
-
-	public String moderatorFeedbackUpdateQuery(int problemID, int moderatorID, String moderatorFeedback,double moderatorRating)
-	{
-		StringBuilder moderatorFeedbackQ = new StringBuilder("UPDATE pandemicspecial.attemptedproblems SET moderatorID = ");
-		moderatorFeedbackQ.append(moderatorID);
-		moderatorFeedbackQ.append(", moderatorFeedback = "+moderatorFeedback+", moderatorRating = ");
-		moderatorFeedbackQ.append(moderatorRating);
-		moderatorFeedbackQ.append("WHERE problemID = ");
-		moderatorFeedbackQ.append(problemID);
-		moderatorFeedbackQ.append(";");
-		return moderatorFeedbackQ.toString();
-	}
-
 	public String studentInsertQuery(String userName, int typeId, String password, String nationality, String email,
-			LocalDate dateJoined) {
-		StringBuilder studentIQ = new StringBuilder("INSERT INTO pandemicspecial.user VALUES (NULL, " + userName + ",");
+			LocalDate dateJoined, int grade) {
+
+		StringBuilder studentIQ = new StringBuilder("INSERT INTO pandemicspecial.user VALUES (NULL, " +'"' +userName + '"'+",");
 		studentIQ.append(typeId);
-		studentIQ.append("," + password + "," + nationality + "," + email + ",");
+		studentIQ.append("," + '"' + password + '"' + "," + '"' + nationality + '"' + "," + '"' + email + '"' + ",");
 		long days = dateJoined.toEpochDay();
 		studentIQ.append(days);
+		studentIQ.append(",");
+		studentIQ.append(grade);
 		studentIQ.append(")");
 		return studentIQ.toString();
 	}
@@ -95,7 +82,7 @@ public class DatabaseQueryMaker {
 	public String proposedProblemInsertQuery(String name, String task, String solution, int proposerId, int popularity,
 			int difficulty, int grade, String subject) {
 		StringBuilder problemIQ = new StringBuilder(
-				"INSERT INTO pandemicspecial.problem VALUES (NULL, " + name + "," + task + "," + solution + ",");
+				"INSERT INTO pandemicspecial.problem VALUES (NULL, " +"'"+ name +"'"+ "," +"'"+ task +"'"+ "," + "'"+solution +"'"+ ",");
 		problemIQ.append(proposerId);// AICI AI DE REZOLVAT CU ID;
 		problemIQ.append(",");
 		problemIQ.append(popularity);
@@ -161,13 +148,13 @@ public class DatabaseQueryMaker {
 		solutionIQ.append(studentId);
 		solutionIQ.append(",");
 		solutionIQ.append(problemId);
-		solutionIQ.append("," + studentSolution + ",");
+		solutionIQ.append("," +"'"+ studentSolution +"'"+ ",");
 		solutionIQ.append(tutorId);
 		solutionIQ.append(",");
 		solutionIQ.append(moderatorId);
-		solutionIQ.append("," + tutorFeedback + ",");
+		solutionIQ.append("," +"'"+ tutorFeedback +"'"+ ",");
 		solutionIQ.append(tutorRating);
-		solutionIQ.append("," + moderatorFeedback + ",");
+		solutionIQ.append("," +"'"+ moderatorFeedback +"'"+ ",");
 		solutionIQ.append(moderatorRating);
 		solutionIQ.append(")");
 		return solutionIQ.toString();
@@ -176,7 +163,7 @@ public class DatabaseQueryMaker {
 	public String tutorFeedbackUpdateQuery(int problemID, int tutorID, String tutorFeedback, double tutorRating) {
 		StringBuilder tutorFeedbackQ = new StringBuilder("UPDATE pandemicspecial.attemptedproblems SET tutorID = ");
 		tutorFeedbackQ.append(tutorID);
-		tutorFeedbackQ.append(", tutorFeedback = " + tutorFeedback + ", tutorRating = ");
+		tutorFeedbackQ.append(", tutorFeedback = " + "'"+tutorFeedback + "'"+", tutorRating = ");
 		tutorFeedbackQ.append(tutorRating);
 		tutorFeedbackQ.append("WHERE problemID = ");
 		tutorFeedbackQ.append(problemID);
@@ -184,6 +171,17 @@ public class DatabaseQueryMaker {
 		return tutorFeedbackQ.toString();
 	}
 
-
+	public String moderatorFeedbackUpdateQuery(int problemID, int moderatorID, String moderatorFeedback,
+			double moderatorRating) {
+		StringBuilder moderatorFeedbackQ = new StringBuilder(
+				"UPDATE pandemicspecial.attemptedproblems SET moderatorID = ");
+		moderatorFeedbackQ.append(moderatorID);
+		moderatorFeedbackQ.append(", moderatorFeedback = " + "'"+moderatorFeedback + "'"+", moderatorRating = ");
+		moderatorFeedbackQ.append(moderatorRating);
+		moderatorFeedbackQ.append("WHERE problemID = ");
+		moderatorFeedbackQ.append(problemID);
+		moderatorFeedbackQ.append(";");
+		return moderatorFeedbackQ.toString();
+	}
 
 }

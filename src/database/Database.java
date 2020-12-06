@@ -245,6 +245,13 @@ public class Database {
 		Database db = new Database();
 		db.retrieveDataFromDatabase();
 		
+		HashSet<String> preferredSubjects=new HashSet<>();
+		preferredSubjects.add("Mathematics");
+		
+		db.data.addNewUser(db.data.getPersonalizedUser(3, -1, "Ivan", "portocala", "Romania", "ivan@ivan.ivan", null,
+				new Statistics(
+						0, 0, 0, 0, LocalDate.now()), preferredSubjects, 12));
+		
 //		ArrayList<Problem> filteredProblems = db.data.getProblemsByFiltersFromStudentID("Mathematics", new Integer(7), "hard");
 //		
 //		for(Problem currentProblem : filteredProblems) {

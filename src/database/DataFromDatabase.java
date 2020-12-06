@@ -55,6 +55,10 @@ public class DataFromDatabase {
 			String email, ArrayList<Integer> attemptedProblems, Statistics statistics, Set<String> preferredSubjects,
 			int grade) {
 
+		if (attemptedProblems == null) {
+			attemptedProblems = new ArrayList<Integer>();
+		}
+
 		switch (userType) {
 
 		case 1: // student
@@ -110,12 +114,14 @@ public class DataFromDatabase {
 			} else if (user instanceof Moderator) {
 				userType = 3;
 			}
-
-			this.statement0
-					.executeUpdate(
-							queryMaker.studentInsertQuery(user.getUsername(), userType, user.getPassword(),
-									user.getCountry(), user.email, user.getStatistics().dateJoined),
-							statement0.RETURN_GENERATED_KEYS);
+			
+//			System.out.println(queryMaker.studentInsertQuery(user.getUsername(), userType, user.getPassword(),
+//					user.getCountry(), user.email, user.getStatistics().dateJoined, user.getGrade()));
+			
+			this.statement0.executeUpdate(
+					queryMaker.studentInsertQuery(user.getUsername(), userType, user.getPassword(), user.getCountry(),
+							user.email, user.getStatistics().dateJoined, user.getGrade()),
+					statement0.RETURN_GENERATED_KEYS);
 
 			resultSet0 = statement0.getGeneratedKeys();
 
@@ -172,7 +178,7 @@ public class DataFromDatabase {
 		return filteredProblems;
 	}
 
-	private User getUserByID(int sessionUserID) {
+	public User getUserByID(int sessionUserID) {
 
 		User currentUser = null;
 		Iterator<User> userIterator = users.iterator();
@@ -181,7 +187,7 @@ public class DataFromDatabase {
 
 			User currentUserInIteration = userIterator.next();
 
-			if (currentUserInIteration.id == this.sessionUserID) {
+			if (currentUserInIteration.id == sessionUserID) {
 
 				return currentUserInIteration;
 			}
@@ -263,9 +269,12 @@ public class DataFromDatabase {
 
 					this.users.remove(currentUserInIteration); // remove the user
 
-					// update the user, by inserting the new attempted problem in the attempted problems list
-					currentUserInIteration.getAttemptedProblemsList().add(studentSolution.solutionID); // solutionID !!!!, not problemID
-					
+					// update the user, by inserting the new attempted problem in the attempted
+					// problems list
+					currentUserInIteration.getAttemptedProblemsList().add(studentSolution.solutionID); // solutionID
+																										// !!!!, not
+																										// problemID
+
 					// finally, add the user back in the data
 					this.users.add(currentUserInIteration);
 				}
