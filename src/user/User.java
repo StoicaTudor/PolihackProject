@@ -11,7 +11,7 @@ public abstract class User {
 	private String password;
 	private String country;
 	public String email;
-	private ArrayList<Integer> attemptedProblems;
+	private ArrayList<Integer> attemptedProblems; // solution ID
 	private Statistics statistics;
 	private Set<Subject> preferredSubjects;
 	private int currentGrade;
