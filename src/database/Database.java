@@ -14,8 +14,8 @@ import java.util.Queue;
 import java.util.Set;
 
 import problem.Problem;
+import problem.Solution;
 import problem.Subject;
-import ui.ProblemsList;
 import user.Statistics;
 import user.User;
 import problem.Difficulty;
@@ -54,7 +54,7 @@ public class Database {
 		retrieveUsers(queryMaker);
 		retrieveSubjects(queryMaker);
 		retrieveProblems(queryMaker);
-		// retrieveStudentsSolutions(queryMaker);
+		retrieveStudentsSolutions(queryMaker);
 
 		System.gc();
 	}
@@ -138,7 +138,7 @@ public class Database {
 			}
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 	}
@@ -159,7 +159,7 @@ public class Database {
 			// testSubjects(data.subjects);
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 		System.gc();
@@ -206,13 +206,47 @@ public class Database {
 		System.gc();
 	}
 
+	private void retrieveStudentsSolutions(DatabaseQueryMaker queryMaker) {
+
+		try {
+			resultSet0 = statement0.executeQuery(queryMaker.getRetrieveStudentsSolutionsQuery());
+			ArrayList<Solution> solutions = new ArrayList<Solution>();
+
+			while (resultSet0.next()) {
+
+				int solutionID = resultSet0.getInt(1);
+				int studentID = resultSet0.getInt(2);
+				int problemID = resultSet0.getInt(3);
+				String studentSolution = resultSet0.getString(4);
+				int tutorID = resultSet0.getInt(5);
+				int moderatorID = resultSet0.getInt(6);
+				String tutorFeedback = resultSet0.getString(7);
+				int tutorRating = resultSet0.getInt(8);
+				String moderatorFeedback = resultSet0.getString(9);
+				int moderatorRating = resultSet0.getInt(10);
+
+				solutions.add(new Solution(solutionID, studentID, problemID, studentSolution, tutorID, moderatorID,
+						tutorFeedback, tutorRating, moderatorFeedback, moderatorRating));
+			}
+
+			data.solutions = solutions;
+
+			// testSolutions(data.solutions);
+
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		}
+		System.gc();
+	}
+
 	public static void main(String[] args) {
 		Database db = new Database();
 		db.retrieveDataFromDatabase();
 	}
 
 	private void testUser(User user) {
-		
+
 		System.out.println("------------------------------------------------------");
 		System.out.println(user.getUsername());
 		System.out.println(user.getCountry());
@@ -274,7 +308,30 @@ public class Database {
 			System.out.println(currentProblem.grade);
 			System.out.println();
 		}
+
+		System.out.println("-----------------------------------");
+	}
+
+	private void testSolutions(ArrayList<Solution> solutions) {
+		
+		System.out.println("-----------------------------------");
+		
+		for (Solution currentSolution : solutions) {
+
+			System.out.println(currentSolution.problemID);
+			System.out.println(currentSolution.solutionID);
+			System.out.println(currentSolution.studentID);
+			System.out.println(currentSolution.studentSolution);
+			System.out.println(currentSolution.tutorID);
+			System.out.println(currentSolution.tutorFeedback);
+			System.out.println(currentSolution.tutorRating);
+			System.out.println(currentSolution.moderatorID);
+			System.out.println(currentSolution.moderatorFeedback);
+			System.out.println(currentSolution.moderatorRating);
+			System.out.println();
+		}
 		
 		System.out.println("-----------------------------------");
 	}
+
 }

@@ -5,7 +5,6 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Queue;
 import java.util.Set;
 
@@ -15,8 +14,8 @@ import user.Statistics;
 import user.Student;
 import user.Tutor;
 import user.User;
-import problem.Difficulty;
 import problem.Problem;
+import problem.Solution;
 
 public class DataFromDatabase {
 
@@ -27,6 +26,7 @@ public class DataFromDatabase {
 	public Set<User> users = new HashSet<User>();
 	public Set<Subject> subjects = new HashSet<Subject>();
 	public Queue<Problem> problems;
+	public ArrayList<Solution> solutions;
 
 	int sessionUserID = -1;
 	public Utility utility = new Utility();
@@ -43,7 +43,6 @@ public class DataFromDatabase {
 	}
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 
 	}
 
