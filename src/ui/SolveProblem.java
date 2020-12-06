@@ -56,7 +56,7 @@ public class SolveProblem {
 		//submit button clicked
 		//insert problem into DB
 		task=(TextArea)scene.lookup("#task");
-		data.submitSolution(problemID,task.getText());
+		//data.submitSolution(problemID,task.getText());
 		StudentMenu studentMenu=new StudentMenu();
 		studentMenu.setScene(event,data);
 	}
