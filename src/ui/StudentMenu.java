@@ -59,15 +59,17 @@ public class StudentMenu {
 	@FXML
 	private TextField task5;
 
-	private DataFromDatabase database;
- 	ArrayList<Problem> problems=new ArrayList<>();
- 	private int nrOfPages=0;
- 	private int currentPage=1;
+	private DataFromDatabase data;
+	ArrayList<Problem> problems = new ArrayList<>();
+	private int nrOfPages = 0;
+	private int currentPage = 1;
 	Scene scene;
 
-	public void setScene(ActionEvent event){
+	public void setScene(ActionEvent event, DataFromDatabase data) {
 
-		Parent root= null;
+		this.data = data;
+
+		Parent root = null;
 		try {
 			root = FXMLLoader.load(getClass().getResource("studentMenu.fxml"));
 		} catch (IOException e) {
@@ -75,66 +77,71 @@ public class StudentMenu {
 		}
 		scene = new Scene(root);
 		initializeChoiceBoxes();
-		Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
+		Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		window.setScene(scene);
 		window.show();
 	}
-	@FXML
-	public void goToMyAcc(ActionEvent event) throws IOException{
 
-				MyAccountStudent myacc = new MyAccountStudent();
-				myacc.setScene(event);
+	@FXML
+	public void goToMyAcc(ActionEvent event) throws IOException {
+
+		MyAccountStudent myacc = new MyAccountStudent();
+		myacc.setScene(event);
 
 	}
-	public void logOut(ActionEvent event) throws IOException{
-		LogIn login=new LogIn();
+
+	public void logOut(ActionEvent event) throws IOException {
+		LogIn login = new LogIn();
 		login.setScene(event);
 	}
 
+	public void solve1(ActionEvent event) throws IOException {
+		int problemID = problems.get((currentPage - 1) * 5 + 0).getProblemID();
+		SolveProblem solveProblem = new SolveProblem();
+		solveProblem.setScene(event, problemID);
+	}
 
-	public void solve1(ActionEvent event) throws IOException{
-		int problemID=problems.get((currentPage-1)*5+0).getProblemID();
-		SolveProblem solveProblem= new SolveProblem();
-		solveProblem.setScene(event,problemID);
+	public void solve2(ActionEvent event) throws IOException {
+		int problemID = problems.get((currentPage - 1) * 5 + 1).getProblemID();
+		SolveProblem solveProblem = new SolveProblem();
+		solveProblem.setScene(event, problemID);
 	}
-	public void solve2(ActionEvent event) throws IOException{
-		int problemID=problems.get((currentPage-1)*5+1).getProblemID();
-		SolveProblem solveProblem= new SolveProblem();
-		solveProblem.setScene(event,problemID);
+
+	public void solve3(ActionEvent event) throws IOException {
+		int problemID = problems.get((currentPage - 1) * 5 + 2).getProblemID();
+		SolveProblem solveProblem = new SolveProblem();
+		solveProblem.setScene(event, problemID);
 	}
-	public void solve3(ActionEvent event) throws IOException{
-		int problemID=problems.get((currentPage-1)*5+2).getProblemID();
-		SolveProblem solveProblem= new SolveProblem();
-		solveProblem.setScene(event,problemID);
+
+	public void solve4(ActionEvent event) throws IOException {
+		int problemID = problems.get((currentPage - 1) * 5 + 3).getProblemID();
+		SolveProblem solveProblem = new SolveProblem();
+		solveProblem.setScene(event, problemID);
 	}
-	public void solve4(ActionEvent event) throws IOException{
-		int problemID=problems.get((currentPage-1)*5+3).getProblemID();
-		SolveProblem solveProblem= new SolveProblem();
-		solveProblem.setScene(event,problemID);
+
+	public void solve5(ActionEvent event) throws IOException {
+		int problemID = problems.get((currentPage - 1) * 5 + 4).getProblemID();
+		SolveProblem solveProblem = new SolveProblem();
+		solveProblem.setScene(event, problemID);
 	}
-	public void solve5(ActionEvent event) throws IOException{
-		int problemID=problems.get((currentPage-1)*5+4).getProblemID();
-		SolveProblem solveProblem= new SolveProblem();
-		solveProblem.setScene(event,problemID);
-	}
-	public void pressedPrevious(ActionEvent event){
-		if(currentPage>1){
+
+	public void pressedPrevious(ActionEvent event) {
+		if (currentPage > 1) {
 			currentPage--;
 			showPage();
 		}
 	}
-	public void pressedNext(ActionEvent event){
-		if(currentPage<nrOfPages){
+
+	public void pressedNext(ActionEvent event) {
+		if (currentPage < nrOfPages) {
 			currentPage++;
-			if(currentPage+1==nrOfPages){
+			if (currentPage + 1 == nrOfPages) {
 				showLastPage();
-			}
-			else{
+			} else {
 				showPage();
 			}
 		}
 	}
-
 
 	public void showTasks(ActionEvent event){
 
@@ -142,63 +149,65 @@ public class StudentMenu {
 		showInitialTasks();
 	}
 
-	public void initializeChoiceBoxes(){
-		subject=(ChoiceBox<String>)scene.lookup("#subject");
+	public void initializeChoiceBoxes() {
+		subject = (ChoiceBox<String>) scene.lookup("#subject");
 		subject.setValue("Mathematics");
-		subject.getItems().addAll("Mathematics","Physics","ComputerScience","English","German","Spanish",
-				"French","Chemistry","Economy","Biology","History","Geography");
-		section=(ChoiceBox<Integer>)scene.lookup("#section");
+		subject.getItems().addAll("Mathematics", "Physics", "ComputerScience", "English", "German", "Spanish", "French",
+				"Chemistry", "Economy", "Biology", "History", "Geography");
+		section = (ChoiceBox<Integer>) scene.lookup("#section");
 		section.setValue(12);
-		section.getItems().addAll(1,2,3,4,5,6,7,8,9,10,11,12);
-		difficulty=(ChoiceBox<String>)scene.lookup("#difficulty");
+		section.getItems().addAll(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12);
+		difficulty = (ChoiceBox<String>) scene.lookup("#difficulty");
 		difficulty.setValue("medium");
-		difficulty.getItems().addAll("easy","medium","hard");
-		problems=database.getInitialListOfProblems();//implement in backend
+		difficulty.getItems().addAll("easy", "medium", "hard");
+		problems = database.getInitialListOfProblems();// implement in backend
 		showInitialTasks();
 
 	}
-	public void showInitialTasks(){
 
-		if(problems.size()>0){
-			nrOfPages=(problems.size()-1)/5+1;
-			if (nrOfPages==1){
+	public void showInitialTasks() {
+
+		if (problems.size() > 0) {
+			nrOfPages = (problems.size() - 1) / 5 + 1;
+			if (nrOfPages == 1) {
 				showLastPage();
 			}
 		}
 	}
-	public void showPage(){
-		task1 = (TextField) scene.lookup("#task1");
-		task1.setText(problems.get((currentPage-1)*5+0).getTask());
-		task2 = (TextField) scene.lookup("#task2");
-		task2.setText(problems.get((currentPage-1)*5+1).getTask());
-		task3 = (TextField) scene.lookup("#task3");
-		task3.setText(problems.get((currentPage-1)*5+2).getTask());
-		task4 = (TextField) scene.lookup("#task4");
-		task4.setText(problems.get((currentPage-1)*5+3).getTask());
-		task5 = (TextField) scene.lookup("#task5");
-		task5.setText(problems.get((currentPage-1)*5+4).getTask());
-	}
-	public void showLastPage(){
-		task1 = (TextField) scene.lookup("#task1");
-		task1.setText(problems.get((currentPage-1)*5+0).getTask());
 
-		if(problems.size()%5>=2) {
+	public void showPage() {
+		task1 = (TextField) scene.lookup("#task1");
+		task1.setText(problems.get((currentPage - 1) * 5 + 0).getTask());
+		task2 = (TextField) scene.lookup("#task2");
+		task2.setText(problems.get((currentPage - 1) * 5 + 1).getTask());
+		task3 = (TextField) scene.lookup("#task3");
+		task3.setText(problems.get((currentPage - 1) * 5 + 2).getTask());
+		task4 = (TextField) scene.lookup("#task4");
+		task4.setText(problems.get((currentPage - 1) * 5 + 3).getTask());
+		task5 = (TextField) scene.lookup("#task5");
+		task5.setText(problems.get((currentPage - 1) * 5 + 4).getTask());
+	}
+
+	public void showLastPage() {
+		task1 = (TextField) scene.lookup("#task1");
+		task1.setText(problems.get((currentPage - 1) * 5 + 0).getTask());
+
+		if (problems.size() % 5 >= 2) {
 			task2 = (TextField) scene.lookup("#task2");
-			task2.setText(problems.get((currentPage-1)*5+1).getTask());
+			task2.setText(problems.get((currentPage - 1) * 5 + 1).getTask());
 		}
-		if(problems.size()%5>=3) {
+		if (problems.size() % 5 >= 3) {
 			task3 = (TextField) scene.lookup("#task3");
-			task3.setText(problems.get((currentPage-1)*5+2).getTask());
+			task3.setText(problems.get((currentPage - 1) * 5 + 2).getTask());
 		}
-		if(problems.size()%5>=4) {
+		if (problems.size() % 5 >= 4) {
 			task4 = (TextField) scene.lookup("#task4");
-			task4.setText(problems.get((currentPage-1)*5+3).getTask());
+			task4.setText(problems.get((currentPage - 1) * 5 + 3).getTask());
 		}
-		if(problems.size()%5>=5) {
+		if (problems.size() % 5 >= 5) {
 			task5 = (TextField) scene.lookup("#task5");
-			task5.setText(problems.get((currentPage-1)*5+4).getTask());
+			task5.setText(problems.get((currentPage - 1) * 5 + 4).getTask());
 		}
 	}
 
 }
-

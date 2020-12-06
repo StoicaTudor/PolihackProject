@@ -11,55 +11,64 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-
+import database.DataFromDatabase;
 
 public class TutorMenu {
 
-    @FXML
-    private Button myAcc;
-    @FXML
-    private Button reviewSolutions;
-    @FXML
-    private Button proposeNew;
-    @FXML
-    private Button feedbackTutor;
-    @FXML
-    private Button logOut;
+	DataFromDatabase data;
+	
+	@FXML
+	private Button myAcc;
+	@FXML
+	private Button reviewSolutions;
+	@FXML
+	private Button proposeNew;
+	@FXML
+	private Button feedbackTutor;
+	@FXML
+	private Button logOut;
 
+	public void setScene(ActionEvent event, DataFromDatabase data) {
 
-    public void setScene(ActionEvent event) {
-        Parent root= null;
-        try {
-            root = FXMLLoader.load(getClass().getResource("tutorMenu.fxml"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        Scene scene = new Scene(root);
-        Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
-        window.setScene(scene);
-        window.show();
-    }
-    public void myAccPressed (ActionEvent action){
-        MyAccountTutor myacc = new MyAccountTutor();
-        myacc.setScene(action);
-    }
-    public void reviewSolutionsPressed (ActionEvent action){
-        ReviewSolution review= new ReviewSolution();
-        review.setScene(action);
+		this.data = data;
 
-    }
-    public void proposeNewPressed (ActionEvent action){
-        ProposeProblem propose=new ProposeProblem();
-        propose.setScene(action);
+		Parent root = null;
+		try {
+			root = FXMLLoader.load(getClass().getResource("tutorMenu.fxml"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		Scene scene = new Scene(root);
+		Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		window.setScene(scene);
+		window.show();
+	}
 
-    }
-    public void feedbackTutorPressed (ActionEvent action){
-        ReviewFeedback reviewFeedback=new ReviewFeedback();
-        reviewFeedback.setScene(action);
+	public void myAccPressed(ActionEvent action) {
+		MyAccountTutor myacc = new MyAccountTutor();
+		myacc.setScene(action);
+	}
 
-    }
-    public void logOutPressed (ActionEvent action){
-        LogIn backToSignIn=new LogIn();
-        backToSignIn.setScene(action);
-    }
+	public void reviewSolutionsPressed(ActionEvent action) {
+		ReviewSolution review = new ReviewSolution();
+		review.setScene(action);
+
+	}
+
+	public void proposeNewPressed(ActionEvent action) {
+		ProposeProblem propose = new ProposeProblem();
+		propose.setScene(action);
+
+	}
+
+	public void feedbackTutorPressed(ActionEvent action) {
+		ReviewFeedback reviewFeedback = new ReviewFeedback();
+		reviewFeedback.setScene(action);
+
+	}
+
+	public void logOutPressed(ActionEvent action) {
+		LogIn backToSignIn = new LogIn();
+		backToSignIn.setScene(action);
+	}
 }
