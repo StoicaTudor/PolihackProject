@@ -2,13 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f0aa95b3-00b7-42f9-ab2b-9385a8a383f4" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/LogIn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/LogIn.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/MyAccount.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/MyAccount.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/MyAccount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/MyAccount.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/SolveProblem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/SolveProblem.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ui/StudentMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/StudentMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/studentMenu.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/studentMenu.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,13 +44,26 @@
     </key>
   </component>
   <component name="RunManager">
+
     <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ui.Main" />
+      <module name="PolihackProject" />
+      <option name="VM_PARAMETERS" value="--module-path &quot;C:\Program Files\Java\javafx-sdk-15.0.1\lib&quot;  --add-modules javafx.controls,javafx.fxml,javafx.base" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="class" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -87,6 +96,7 @@
       <workItem from="1607180073772" duration="14106000" />
       <workItem from="1607197932168" duration="15000" />
       <workItem from="1607197966391" duration="6109000" />
+      <workItem from="1607204361007" duration="9474000" />
     </task>
     <servers />
   </component>
