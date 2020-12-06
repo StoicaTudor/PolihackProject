@@ -53,6 +53,8 @@ public class MyAccountStudent {
 	@FXML
 	private Label failedTasks;
 	String failedTasksString=new String("failed from DB");
+	@FXML
+	Button solvedProblems;
 
 	@FXML
 	Button backToMainPage;
@@ -113,6 +115,10 @@ public class MyAccountStudent {
 	public void backToMainPage(ActionEvent event) throws Exception{
 		StudentMenu studentMenu =new StudentMenu();
 		studentMenu.setScene(event,data);
+	}
+	public void goToSolvedProblems(ActionEvent event) throws Exception{
+		ProblemsList problemsList =new ProblemsList();
+		problemsList.setScene(event,data);
 	}
 
 
