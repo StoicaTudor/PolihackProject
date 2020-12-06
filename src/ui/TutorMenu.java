@@ -12,6 +12,10 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 import database.DataFromDatabase;
+import user.UserType;
+
+import static user.UserType.MODERATOR;
+import static user.UserType.TUTOR;
 
 public class TutorMenu {
 
@@ -31,7 +35,6 @@ public class TutorMenu {
 	public void setScene(ActionEvent event, DataFromDatabase data) {
 
 		this.data = data;
-
 		Parent root = null;
 		try {
 			root = FXMLLoader.load(getClass().getResource("tutorMenu.fxml"));
@@ -39,6 +42,13 @@ public class TutorMenu {
 			e.printStackTrace();
 		}
 		Scene scene = new Scene(root);
+		feedbackTutor=(Button)scene.lookup("#feedbackTutor");
+		if(data.isModerator()==false){
+			feedbackTutor.setVisible(false);
+		}
+		else {
+			feedbackTutor.setVisible(true);
+		}
 		Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		window.setScene(scene);
 		window.show();
@@ -62,8 +72,11 @@ public class TutorMenu {
 	}
 
 	public void feedbackTutorPressed(ActionEvent action) {
-		ReviewFeedback reviewFeedback = new ReviewFeedback();
-		reviewFeedback.setScene(action,data);
+		if(data.isModerator()){
+			ReviewFeedback reviewFeedback = new ReviewFeedback();
+			reviewFeedback.setScene(action,data);
+		}
+
 
 	}
 

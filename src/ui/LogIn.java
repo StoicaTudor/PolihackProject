@@ -39,7 +39,7 @@ public class LogIn {
 	public void pressLogIn(ActionEvent event) {
 
 		UserType logInResult = data.validateSignIn(username.getText(), password.getText());
-
+		TutorMenu tutorMenu;
 		switch (logInResult) {
 
 		case NA:
@@ -52,13 +52,14 @@ public class LogIn {
 			break;
 
 		case TUTOR:
-			TutorMenu tutorMenu=new TutorMenu();
+			tutorMenu=new TutorMenu();
 			tutorMenu.setScene(event,data);
 			break;
 
 		case MODERATOR:
-			//TutorMenu tutorMenu=new TutorMenu();
-			//tutorMenu.setScene(event,data);
+			tutorMenu = new TutorMenu();
+			tutorMenu.setScene(event,data);
+			System.out.println("");
 			break;
 
 		default:
