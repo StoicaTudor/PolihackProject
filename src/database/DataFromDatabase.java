@@ -100,15 +100,28 @@ public class DataFromDatabase {
 	public void addNewUser(User user) {
 
 		try {
-			this.resultSet0 = this.statement0.executeQuery(queryMaker.studentInsertQuery(),
-					statement0.RETURN_GENERATED_KEYS);
+
+			int userType = 1;
+
+			if (user instanceof Student) {
+				userType = 1;
+			} else if (user instanceof Tutor) {
+				userType = 2;
+			} else if (user instanceof Moderator) {
+				userType = 3;
+			}
+
+			this.resultSet0 = this.statement0.executeQuery(queryMaker.studentInsertQuery(user.getUsername(), userType,
+					user.getPassword(), user.getCountry(), user.email, user.getStatistics().dateJoined));
+
+			// first introduce new user into the database
 
 			if (resultSet0.next()) {
 				int lastIDInserted = resultSet0.getInt(1);
-				user.id = lastIDInserted;
+				user.id = lastIDInserted; // get inserted id
 			}
 
-			this.users.add(user);
+			this.users.add(user); // add updated user into the users list
 
 		} catch (SQLException e) {
 
@@ -124,14 +137,25 @@ public class DataFromDatabase {
 //		// TO DO
 //	}
 //
-	public ArrayList<Problem> getProblemsByFiltersForStudentID(String filteredSubjects, Integer filterGrade,
+	public ArrayList<Problem> getProblemsByFiltersFromStudentID(String filteredSubjects, Integer filterGrade,
 			String filteredDifficulty) {
 
 		ArrayList<Problem> filteredProblems = new ArrayList<>();
+		User currentUser = this.getUserByID(this.sessionUserID);
 
-		for (Problem currentProblem : problems) {
+		for (Problem currentProblem : problems) { // for every problem
 
-			if (!solutions.contains(currentProblem) && currentProblem.grade == filterGrade
+			boolean problemIsAttempted = false;
+
+			for (Integer attemptedProblemID : currentUser.getAttemptedProblemsList()) { // check if it is attempted
+
+				if (attemptedProblemID == currentProblem.getProblemID()) {
+					problemIsAttempted = true;
+					break;
+				}
+			}
+
+			if (problemIsAttempted == false && currentProblem.grade == filterGrade
 					&& currentProblem.getProblemDifficulty() == Problem.getDifficultyString(filteredDifficulty)
 					&& currentProblem.getProblemSubject() == this.utility
 							.convertStringSubjectToEnumSubject(filteredSubjects)) {
@@ -143,7 +167,7 @@ public class DataFromDatabase {
 		return filteredProblems;
 	}
 
-	public ArrayList<Problem> getInitialListOfProblems() {
+	private User getUserByID(int sessionUserID) {
 
 		User currentUser = null;
 		Iterator<User> userIterator = users.iterator();
@@ -154,9 +178,16 @@ public class DataFromDatabase {
 
 			if (currentUserInIteration.id == this.sessionUserID) {
 
-				currentUser = currentUserInIteration;
+				return currentUserInIteration;
 			}
 		}
+
+		return currentUser;
+	}
+
+	public ArrayList<Problem> getInitialListOfProblems() {
+
+		User currentUser = this.getUserByID(sessionUserID);
 
 		ArrayList<Problem> initialProblems = new ArrayList<>();
 
@@ -177,5 +208,9 @@ public class DataFromDatabase {
 
 		System.gc();
 		return initialProblems;
+	}
+	
+	public boolean isModerator() {
+		return (this.getUserByID(sessionUserID) instanceof Moderator);
 	}
 }

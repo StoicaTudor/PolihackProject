@@ -179,7 +179,7 @@ public class Database {
 				String solution = resultSet0.getString(4);
 				int proposerID = resultSet0.getInt(5);
 				int popularity = resultSet0.getInt(6);
-				Difficulty difficulty = Problem.getDifficulty(resultSet0.getInt(7));
+				Difficulty difficulty = Problem.getDifficultyInt(resultSet0.getInt(7));
 				int grade = resultSet0.getInt(8);
 				int subjectID = resultSet0.getInt(9);
 
