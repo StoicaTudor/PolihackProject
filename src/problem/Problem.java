@@ -2,33 +2,33 @@ package problem;
 
 import java.util.ArrayList;
 
-
-public class Problem {
+public class Problem implements Comparable<Problem> {
 
 	private String problemName;
 	private int problemID;
 	private String task;
+	public String taskThumbnail;
 	private String solution;
-	private double popularity;
-	private difficulty problemDifficulty;
+	private int popularity;
+	private Difficulty problemDifficulty;
 	private Subject problemSubject;
-	private ArrayList <Solution> solutions;
 	private int proposerID;
-	private int grade;
+	public int grade;
 
-
-		//Problem() constructor
-		public Problem(String problemName,int problemID,String task,String solution, double popularity, difficulty problemDifficulty,Subject problemSubject, ArrayList<Solution> solutions,int proposerID,int grade) {
-		this.proposerID=proposerID;
-		this.problemName=problemName;
-		this.problemID=problemID;
-		this.task=task;
-		this.solution=solution;
-		this.popularity=popularity;
-		this.problemDifficulty=problemDifficulty;
-		this.problemSubject=problemSubject;
-		this.solutions=solutions;
-		this.grade=grade;
+	// Problem() constructor
+	public Problem(String problemName, int problemID, String task, String solution, int popularity,
+			Difficulty problemDifficulty, Subject problemSubject, int proposerID,
+			int grade) {
+		
+		this.proposerID = proposerID;
+		this.problemName = problemName;
+		this.problemID = problemID;
+		this.task = task;
+		this.solution = solution;
+		this.popularity = popularity;
+		this.problemDifficulty = problemDifficulty;
+		this.problemSubject = problemSubject;
+		this.grade = grade;
 	}
 
 	public String getProblemName() {
@@ -63,19 +63,19 @@ public class Problem {
 		this.solution = solution;
 	}
 
-	public double getPopularity() {
+	public int getPopularity() {
 		return popularity;
 	}
 
-	public void setPopularity(double popularity) {
+	public void setPopularity(int popularity) {
 		this.popularity = popularity;
 	}
 
-	public difficulty getProblemDifficulty() {
+	public Difficulty getProblemDifficulty() {
 		return problemDifficulty;
 	}
 
-	public void setProblemDifficulty(difficulty problemDifficulty) {
+	public void setProblemDifficulty(Difficulty problemDifficulty) {
 		this.problemDifficulty = problemDifficulty;
 	}
 
@@ -87,11 +87,34 @@ public class Problem {
 		this.problemSubject = problemSubject;
 	}
 
-	public ArrayList<Solution> getSolutions() {
-		return solutions;
+	@Override
+	public int compareTo(Problem problem) {
+		return (this.getPopularity() < problem.getPopularity()) ? 1 : 0;
 	}
+	
+	public void setTaskThumbnail() {
+		// TO DO MIRUNA
+		
+	}
+	
+	public static Difficulty getDifficulty(int difficulty) {
 
-	public void setSolutions(ArrayList<Solution> solutions) {
-		this.solutions = solutions;
+		switch (difficulty) {
+
+		case 1:
+			return Difficulty.EASY;
+
+		case 2:
+			return Difficulty.MEDIUM;
+
+		case 3:
+			return Difficulty.HARD;
+
+		case 4:
+			return Difficulty.IVAN;
+
+		default:
+			return Difficulty.EASY;
+		}
 	}
 }

@@ -17,7 +17,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class MyAccount {
+public class MyAccountStudent {
 
 	@FXML
 	private Label name;
@@ -53,12 +53,15 @@ public class MyAccount {
 	private Label failedTasks;
 	String failedTasksString=new String("failed from DB");
 
+	@FXML
+	Button backToMainPage;
+
 
 	public void setScene(ActionEvent event) {
 
 		Parent root = null;
 		try {
-			root = FXMLLoader.load(getClass().getResource("MyAccount.fxml"));
+			root = FXMLLoader.load(getClass().getResource("MyAccountStudent.fxml"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -102,16 +105,12 @@ public class MyAccount {
 		window.show();
 
 	}
-
-
-
-	public MyAccount() {
-		// TODO Auto-generated constructor stub
+	public void backToMainPage(ActionEvent event) throws Exception{
+		StudentMenu studentMenu =new StudentMenu();
+		studentMenu.setScene(event);
 	}
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 
-	}
+
 
 }

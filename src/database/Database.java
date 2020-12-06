@@ -9,13 +9,16 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.PriorityQueue;
+import java.util.Queue;
 import java.util.Set;
 
-
+import problem.Problem;
 import problem.Subject;
+import ui.ProblemsList;
 import user.Statistics;
-import user.Student;
 import user.User;
+import problem.Difficulty;
 
 public class Database {
 
@@ -46,12 +49,17 @@ public class Database {
 
 	public void retrieveDataFromDatabase() {
 
-		DatabaseQuerryMaker queryMaker = new DatabaseQuerryMaker();
+		DatabaseQueryMaker queryMaker = new DatabaseQueryMaker();
 
 		retrieveUsers(queryMaker);
+		retrieveSubjects(queryMaker);
+		retrieveProblems(queryMaker);
+		// retrieveStudentsSolutions(queryMaker);
+
+		System.gc();
 	}
 
-	private void retrieveUsers(DatabaseQuerryMaker queryMaker) {
+	private void retrieveUsers(DatabaseQueryMaker queryMaker) {
 
 		try {
 			resultSet0 = statement0.executeQuery(queryMaker.getRetrieveUserQuery());
@@ -64,7 +72,8 @@ public class Database {
 				String password = resultSet0.getString(4);
 				String nationality = resultSet0.getString(5);
 				String email = resultSet0.getString(6);
-				LocalDate dateJoined = LocalDate.ofEpochDay(resultSet0.getLong(7) / (1000 * 60 * 60 * 24));
+				LocalDate dateJoined = LocalDate.ofEpochDay(resultSet0.getLong(7));
+				int grade = resultSet0.getInt(8);
 
 				List<Integer> attemptedProblems = new ArrayList<Integer>();
 				Set<String> preferredSubjects = new HashSet<String>();
@@ -87,12 +96,11 @@ public class Database {
 
 				try { // retrieve list of preferred subjects
 					resultSet1 = statement1.executeQuery(queryMaker.getPreferredSubjectsQuery(userID));
-					Set<String> preferredSubjectsString = new HashSet<String>();
 
 					while (resultSet1.next()) {
 
 						String preferredSubject = resultSet1.getString(1);
-						preferredSubjectsString.add(preferredSubject);
+						preferredSubjects.add(preferredSubject);
 					}
 
 				} catch (SQLException e) {
@@ -120,7 +128,7 @@ public class Database {
 				}
 
 				User user = data.getPersonalizedUser(userType, userID, userName, password, nationality, email,
-						new ArrayList<Integer>(attemptedProblems), statistics, preferredSubjects);
+						new ArrayList<Integer>(attemptedProblems), statistics, preferredSubjects, grade);
 
 				data.users.add(user); // add user to the great Set<User> users
 
@@ -135,9 +143,67 @@ public class Database {
 		}
 	}
 
-	private void retrieveSubjects() {
+	private void retrieveSubjects(DatabaseQueryMaker queryMaker) {
 
-		// resultSet0 = statement0.
+		try {
+			resultSet0 = statement0.executeQuery(queryMaker.getRetrieveSubjectsQuery());
+			Set<String> preferredSubjects = new HashSet<String>();
+
+			while (resultSet0.next()) {
+
+				preferredSubjects.add(resultSet0.getString(1));
+			}
+
+			data.subjects = data.utility.convertStringSetToSubjectSet(preferredSubjects);
+
+			// testSubjects(data.subjects);
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.gc();
+	}
+
+	private void retrieveProblems(DatabaseQueryMaker queryMaker) {
+
+		try {
+			resultSet0 = statement0.executeQuery(queryMaker.getRetrieveProblemsQuery());
+			Queue<Problem> problems = new PriorityQueue<Problem>();
+
+			while (resultSet0.next()) {
+
+				int problemID = resultSet0.getInt(1);
+				String problemName = resultSet0.getString(2);
+				String task = resultSet0.getString(3);
+				String solution = resultSet0.getString(4);
+				int proposerID = resultSet0.getInt(5);
+				int popularity = resultSet0.getInt(6);
+				Difficulty difficulty = Problem.getDifficulty(resultSet0.getInt(7));
+				int grade = resultSet0.getInt(8);
+				int subjectID = resultSet0.getInt(9);
+
+				try {
+					resultSet1 = statement1.executeQuery(queryMaker.getRetrieveSubjectByIDQuery(subjectID));
+					resultSet1.next();
+					String stringSubject = resultSet1.getString(1);
+
+					problems.add(new Problem(problemName, problemID, task, solution, popularity, difficulty,
+							data.utility.convertStringSubjectToEnumSubject(stringSubject), proposerID, grade));
+				} catch (SQLException ex) {
+					ex.printStackTrace();
+				}
+			}
+
+			data.problems = problems;
+
+			// testProblems(data.problems);
+
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		}
+		System.gc();
 	}
 
 	public static void main(String[] args) {
@@ -146,6 +212,7 @@ public class Database {
 	}
 
 	private void testUser(User user) {
+		
 		System.out.println("------------------------------------------------------");
 		System.out.println(user.getUsername());
 		System.out.println(user.getCountry());
@@ -153,6 +220,13 @@ public class Database {
 		System.out.print("IDs of attemptedProblems:  ");
 		for (int problemID : user.getAttemptedProblemsList()) {
 			System.out.print(problemID + " ");
+		}
+
+		System.out.println();
+		System.out.println("Preferred Subjects:\n");
+
+		for (Subject currentSubject : user.getPreferredSubjects()) {
+			System.out.println(currentSubject);
 		}
 
 		System.out.println();
@@ -175,6 +249,32 @@ public class Database {
 
 		System.out.println();
 
-		System.out.println("------------------------------------------------------\n\n");
+		System.out.println("------------------------------------------------------");
+	}
+
+	private void testSubjects(Set<Subject> subjects) {
+
+		for (Subject currentSubject : subjects) {
+
+			System.out.println(currentSubject);
+		}
+	}
+
+	private void testProblems(Queue<Problem> problems) {
+
+		System.out.println("-----------------------------------");
+
+		for (Problem currentProblem : problems) {
+
+			System.out.println(currentProblem.getProblemID());
+			System.out.println(currentProblem.getProblemName());
+			System.out.println(currentProblem.getSolution());
+			System.out.println(currentProblem.getPopularity());
+			System.out.println(currentProblem.getProblemID());
+			System.out.println(currentProblem.grade);
+			System.out.println();
+		}
+		
+		System.out.println("-----------------------------------");
 	}
 }

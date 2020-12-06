@@ -1,5 +1,7 @@
 package ui;
 
+import javafx.event.ActionEvent;
+
 public class ReviewSolution {
 
 	public ReviewSolution() {
@@ -11,4 +13,6 @@ public class ReviewSolution {
 
 	}
 
+    public void setScene(ActionEvent action) {
+    }
 }
