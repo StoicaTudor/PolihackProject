@@ -58,7 +58,7 @@ public class MyAccountStudent {
 
 	@FXML
 	Button backToMainPage;
-	DataFromDatabase data;
+	public static DataFromDatabase  data;
 
 
 	public void setScene(ActionEvent event, DataFromDatabase data) {

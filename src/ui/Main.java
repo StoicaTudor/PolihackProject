@@ -1,6 +1,5 @@
 package ui;
 import database.Database;
-import database.DatabaseQuerryMaker;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -13,6 +12,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
+    	
         Parent root = FXMLLoader.load(getClass().getResource("login.fxml"));
         primaryStage.setTitle("Hello World");
         primaryStage.setResizable(false);
@@ -22,7 +22,8 @@ public class Main extends Application {
 
 
     public static void main(String[] args) {
+
+    	
         launch(args);
-        
     }
 }

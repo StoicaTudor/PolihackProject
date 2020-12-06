@@ -25,7 +25,7 @@ public class Database {
 	private Connection connection0;
 	private Statement statement0, statement1;
 	private ResultSet resultSet0, resultSet1;
-	private DataFromDatabase data;
+	public DataFromDatabase data;
 
 	public Database() {
 		try {
@@ -316,6 +316,7 @@ public class Database {
 
 			System.out.println(currentProblem.getProblemID());
 			System.out.println(currentProblem.getProblemName());
+			System.out.println(currentProblem.getTask());
 			System.out.println(currentProblem.getSolution());
 			System.out.println(currentProblem.getPopularity());
 			System.out.println(currentProblem.getProblemID());

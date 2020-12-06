@@ -14,28 +14,30 @@ import java.io.IOException;
 
 public class ProblemsList {
 
-    DataFromDatabase data;
-    @FXML
-    Button back;
-    public void setScene(ActionEvent event, DataFromDatabase data) {
+	public static DataFromDatabase data;
+	@FXML
+	Button back;
 
-        this.data=data;
-        Parent root = null;
-        try {
-            root = FXMLLoader.load(getClass().getResource("problemsList.fxml"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+	public void setScene(ActionEvent event, DataFromDatabase data) {
 
-        Scene scene = new Scene(root);
-        Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
-        window.setScene(scene);
-        window.show();
+		this.data = data;
+		Parent root = null;
+		try {
+			root = FXMLLoader.load(getClass().getResource("problemsList.fxml"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 
-    }
-    public void backToMyAcc(ActionEvent event) throws Exception{
-        MyAccountStudent myAcc =new MyAccountStudent();
-        myAcc.setScene(event,data);
-    }
+		Scene scene = new Scene(root);
+		Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		window.setScene(scene);
+		window.show();
+
+	}
+
+	public void backToMyAcc(ActionEvent event) throws Exception {
+		MyAccountStudent myAcc = new MyAccountStudent();
+		myAcc.setScene(event, data);
+	}
 
 }

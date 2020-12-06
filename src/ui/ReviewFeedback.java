@@ -29,13 +29,11 @@ public class ReviewFeedback {
 	private Button submitButton;
 	@FXML
 	private Slider gradeSlider;
-	DataFromDatabase data;
+	public static DataFromDatabase data;
 
-
-
-	public void setScene(ActionEvent event,DataFromDatabase data) {
-		this.data=data;
-		Parent root= null;
+	public void setScene(ActionEvent event, DataFromDatabase data) {
+		this.data = data;
+		Parent root = null;
 		try {
 			root = FXMLLoader.load(getClass().getResource("reviewSolution.fxml"));
 		} catch (IOException e) {
@@ -43,43 +41,45 @@ public class ReviewFeedback {
 		}
 		Scene scene = new Scene(root);
 		initialize(scene);
-		Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
+		Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		window.setScene(scene);
 		window.show();
 	}
 
-	void initialize(Scene scene ){
-		taskDescription=(javafx.scene.control.TextArea)scene.lookup("#taskDescription");
+	void initialize(Scene scene) {
+		taskDescription = (javafx.scene.control.TextArea) scene.lookup("#taskDescription");
 		taskDescription.setText("");
 
-		offSolution=(javafx.scene.control.TextArea)scene.lookup("#offSolution");
+		offSolution = (javafx.scene.control.TextArea) scene.lookup("#offSolution");
 		offSolution.setText("");
 
-		studentSolution=(javafx.scene.control.TextArea)scene.lookup("#studentSolution");
+		studentSolution = (javafx.scene.control.TextArea) scene.lookup("#studentSolution");
 		studentSolution.setText("");
 
-		tutorFeedback=(javafx.scene.control.TextArea)scene.lookup("#tutorFeedback");
+		tutorFeedback = (javafx.scene.control.TextArea) scene.lookup("#tutorFeedback");
 		tutorFeedback.setText("");
 
-		gradeSlider=(javafx.scene.control.Slider)scene.lookup("#gradeSlider");
+		gradeSlider = (javafx.scene.control.Slider) scene.lookup("#gradeSlider");
 		gradeSlider.setValue(0);
 
-		backButton=(javafx.scene.control.Button)scene.lookup("#backButton");
+		backButton = (javafx.scene.control.Button) scene.lookup("#backButton");
 		backButton.setVisible(true);
 
-		submitButton=(javafx.scene.control.Button)scene.lookup("#submitButton");
+		submitButton = (javafx.scene.control.Button) scene.lookup("#submitButton");
 		submitButton.setVisible(true);
 	}
-	public void submitPressed(ActionEvent action){
-		double grade=gradeSlider.getValue();//faceti ce vreti cu val asta o pui in db
-		String feedback=tutorFeedback.getText();
 
-		TutorMenu menu=new TutorMenu();
-		menu.setScene(action,data);
+	public void submitPressed(ActionEvent action) {
+		double grade = gradeSlider.getValue();// faceti ce vreti cu val asta o pui in db
+		String feedback = tutorFeedback.getText();
+
+		TutorMenu menu = new TutorMenu();
+		menu.setScene(action, data);
 	}
-	public void backButtonPressed(ActionEvent action){
-		TutorMenu menu=new TutorMenu();
-		menu.setScene(action,data);
+
+	public void backButtonPressed(ActionEvent action) {
+		TutorMenu menu = new TutorMenu();
+		menu.setScene(action, data);
 	}
 
 }

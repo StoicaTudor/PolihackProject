@@ -71,6 +71,7 @@ public class DataFromDatabase {
 					statistics, utility.convertStringSetToSubjectSet(preferredSubjects), grade);
 
 		case 3: // moderator
+
 			return new Moderator(userID, userName, password, nationality, email,
 					new ArrayList<Integer>(attemptedProblems), statistics,
 					utility.convertStringSetToSubjectSet(preferredSubjects), grade);
@@ -84,7 +85,7 @@ public class DataFromDatabase {
 
 		for (User user : this.users) {
 
-			if (user.getUsername() == username && user.getPassword() == password) {
+			if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
 
 				this.sessionUserID = user.id;
 
@@ -114,10 +115,10 @@ public class DataFromDatabase {
 			} else if (user instanceof Moderator) {
 				userType = 3;
 			}
-			
+
 //			System.out.println(queryMaker.studentInsertQuery(user.getUsername(), userType, user.getPassword(),
 //					user.getCountry(), user.email, user.getStatistics().dateJoined, user.getGrade()));
-			
+
 			this.statement0.executeUpdate(
 					queryMaker.studentInsertQuery(user.getUsername(), userType, user.getPassword(), user.getCountry(),
 							user.email, user.getStatistics().dateJoined, user.getGrade()),
@@ -197,7 +198,10 @@ public class DataFromDatabase {
 	}
 
 	public ArrayList<Problem> getInitialListOfProblems() {
-
+		
+		if (true) {
+			return new ArrayList(this.problems);
+		}
 		User currentUser = this.getUserByID(sessionUserID);
 
 		ArrayList<Problem> initialProblems = new ArrayList<>();
@@ -215,7 +219,7 @@ public class DataFromDatabase {
 			}
 
 			if (problemIsAttempted == false && currentProblem.grade == currentUser.getGrade()) {
-
+				System.out.println(currentProblem.grade);
 				for (Subject preferredSubjects : currentUser.getPreferredSubjects()) {
 
 					if (currentProblem.getProblemSubject() == preferredSubjects) {
@@ -227,12 +231,17 @@ public class DataFromDatabase {
 			}
 		}
 
+		for (Problem problem : initialProblems) {
+			System.out.println(problem.getTask());
+		}
+
 		System.gc();
 		return initialProblems;
 
 	}
 
 	public boolean isModerator() {
+		System.out.println(sessionUserID);
 		return (this.getUserByID(sessionUserID) instanceof Moderator);
 	}
 
@@ -292,7 +301,17 @@ public class DataFromDatabase {
 		return null;
 	}
 
-	public void submitTutorFeedback(int tutorGrade, String tutorFeedback, int problemID) {
+	public void submitTutorFeedback(int tutorGrade, String tutorFeedback, int problemID, int userID) {
 
 	}
+
+//	public ArrayList<Solution> getSolvedProblemsForStudent(){
+//		
+//		for(Solution currentSolution : this.solutions) {
+//			
+////			if() {
+////				
+////			}
+//		}
+//	}
 }

@@ -13,15 +13,15 @@ import user.UserType;
 import java.io.IOException;
 
 import database.DataFromDatabase;
+import database.Database;
 
 public class LogIn {
 
 	DataFromDatabase data;
-	// public Controller(DataFromDatabase data){
-	// this.data=data;
-	// }
 
-	public void setScene(ActionEvent event) {
+	public void setScene(ActionEvent event, DataFromDatabase data) {
+
+		this.data = data;
 
 		Parent root = null;
 		try {
@@ -38,7 +38,13 @@ public class LogIn {
 	@FXML
 	public void pressLogIn(ActionEvent event) {
 
+		Database db = new Database();
+		db.retrieveDataFromDatabase();
+		this.data = db.data;
+
 		UserType logInResult = data.validateSignIn(username.getText(), password.getText());
+		System.out.println(logInResult);
+		
 		TutorMenu tutorMenu;
 		switch (logInResult) {
 
@@ -48,17 +54,17 @@ public class LogIn {
 
 		case STUDENT:
 			StudentMenu studentMenu = new StudentMenu();
-			studentMenu.setScene(event,data);
+			studentMenu.setScene(event, data);
 			break;
 
 		case TUTOR:
-			tutorMenu=new TutorMenu();
-			tutorMenu.setScene(event,data);
+			tutorMenu = new TutorMenu();
+			tutorMenu.setScene(event, data);
 			break;
 
 		case MODERATOR:
 			tutorMenu = new TutorMenu();
-			tutorMenu.setScene(event,data);
+			tutorMenu.setScene(event, data);
 			System.out.println("");
 			break;
 
@@ -75,6 +81,11 @@ public class LogIn {
 
 	@FXML
 	public void pressSignUp(ActionEvent event) throws IOException {
+
+		Database db = new Database();
+		db.retrieveDataFromDatabase();
+		this.data = db.data;
+
 		SignUp signUp = new SignUp();
 		signUp.setScene(event);
 	}
