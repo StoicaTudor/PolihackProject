@@ -44,6 +44,8 @@
     </key>
   </component>
   <component name="RunManager">
+
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ui.Main" />
       <module name="PolihackProject" />
@@ -53,6 +55,7 @@
       </method>
     </configuration>
     <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
@@ -61,6 +64,14 @@
       <option name="TEST_OBJECT" value="CLASS" />
       <properties />
       <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ui.Main" />
+      <module name="PolihackProject" />
+      <option name="VM_PARAMETERS" value="--module-path &quot;C:\Program Files\Java\javafx-sdk-15.0.1\lib&quot;  --add-modules javafx.controls,javafx.fxml,javafx.base" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
