@@ -67,8 +67,8 @@ public class SignUp {
 					data.getPersonalizedUser(userType, -1, username.getText(), password.getText(), country.getText(),
 							email.getText(), null, new Statistics(0, 0, 0, 0, LocalDate.now()), preferredSubjects, 5));
 
-			StudentMenu studentMenu = new StudentMenu(data);
-			studentMenu.setScene(event);
+			StudentMenu studentMenu = new StudentMenu();
+			studentMenu.setScene(event,data);
 
 		} else if (tutor.isSelected()) {
 
@@ -79,8 +79,8 @@ public class SignUp {
 					data.getPersonalizedUser(userType, -1, username.getText(), password.getText(), country.getText(),
 							email.getText(), null, new Statistics(0, 0, 0, 0, LocalDate.now()), preferredSubjects, 5));
 
-			TutorMenu tutorMenu = new TutorMenu(data);
-			tutorMenu.setScene(event);
+			TutorMenu tutorMenu = new TutorMenu();
+			tutorMenu.setScene(event,data);
 		}
 	}
 
