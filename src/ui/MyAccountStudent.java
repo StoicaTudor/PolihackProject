@@ -69,7 +69,11 @@ public class MyAccountStudent {
 		Scene scene = new Scene(root);
 		Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
 		window.setScene(scene);
+		initialize(scene);
+		window.show();
 
+	}
+	public void initialize(Scene scene){
 		name=(Label)scene.lookup("#name");
 		name.setText(nameString);
 
@@ -102,8 +106,6 @@ public class MyAccountStudent {
 
 		failedTasks=(Label)scene.lookup("#failedTasks");
 		failedTasks.setText(failedTasksString);
-		window.show();
-
 	}
 	public void backToMainPage(ActionEvent event) throws Exception{
 		StudentMenu studentMenu =new StudentMenu();
