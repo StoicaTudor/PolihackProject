@@ -9,19 +9,28 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+import database.DataFromDatabase;
+
 public class TutorMenu {
 
-    public void setScene(ActionEvent event){
+	DataFromDatabase data;
 
-        Parent root= null;
-        try {
-            root = FXMLLoader.load(getClass().getResource("tutorMenu.fxml"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        Scene scene = new Scene(root);
-        Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
-        window.setScene(scene);
-        window.show();
-    }
+	public TutorMenu(DataFromDatabase data) {
+
+		this.data = data;
+	}
+
+	public void setScene(ActionEvent event) {
+
+		Parent root = null;
+		try {
+			root = FXMLLoader.load(getClass().getResource("tutorMenu.fxml"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		Scene scene = new Scene(root);
+		Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		window.setScene(scene);
+		window.show();
+	}
 }

@@ -8,53 +8,70 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import user.UserType;
 
 import java.io.IOException;
 
+import database.DataFromDatabase;
+
 public class LogIn {
 
-    //DataFromDatabase data;
-    // public Controller(DataFromDatabase data){
-    //     this.data=data;
-    // }
+	DataFromDatabase data;
+	// public Controller(DataFromDatabase data){
+	// this.data=data;
+	// }
 
-    public void setScene(ActionEvent event){
+	public void setScene(ActionEvent event) {
 
-        Parent root= null;
-        try {
-            root = FXMLLoader.load(getClass().getResource("login.fxml"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        Scene scene = new Scene(root);
-        Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
-        window.setScene(scene);
-        window.show();
-    }
+		Parent root = null;
+		try {
+			root = FXMLLoader.load(getClass().getResource("login.fxml"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		Scene scene = new Scene(root);
+		Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		window.setScene(scene);
+		window.show();
+	}
 
-    @FXML
-    public void pressLogIn(ActionEvent event) throws IOException {
-        // if(data.validateSignIn(username.getText(),password.getText())!=null){
-        StudentMenu studentMenu =new StudentMenu();
-        studentMenu.setScene(event);
-         }
-       // else{
-        //implement popup sign in invalid
-      // }
+	@FXML
+	public void pressLogIn(ActionEvent event) {
 
+		UserType logInResult = data.validateSignIn(username.getText(), password.getText());
 
+		switch (logInResult) {
 
-    @FXML
-    private TextField username;
+		case NA:
+			// implement popup sign in invalid
+			break;
 
-    @FXML
-    private TextField password;
+		case STUDENT:
+			StudentMenu studentMenu = new StudentMenu(data);
+			studentMenu.setScene(event);
+			break;
 
-    @FXML
-    public void pressSignUp(ActionEvent event) throws IOException {
-        SignUp signUp=new SignUp();
-        signUp.setScene(event);
-    }
+		case TUTOR:
+			break;
+
+		case MODERATOR:
+			break;
+
+		default:
+			break;
+		}
+	}
+
+	@FXML
+	private TextField username;
+
+	@FXML
+	private TextField password;
+
+	@FXML
+	public void pressSignUp(ActionEvent event) throws IOException {
+		SignUp signUp = new SignUp();
+		signUp.setScene(event);
+	}
 
 }
-
