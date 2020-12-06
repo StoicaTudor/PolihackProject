@@ -20,6 +20,7 @@ import java.util.Set;
 
 import database.DataFromDatabase;
 import database.Utility;
+import user.UserType;
 
 public class SignUp {
 
