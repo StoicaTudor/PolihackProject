@@ -47,8 +47,8 @@ public class LogIn {
 			break;
 
 		case STUDENT:
-			StudentMenu studentMenu = new StudentMenu(data);
-			studentMenu.setScene(event);
+			StudentMenu studentMenu = new StudentMenu();
+			studentMenu.setScene(event,data);
 			break;
 
 		case TUTOR:

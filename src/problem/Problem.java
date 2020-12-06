@@ -17,9 +17,8 @@ public class Problem implements Comparable<Problem> {
 
 	// Problem() constructor
 	public Problem(String problemName, int problemID, String task, String solution, int popularity,
-			Difficulty problemDifficulty, Subject problemSubject, int proposerID,
-			int grade) {
-		
+			Difficulty problemDifficulty, Subject problemSubject, int proposerID, int grade) {
+
 		this.proposerID = proposerID;
 		this.problemName = problemName;
 		this.problemID = problemID;
@@ -91,13 +90,13 @@ public class Problem implements Comparable<Problem> {
 	public int compareTo(Problem problem) {
 		return (this.getPopularity() < problem.getPopularity()) ? 1 : 0;
 	}
-	
+
 	public void setTaskThumbnail() {
 		// TO DO MIRUNA
-		
+
 	}
-	
-	public static Difficulty getDifficulty(int difficulty) {
+
+	public static Difficulty getDifficultyInt(int difficulty) {
 
 		switch (difficulty) {
 
@@ -111,6 +110,27 @@ public class Problem implements Comparable<Problem> {
 			return Difficulty.HARD;
 
 		case 4:
+			return Difficulty.IVAN;
+
+		default:
+			return Difficulty.EASY;
+		}
+	}
+
+	public static Difficulty getDifficultyString(String difficulty) {
+
+		switch (difficulty) {
+
+		case "easy":
+			return Difficulty.EASY;
+
+		case "medium":
+			return Difficulty.MEDIUM;
+
+		case "hard":
+			return Difficulty.HARD;
+
+		case "ivan":
 			return Difficulty.IVAN;
 
 		default:
