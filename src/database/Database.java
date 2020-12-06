@@ -241,8 +241,15 @@ public class Database {
 	}
 
 	public static void main(String[] args) {
+		
 		Database db = new Database();
 		db.retrieveDataFromDatabase();
+		
+//		ArrayList<Problem> filteredProblems = db.data.getProblemsByFiltersFromStudentID("Mathematics", new Integer(7), "hard");
+//		
+//		for(Problem currentProblem : filteredProblems) {
+//			System.out.println(currentProblem.getProblemID());
+//		}
 	}
 
 	private void testUser(User user) {
