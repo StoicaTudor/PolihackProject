@@ -111,8 +111,13 @@ public class DataFromDatabase {
 				userType = 3;
 			}
 
-			this.resultSet0 = this.statement0.executeQuery(queryMaker.studentInsertQuery(user.getUsername(), userType,
-					user.getPassword(), user.getCountry(), user.email, user.getStatistics().dateJoined));
+			this.statement0
+					.executeUpdate(
+							queryMaker.studentInsertQuery(user.getUsername(), userType, user.getPassword(),
+									user.getCountry(), user.email, user.getStatistics().dateJoined),
+							statement0.RETURN_GENERATED_KEYS);
+
+			resultSet0 = statement0.getGeneratedKeys();
 
 			// first introduce new user into the database
 
@@ -194,7 +199,7 @@ public class DataFromDatabase {
 		for (Problem currentProblem : problems) {
 
 			boolean problemIsAttempted = false;
-			
+
 			for (Integer attemptedProblemID : currentUser.getAttemptedProblemsList()) { // check if it is attempted
 
 				if (attemptedProblemID == currentProblem.getProblemID()) {
@@ -223,5 +228,62 @@ public class DataFromDatabase {
 
 	public boolean isModerator() {
 		return (this.getUserByID(sessionUserID) instanceof Moderator);
+	}
+
+	public void submitSolution(int problemID, String solution) {
+
+		Solution studentSolution = new Solution(0, this.sessionUserID, problemID, solution, 0, 0, "", -1, "", -1);
+
+		try {
+			// insert solution into database
+			this.statement0.executeUpdate(
+					this.queryMaker.studentSolutionInsertQuery(studentSolution.studentID, studentSolution.problemID,
+							studentSolution.studentSolution, studentSolution.tutorID, studentSolution.moderatorID,
+							studentSolution.tutorFeedback, studentSolution.tutorRating,
+							studentSolution.moderatorFeedback, studentSolution.moderatorRating),
+					statement0.RETURN_GENERATED_KEYS);
+
+			this.resultSet0 = statement0.getGeneratedKeys();
+
+			if (resultSet0.next()) {
+				studentSolution.solutionID = this.resultSet0.getInt(1);
+			}
+			// add solution to all time solutions list
+			this.solutions.add(studentSolution);
+
+			// now, search for the user who submitted the problem and add the solvedProblem
+			// id to his/her list
+			Iterator<User> userIterator = users.iterator();
+
+			while (userIterator.hasNext()) { // iterate through users
+
+				User currentUserInIteration = userIterator.next();
+
+				if (currentUserInIteration.id == this.sessionUserID) { // if we identified the user
+
+					this.users.remove(currentUserInIteration); // remove the user
+
+					// update the user, by inserting the new attempted problem in the attempted problems list
+					currentUserInIteration.getAttemptedProblemsList().add(studentSolution.solutionID); // solutionID !!!!, not problemID
+					
+					// finally, add the user back in the data
+					this.users.add(currentUserInIteration);
+				}
+			}
+
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		}
+	}
+
+	public ArrayList<Problem> getAttemptedProblemsByUserID() {
+
+		User currentUser = this.getUserByID(sessionUserID);
+		// TODO
+		return null;
+	}
+
+	public void submitTutorFeedback(int tutorGrade, String tutorFeedback, int problemID) {
+
 	}
 }
