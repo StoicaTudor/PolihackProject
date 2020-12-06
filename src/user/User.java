@@ -6,7 +6,7 @@ import java.util.Set;
 
 public abstract class User {
 
-	private int id;
+	public int id;
 	private String username;
 	private String password;
 	private String country;
@@ -14,9 +14,10 @@ public abstract class User {
 	private ArrayList<Integer> attemptedProblems;
 	private Statistics statistics;
 	private Set<Subject> preferredSubjects;
+	private int currentGrade;
 
 	public User(int id, String username, String password, String country, String email,
-			ArrayList<Integer> attemptedProblems, Statistics statistics, Set<Subject> preferredSubjects) {
+			ArrayList<Integer> attemptedProblems, Statistics statistics, Set<Subject> preferredSubjects, int grade) {
 		this.id = id;
 		this.password = password;
 		this.username = username;
@@ -25,25 +26,26 @@ public abstract class User {
 		this.attemptedProblems = attemptedProblems;
 		this.statistics = statistics;
 		this.preferredSubjects = preferredSubjects;
+		this.currentGrade = grade;
 	}
-	
+
 	public String getUsername() {
 		return this.username;
 	}
-	
+
 	public String getCountry() {
 		return this.country;
 	}
-	
-	public ArrayList<Integer> getAttemptedProblemsList(){
+
+	public ArrayList<Integer> getAttemptedProblemsList() {
 		return this.attemptedProblems;
 	}
-	
+
 	public Statistics getStatistics() {
 		return this.statistics;
 	}
-	
-	public Set<Subject> getPreferredSubjects(){
+
+	public Set<Subject> getPreferredSubjects() {
 		return this.preferredSubjects;
 	}
 
@@ -52,7 +54,7 @@ public abstract class User {
 	}
 
 	public String getPassword() {
-		
+
 		return this.password;
 	}
 

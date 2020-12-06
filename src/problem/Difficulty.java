@@ -1,9 +1,8 @@
 package problem;
 
-enum difficulty {
+public enum Difficulty {
         EASY,
         MEDIUM,
         HARD,
         IVAN
-
 }
