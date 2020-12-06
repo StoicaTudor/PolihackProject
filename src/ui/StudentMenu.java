@@ -59,7 +59,7 @@ public class StudentMenu {
 	@FXML
 	private TextField task5;
 
-	private DataFromDatabase data;
+	public static DataFromDatabase data;
 	ArrayList<Problem> problems = new ArrayList<>();
 	private int nrOfPages = 0;
 	private int currentPage = 1;
@@ -86,43 +86,43 @@ public class StudentMenu {
 	public void goToMyAcc(ActionEvent event) throws IOException {
 
 		MyAccountStudent myacc = new MyAccountStudent();
-		myacc.setScene(event,data);
+		myacc.setScene(event, data);
 
 	}
 
 	public void logOut(ActionEvent event) throws IOException {
 		LogIn login = new LogIn();
-		login.setScene(event);
+		login.setScene(event, data);
 	}
 
 	public void solve1(ActionEvent event) throws IOException {
 		int problemID = problems.get((currentPage - 1) * 5 + 0).getProblemID();
 		SolveProblem solveProblem = new SolveProblem();
-		solveProblem.setScene(event, data,problemID);
+		solveProblem.setScene(event, data, problemID);
 	}
 
 	public void solve2(ActionEvent event) throws IOException {
 		int problemID = problems.get((currentPage - 1) * 5 + 1).getProblemID();
 		SolveProblem solveProblem = new SolveProblem();
-		solveProblem.setScene(event, data,problemID);
+		solveProblem.setScene(event, data, problemID);
 	}
 
 	public void solve3(ActionEvent event) throws IOException {
 		int problemID = problems.get((currentPage - 1) * 5 + 2).getProblemID();
 		SolveProblem solveProblem = new SolveProblem();
-		solveProblem.setScene(event, data,problemID);
+		solveProblem.setScene(event, data, problemID);
 	}
 
 	public void solve4(ActionEvent event) throws IOException {
 		int problemID = problems.get((currentPage - 1) * 5 + 3).getProblemID();
 		SolveProblem solveProblem = new SolveProblem();
-		solveProblem.setScene(event, data,problemID);
+		solveProblem.setScene(event, data, problemID);
 	}
 
 	public void solve5(ActionEvent event) throws IOException {
 		int problemID = problems.get((currentPage - 1) * 5 + 4).getProblemID();
 		SolveProblem solveProblem = new SolveProblem();
-		solveProblem.setScene(event, data,problemID);
+		solveProblem.setScene(event, data, problemID);
 	}
 
 	public void pressedPrevious(ActionEvent event) {
@@ -162,8 +162,9 @@ public class StudentMenu {
 		difficulty.setValue("medium");
 		difficulty.getItems().addAll("easy", "medium", "hard");
 		problems = data.getInitialListOfProblems();// implement in backend
-		showInitialTasks();
-
+		System.out.println(problems.size());
+		// showInitialTasks();
+		showDummyPage();
 	}
 
 	public void showInitialTasks() {
@@ -174,6 +175,20 @@ public class StudentMenu {
 				showLastPage();
 			}
 		}
+	}
+	
+	public void showDummyPage() {
+		
+		task1 = (TextField) scene.lookup("#task1");
+		task1.setText(problems.get(0).getTask());
+		task2 = (TextField) scene.lookup("#task2");
+		task2.setText(problems.get(1).getTask());
+		task3 = (TextField) scene.lookup("#task3");
+		task3.setText(problems.get(2).getTask());
+		task4 = (TextField) scene.lookup("#task4");
+		task4.setText(problems.get(3).getTask());
+		task5 = (TextField) scene.lookup("#task5");
+		task5.setText(problems.get(4).getTask());
 	}
 
 	public void showPage() {

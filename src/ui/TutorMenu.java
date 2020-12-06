@@ -9,7 +9,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
+import java.awt.event.ActionListener;
 import java.io.IOException;
+
+import javax.swing.Timer;
 
 import database.DataFromDatabase;
 import user.UserType;
@@ -18,9 +21,9 @@ import static user.UserType.MODERATOR;
 import static user.UserType.TUTOR;
 
 public class TutorMenu {
-
-	DataFromDatabase data;
 	
+	public static DataFromDatabase data;
+
 	@FXML
 	private Button myAcc;
 	@FXML
@@ -41,13 +44,18 @@ public class TutorMenu {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+
 		Scene scene = new Scene(root);
-		feedbackTutor=(Button)scene.lookup("#feedbackTutor");
-		if(data.isModerator()==false){
-			feedbackTutor.setVisible(false);
-		}
-		else {
-			feedbackTutor.setVisible(true);
+		feedbackTutor = (Button) scene.lookup("#feedbackTutor");
+
+		try {
+			if (this.data.isModerator() == false) {
+				feedbackTutor.setVisible(false);
+			} else {
+				feedbackTutor.setVisible(true);
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
 		}
 		Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		window.setScene(scene);
@@ -56,32 +64,32 @@ public class TutorMenu {
 
 	public void myAccPressed(ActionEvent action) {
 		MyAccountTutor myacc = new MyAccountTutor();
+
 		myacc.setScene(action,data);
 	}
 
 	public void reviewSolutionsPressed(ActionEvent action) {
 		ReviewSolution review = new ReviewSolution();
-		review.setScene(action,data);
+		review.setScene(action, data);
 
 	}
 
 	public void proposeNewPressed(ActionEvent action) {
 		ProposeProblem propose = new ProposeProblem();
-		propose.setScene(action,data);
+		propose.setScene(action, data);
 
 	}
 
 	public void feedbackTutorPressed(ActionEvent action) {
-		if(data.isModerator()){
+		if (data.isModerator()) {
 			ReviewFeedback reviewFeedback = new ReviewFeedback();
-			reviewFeedback.setScene(action,data);
+			reviewFeedback.setScene(action, data);
 		}
-
 
 	}
 
 	public void logOutPressed(ActionEvent action) {
 		LogIn backToSignIn = new LogIn();
-		backToSignIn.setScene(action);
+		backToSignIn.setScene(action, data);
 	}
 }

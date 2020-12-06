@@ -24,7 +24,7 @@ import user.UserType;
 
 public class SignUp {
 
-	DataFromDatabase data;
+	public static DataFromDatabase data;
 
 	@FXML
 	private TextField username;
@@ -69,7 +69,7 @@ public class SignUp {
 							email.getText(), null, new Statistics(0, 0, 0, 0, LocalDate.now()), preferredSubjects, 5));
 
 			StudentMenu studentMenu = new StudentMenu();
-			studentMenu.setScene(event,data);
+			studentMenu.setScene(event, data);
 
 		} else if (tutor.isSelected()) {
 
@@ -81,7 +81,7 @@ public class SignUp {
 							email.getText(), null, new Statistics(0, 0, 0, 0, LocalDate.now()), preferredSubjects, 5));
 
 			TutorMenu tutorMenu = new TutorMenu();
-			tutorMenu.setScene(event,data);
+			tutorMenu.setScene(event, data);
 		}
 	}
 

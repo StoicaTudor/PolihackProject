@@ -17,88 +17,95 @@ import java.io.IOException;
 
 public class MyAccountTutor {
 
-    @FXML
-    private Label name;
-    String nameString=new String("name from DB");
-    @FXML
-    private Label occupation;
-    String occupString=new String("occup from DB");
-    @FXML
-    private Label country;
-    String countryString=new String("country from DB");
-    @FXML
-    private Label email;
-    String emailString=new String("email from DB");
-    @FXML
-    private Label date_joined;
-    String date_joinedString=new String("date from DB");
-    @FXML
-    private Label allTimeRating;
-    String allTimeRatingString=new String("alltime rate from DB");
-    @FXML
-    private Label sentTasks;
-    String sentTasksString=new String("nr sent tasks from DB");
-    @FXML
-    private Label feedbackGiven;
-    String feedbackGivenString=new String("feedbackGiven nr from DB");
-    @FXML
-    private ProgressBar moderatorProgress;
-    @FXML
-    private Button goBack;
-    DataFromDatabase data;
+	public MyAccountTutor() {
 
-    public void setScene(ActionEvent event,DataFromDatabase data){
+	}
 
-        this.data=data;
-        Parent root= null;
-        try {
-            root = FXMLLoader.load(getClass().getResource("myAccountTutor.fxml"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        Scene scene = new Scene(root);
-        Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
-        window.setScene(scene);
-        initializeText(scene);
-        window.show();
-    }
+	public static DataFromDatabase data;
 
-    private void initializeText(Scene scene){
-        name=(Label)scene.lookup("#name");
-        name.setText(nameString);
+	@FXML
+	private Label name;
+	String nameString = new String("name from DB");
+	@FXML
+	private Label occupation;
+	String occupString = new String("occup from DB");
+	@FXML
+	private Label country;
+	String countryString = new String("country from DB");
+	@FXML
+	private Label email;
+	String emailString = new String("email from DB");
+	@FXML
+	private Label date_joined;
+	String date_joinedString = new String("date from DB");
+	@FXML
+	private Label allTimeRating;
+	String allTimeRatingString = new String("alltime rate from DB");
+	@FXML
+	private Label sentTasks;
+	String sentTasksString = new String("nr sent tasks from DB");
+	@FXML
+	private Label feedbackGiven;
+	String feedbackGivenString = new String("feedbackGiven nr from DB");
+	@FXML
+	private ProgressBar moderatorProgress;
+	@FXML
+	private Button goBack;
 
-        occupation=(Label)scene.lookup("#occupation");
-        occupation.setText(occupString);
+	public void setScene(ActionEvent event, DataFromDatabase data) {
 
-        country=(Label)scene.lookup("#country");
-        country.setText(countryString);
+		this.data = data;
+		System.out.println((this.data == null) + " in my accout tutor");
 
-        email=(Label)scene.lookup("#email");
-        email.setText(emailString);
+		Parent root = null;
+		try {
+			root = FXMLLoader.load(getClass().getResource("myAccountTutor.fxml"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		Scene scene = new Scene(root);
+		Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		window.setScene(scene);
+		initializeText(scene);
+		window.show();
+	}
 
-        date_joined=(Label)scene.lookup("#date_joined");
-        date_joined.setText(date_joinedString);
+	private void initializeText(Scene scene) {
+		name = (Label) scene.lookup("#name");
+		name.setText(nameString);
 
-        allTimeRating=(Label)scene.lookup("#allTimeRating");
-        allTimeRating.setText(allTimeRatingString);
+		occupation = (Label) scene.lookup("#occupation");
+		occupation.setText(occupString);
 
-        sentTasks=(Label)scene.lookup("#sentTasks");
-        sentTasks.setText(sentTasksString);
+		country = (Label) scene.lookup("#country");
+		country.setText(countryString);
 
-        allTimeRating=(Label)scene.lookup("#allTimeRating");
-        allTimeRating.setText(allTimeRatingString);
+		email = (Label) scene.lookup("#email");
+		email.setText(emailString);
 
-        feedbackGiven=(Label)scene.lookup("#feedbackGiven");
-        feedbackGiven.setText(feedbackGivenString);
+		date_joined = (Label) scene.lookup("#date_joined");
+		date_joined.setText(date_joinedString);
 
-        moderatorProgress=(ProgressBar)scene.lookup("#moderatorProgress");
-        moderatorProgress.setProgress(0.5);
-        //aici trebuie sa pui progress in functie de ce constrainturi am stabilit
-        //,i.e cat ii mai ia sa ajunga un moderator
-    }
+		allTimeRating = (Label) scene.lookup("#allTimeRating");
+		allTimeRating.setText(allTimeRatingString);
 
-    public void backToMain(ActionEvent event){
-        TutorMenu tutorMenu =new TutorMenu();
-        tutorMenu.setScene(event,data);
-    }
+		sentTasks = (Label) scene.lookup("#sentTasks");
+		sentTasks.setText(sentTasksString);
+
+		allTimeRating = (Label) scene.lookup("#allTimeRating");
+		allTimeRating.setText(allTimeRatingString);
+
+		feedbackGiven = (Label) scene.lookup("#feedbackGiven");
+		feedbackGiven.setText(feedbackGivenString);
+
+		moderatorProgress = (ProgressBar) scene.lookup("#moderatorProgress");
+		moderatorProgress.setProgress(0.5);
+		// aici trebuie sa pui progress in functie de ce constrainturi am stabilit
+		// ,i.e cat ii mai ia sa ajunga un moderator
+	}
+
+	public void backToMain(ActionEvent event) {
+		TutorMenu tutorMenu = new TutorMenu();
+		tutorMenu.setScene(event, data);
+	}
 }

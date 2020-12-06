@@ -26,7 +26,7 @@ public class SolveProblem {
 	TextArea task;
 	@FXML
 	TextArea solution;
-	DataFromDatabase data;
+	public static DataFromDatabase data;
 	int problemID;
 	Scene scene;
 

@@ -35,7 +35,7 @@ public class ProposeProblem {
 	@FXML
 	private Scrollbar scrollbarSolution;
 
-	DataFromDatabase data;
+	public static DataFromDatabase data;
 
 
 
