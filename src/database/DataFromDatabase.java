@@ -32,7 +32,7 @@ public class DataFromDatabase {
 	public Queue<Problem> problems;
 	public ArrayList<Solution> solutions;
 
-	int sessionUserID = -1;
+	int sessionUserID = 5; // Citadin
 	public Utility utility = new Utility();
 
 	public DataFromDatabase(Connection connectio0n, Statement statement0, ResultSet resultSet0) {
@@ -145,7 +145,7 @@ public class DataFromDatabase {
 
 		for (Problem currentProblem : problems) { // for every problem
 
-			boolean problemIsAttempted = false;
+			boolean problemIsAttempted = false; // suppose it is not attempted
 
 			for (Integer attemptedProblemID : currentUser.getAttemptedProblemsList()) { // check if it is attempted
 
@@ -193,7 +193,17 @@ public class DataFromDatabase {
 
 		for (Problem currentProblem : problems) {
 
-			if (!solutions.contains(currentProblem) && currentProblem.grade == currentUser.getGrade()) {
+			boolean problemIsAttempted = false;
+			
+			for (Integer attemptedProblemID : currentUser.getAttemptedProblemsList()) { // check if it is attempted
+
+				if (attemptedProblemID == currentProblem.getProblemID()) {
+					problemIsAttempted = true;
+					break;
+				}
+			}
+
+			if (problemIsAttempted == false && currentProblem.grade == currentUser.getGrade()) {
 
 				for (Subject preferredSubjects : currentUser.getPreferredSubjects()) {
 
@@ -208,8 +218,9 @@ public class DataFromDatabase {
 
 		System.gc();
 		return initialProblems;
+
 	}
-	
+
 	public boolean isModerator() {
 		return (this.getUserByID(sessionUserID) instanceof Moderator);
 	}
