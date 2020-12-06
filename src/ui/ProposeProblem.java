@@ -1,5 +1,6 @@
 package ui;
 
+import database.DataFromDatabase;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -34,19 +35,13 @@ public class ProposeProblem {
 	@FXML
 	private Scrollbar scrollbarSolution;
 
+	DataFromDatabase data;
 
 
-	public ProposeProblem() {
-		// TODO Auto-generated constructor stub
-	}
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-	}
-
-    public void setScene(ActionEvent event) {
-		Parent root= null;
+    public void setScene(ActionEvent event, DataFromDatabase data) {
+		this.data=data;
+    	Parent root= null;
 		try {
 			root = FXMLLoader.load(getClass().getResource("proposeProblem.fxml"));
 		} catch (IOException e) {
@@ -92,11 +87,11 @@ public class ProposeProblem {
 
 
 		TutorMenu tutorMenu=new TutorMenu();
-		tutorMenu.setScene(event);
+		tutorMenu.setScene(event,data);
 	}
 	public void clickBack(ActionEvent event){
 		TutorMenu tutorMenu=new TutorMenu();
-		tutorMenu.setScene(event);
+		tutorMenu.setScene(event,data);
 	}
 
 

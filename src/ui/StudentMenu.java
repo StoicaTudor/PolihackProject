@@ -86,7 +86,7 @@ public class StudentMenu {
 	public void goToMyAcc(ActionEvent event) throws IOException {
 
 		MyAccountStudent myacc = new MyAccountStudent();
-		myacc.setScene(event);
+		myacc.setScene(event,data);
 
 	}
 
@@ -98,31 +98,31 @@ public class StudentMenu {
 	public void solve1(ActionEvent event) throws IOException {
 		int problemID = problems.get((currentPage - 1) * 5 + 0).getProblemID();
 		SolveProblem solveProblem = new SolveProblem();
-		solveProblem.setScene(event, problemID);
+		solveProblem.setScene(event, data,problemID);
 	}
 
 	public void solve2(ActionEvent event) throws IOException {
 		int problemID = problems.get((currentPage - 1) * 5 + 1).getProblemID();
 		SolveProblem solveProblem = new SolveProblem();
-		solveProblem.setScene(event, problemID);
+		solveProblem.setScene(event, data,problemID);
 	}
 
 	public void solve3(ActionEvent event) throws IOException {
 		int problemID = problems.get((currentPage - 1) * 5 + 2).getProblemID();
 		SolveProblem solveProblem = new SolveProblem();
-		solveProblem.setScene(event, problemID);
+		solveProblem.setScene(event, data,problemID);
 	}
 
 	public void solve4(ActionEvent event) throws IOException {
 		int problemID = problems.get((currentPage - 1) * 5 + 3).getProblemID();
 		SolveProblem solveProblem = new SolveProblem();
-		solveProblem.setScene(event, problemID);
+		solveProblem.setScene(event, data,problemID);
 	}
 
 	public void solve5(ActionEvent event) throws IOException {
 		int problemID = problems.get((currentPage - 1) * 5 + 4).getProblemID();
 		SolveProblem solveProblem = new SolveProblem();
-		solveProblem.setScene(event, problemID);
+		solveProblem.setScene(event, data,problemID);
 	}
 
 	public void pressedPrevious(ActionEvent event) {

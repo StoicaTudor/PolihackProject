@@ -46,24 +46,24 @@ public class TutorMenu {
 
 	public void myAccPressed(ActionEvent action) {
 		MyAccountTutor myacc = new MyAccountTutor();
-		myacc.setScene(action);
+		myacc.setScene(action,data);
 	}
 
 	public void reviewSolutionsPressed(ActionEvent action) {
 		ReviewSolution review = new ReviewSolution();
-		review.setScene(action);
+		review.setScene(action,data);
 
 	}
 
 	public void proposeNewPressed(ActionEvent action) {
 		ProposeProblem propose = new ProposeProblem();
-		propose.setScene(action);
+		propose.setScene(action,data);
 
 	}
 
 	public void feedbackTutorPressed(ActionEvent action) {
 		ReviewFeedback reviewFeedback = new ReviewFeedback();
-		reviewFeedback.setScene(action);
+		reviewFeedback.setScene(action,data);
 
 	}
 
