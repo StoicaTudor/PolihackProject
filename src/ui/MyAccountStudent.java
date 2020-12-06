@@ -1,5 +1,6 @@
 package ui;
 
+import database.DataFromDatabase;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -55,10 +56,12 @@ public class MyAccountStudent {
 
 	@FXML
 	Button backToMainPage;
+	DataFromDatabase data;
 
 
-	public void setScene(ActionEvent event) {
+	public void setScene(ActionEvent event, DataFromDatabase data) {
 
+		this.data=data;
 		Parent root = null;
 		try {
 			root = FXMLLoader.load(getClass().getResource("MyAccountStudent.fxml"));
@@ -109,7 +112,7 @@ public class MyAccountStudent {
 	}
 	public void backToMainPage(ActionEvent event) throws Exception{
 		StudentMenu studentMenu =new StudentMenu();
-		studentMenu.setScene(event);
+		studentMenu.setScene(event,data);
 	}
 
 

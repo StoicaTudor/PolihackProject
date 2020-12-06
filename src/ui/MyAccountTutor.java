@@ -1,11 +1,13 @@
 package ui;
 
+import database.DataFromDatabase;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
@@ -43,9 +45,11 @@ public class MyAccountTutor {
     private ProgressBar moderatorProgress;
     @FXML
     private Button goBack;
+    DataFromDatabase data;
 
-    public void setScene(ActionEvent event){
+    public void setScene(ActionEvent event,DataFromDatabase data){
 
+        this.data=data;
         Parent root= null;
         try {
             root = FXMLLoader.load(getClass().getResource("myAccountTutor.fxml"));
@@ -95,6 +99,6 @@ public class MyAccountTutor {
 
     public void backToMain(ActionEvent event){
         TutorMenu tutorMenu =new TutorMenu();
-        tutorMenu.setScene(event);
+        tutorMenu.setScene(event,data);
     }
 }

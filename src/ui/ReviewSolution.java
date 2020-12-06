@@ -1,5 +1,6 @@
 package ui;
 
+import database.DataFromDatabase;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -30,19 +31,12 @@ public class ReviewSolution {
 	private Button submitButton;
 	@FXML
 	private Slider gradeSlider;
+	DataFromDatabase data;
 
 
 
-	public ReviewSolution() {
-		// TODO Auto-generated constructor stub
-	}
-
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-	}
-
-    public void setScene(ActionEvent event) {
+    public void setScene(ActionEvent event,DataFromDatabase data) {
+		this.data=data;
 		Parent root= null;
 		try {
 			root = FXMLLoader.load(getClass().getResource("reviewSolution.fxml"));
@@ -85,11 +79,11 @@ public class ReviewSolution {
 		System.out.println(feedback);
 
 		TutorMenu menu=new TutorMenu();
-		menu.setScene(action);
+		menu.setScene(action,data);
 	}
 	public void backButtonPressed(ActionEvent action){
 		TutorMenu menu=new TutorMenu();
-		menu.setScene(action);
+		menu.setScene(action,data);
 	}
 
 }

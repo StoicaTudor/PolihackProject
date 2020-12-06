@@ -27,7 +27,7 @@
       </Text>
       <TextArea fx:id="solutionText" layoutX="219.0" layoutY="313.0" prefHeight="200.0" prefWidth="567.0" />
       <TextArea fx:id="taskText" layoutX="219.0" layoutY="72.0" prefHeight="200.0" prefWidth="567.0" />
-      <Button fx:id="submitButton" layoutX="563.0" layoutY="548.0" mnemonicParsing="false" onAction="#clickSubmit" prefHeight="39.0" prefWidth="81.0" text="Submit">
+      <Button fx:id="submitButton" layoutX="605.0" layoutY="548.0" mnemonicParsing="false" onAction="#clickSubmit" prefHeight="39.0" prefWidth="81.0" text="Submit">
          <font>
             <Font size="18.0" />
          </font>

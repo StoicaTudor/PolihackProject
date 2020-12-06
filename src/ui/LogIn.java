@@ -52,9 +52,13 @@ public class LogIn {
 			break;
 
 		case TUTOR:
+			TutorMenu tutorMenu=new TutorMenu();
+			tutorMenu.setScene(event,data);
 			break;
 
 		case MODERATOR:
+			//TutorMenu tutorMenu=new TutorMenu();
+			//tutorMenu.setScene(event,data);
 			break;
 
 		default:
