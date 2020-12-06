@@ -19,8 +19,8 @@
                 <Font size="16.0" />
             </font>
         </Text>
-        <TextArea fx:id="solutionText" layoutX="15.0" layoutY="274.0" prefHeight="250.0" prefWidth="770.0" />
-        <TextArea fx:id="taskText" editable="false" layoutX="15.0" layoutY="74.0" prefHeight="150.0" prefWidth="770.0" />
+        <TextArea fx:id="solution" layoutX="15.0" layoutY="274.0" prefHeight="250.0" prefWidth="770.0" />
+        <TextArea fx:id="task" editable="false" layoutX="15.0" layoutY="74.0" prefHeight="150.0" prefWidth="770.0" />
       <Label layoutX="15.0" layoutY="10.0" prefHeight="29.0" prefWidth="73.0" text="ID #">
          <font>
             <Font size="16.0" />
