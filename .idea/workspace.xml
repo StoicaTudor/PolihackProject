@@ -3,8 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="f0aa95b3-00b7-42f9-ab2b-9385a8a383f4" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/SolveProblem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/SolveProblem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/StudentMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/StudentMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolihackProject.iml" beforeDir="false" afterPath="$PROJECT_DIR$/PolihackProject.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/database/DatabaseQueryMaker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/DatabaseQueryMaker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/problem/Solution.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/problem/Solution.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,13 +30,14 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="mysql" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../Program Files/Java/javafx-sdk-15.0.1/lib" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/mysql-connector-java-8.0.18" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="Global Libraries" />
+    <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
@@ -44,6 +47,13 @@
     </key>
   </component>
   <component name="RunManager">
+    <configuration name="Database" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="database.Database" />
+      <module name="PolihackProject" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -55,6 +65,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Database" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -71,6 +86,9 @@
       <workItem from="1607197932168" duration="15000" />
       <workItem from="1607197966391" duration="6109000" />
       <workItem from="1607204361007" duration="9474000" />
+      <workItem from="1607254653536" duration="1309000" />
+      <workItem from="1607255975281" duration="34000" />
+      <workItem from="1607256033480" duration="14000" />
     </task>
     <servers />
   </component>

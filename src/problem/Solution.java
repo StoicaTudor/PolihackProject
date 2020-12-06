@@ -26,5 +26,7 @@ public class Solution {
 		this.tutorRating=tutorRating;
 		this.moderatorFeedback = moderatorFeedback;
 		this.moderatorRating=moderatorRating;
+
 	}
+
 }
