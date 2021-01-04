@@ -10,14 +10,14 @@ public class DatabaseQueryMaker {
 
 	public String getRetrieveUserQuery() {
 
-		StringBuilder userQ = new StringBuilder("SELECT * FROM pandemicspecial.user");
+		StringBuilder userQ = new StringBuilder("SELECT * FROM pandemicspecial.userr");
 		return userQ.toString();
 	}
 
 	public String getAttemptedProblemsForUserQuery(int userID) {
 
 		StringBuilder attemptedProblemsQ = new StringBuilder(
-				"SELECT attemptedproblems.id FROM attemptedProblems JOIN user ON (user.id = attemptedProblems.studentID or user.id = attemptedProblems.tutorID or user.id = attemptedProblems.moderatorID) WHERE user.id = ");
+				"SELECT attemptedproblemss.id FROM attemptedProblemss JOIN userr ON (userr.id = attemptedProblemss.studentID or userr.id = attemptedProblemss.tutorID or userr.id = attemptedProblemss.moderatorID) WHERE userr.id = ");
 		attemptedProblemsQ.append(userID);
 
 		return attemptedProblemsQ.toString();
@@ -31,7 +31,7 @@ public class DatabaseQueryMaker {
 	public String getPreferredSubjectsQuery(int userID) {
 
 		StringBuilder preferredSubjectsQ = new StringBuilder(
-				"SELECT subject.name FROM subject JOIN preferredsubjects ON (preferredsubjects.subjectID = subject.id) JOIN user ON (user.id = preferredsubjects.userID) WHERE userID = ");
+				"SELECT subjectt.name FROM subjectt JOIN preferredsubjectss ON (preferredsubjectss.subjectID = subjectt.id) JOIN userr ON (userr.id = preferredsubjectss.userID) WHERE userID = ");
 		preferredSubjectsQ.append(userID);
 
 		return preferredSubjectsQ.toString();
@@ -39,7 +39,7 @@ public class DatabaseQueryMaker {
 
 	public String getStatisticsQuery(int userID) {
 
-		StringBuilder statisticsQ = new StringBuilder("SELECT * FROM statistics WHERE statistics.userID = ");
+		StringBuilder statisticsQ = new StringBuilder("SELECT * FROM statisticss WHERE statisticss.userID = ");
 		statisticsQ.append(userID);
 
 		return statisticsQ.toString();
@@ -47,28 +47,28 @@ public class DatabaseQueryMaker {
 
 	public String getRetrieveSubjectsQuery() {
 
-		return new String("SELECT subject.name FROM subject");
+		return new String("SELECT subjectt.name FROM subjectt");
 	}
 
 	public String getRetrieveProblemsQuery() {
 
-		return new String("SELECT * FROM problem");
+		return new String("SELECT * FROM problemm");
 	}
 
 	public String getRetrieveSubjectByIDQuery(int subjectID) {
 
-		return new StringBuilder("SELECT subject.name FROM subject WHERE subject.id = ").append(subjectID).toString();
+		return new StringBuilder("SELECT subjectt.name FROM subjectt WHERE subjectt.id = ").append(subjectID).toString();
 	}
 
 	public String getRetrieveStudentsSolutionsQuery() {
 
-		return new String("SELECT * FROM attemptedproblems");
+		return new String("SELECT * FROM attemptedproblemss");
 	}
 
 	public String studentInsertQuery(String userName, int typeId, String password, String nationality, String email,
 			LocalDate dateJoined, int grade) {
 
-		StringBuilder studentIQ = new StringBuilder("INSERT INTO pandemicspecial.user VALUES (NULL, " +'"' +userName + '"'+",");
+		StringBuilder studentIQ = new StringBuilder("INSERT INTO pandemicspecial.userr VALUES (NULL, " +'"' +userName + '"'+",");
 		studentIQ.append(typeId);
 		studentIQ.append("," + '"' + password + '"' + "," + '"' + nationality + '"' + "," + '"' + email + '"' + ",");
 		long days = dateJoined.toEpochDay();
@@ -82,7 +82,7 @@ public class DatabaseQueryMaker {
 	public String proposedProblemInsertQuery(String name, String task, String solution, int proposerId, int popularity,
 			int difficulty, int grade, String subject) {
 		StringBuilder problemIQ = new StringBuilder(
-				"INSERT INTO pandemicspecial.problem VALUES (NULL, " +"'"+ name +"'"+ "," +"'"+ task +"'"+ "," + "'"+solution +"'"+ ",");
+				"INSERT INTO pandemicspecial.problemm VALUES (NULL, " +"'"+ name +"'"+ "," +"'"+ task +"'"+ "," + "'"+solution +"'"+ ",");
 		problemIQ.append(proposerId);// AICI AI DE REZOLVAT CU ID;
 		problemIQ.append(",");
 		problemIQ.append(popularity);
@@ -144,7 +144,7 @@ public class DatabaseQueryMaker {
 		moderatorFeedback = " ";
 		moderatorRating = 0.0;
 
-		StringBuilder solutionIQ = new StringBuilder("INSERT INTO pandemicspecial.attemptedproblems VALUES (NULL, ");
+		StringBuilder solutionIQ = new StringBuilder("INSERT INTO pandemicspecial.attemptedproblemss VALUES (NULL, ");
 		solutionIQ.append(studentId);
 		solutionIQ.append(",");
 		solutionIQ.append(problemId);
@@ -161,7 +161,7 @@ public class DatabaseQueryMaker {
 	}
 
 	public String tutorFeedbackUpdateQuery(int problemID, int tutorID, String tutorFeedback, double tutorRating) {
-		StringBuilder tutorFeedbackQ = new StringBuilder("UPDATE pandemicspecial.attemptedproblems SET tutorID = ");
+		StringBuilder tutorFeedbackQ = new StringBuilder("UPDATE pandemicspecial.attemptedproblemss SET tutorID = ");
 		tutorFeedbackQ.append(tutorID);
 		tutorFeedbackQ.append(", tutorFeedback = " + "'"+tutorFeedback + "'"+", tutorRating = ");
 		tutorFeedbackQ.append(tutorRating);
@@ -174,7 +174,7 @@ public class DatabaseQueryMaker {
 	public String moderatorFeedbackUpdateQuery(int problemID, int moderatorID, String moderatorFeedback,
 			double moderatorRating) {
 		StringBuilder moderatorFeedbackQ = new StringBuilder(
-				"UPDATE pandemicspecial.attemptedproblems SET moderatorID = ");
+				"UPDATE pandemicspecial.attemptedproblemss SET moderatorID = ");
 		moderatorFeedbackQ.append(moderatorID);
 		moderatorFeedbackQ.append(", moderatorFeedback = " + "'"+moderatorFeedback + "'"+", moderatorRating = ");
 		moderatorFeedbackQ.append(moderatorRating);

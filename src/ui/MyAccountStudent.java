@@ -22,48 +22,47 @@ public class MyAccountStudent {
 
 	@FXML
 	private Label name;
-	String nameString=new String("name from DB");
+	String nameString = new String("name from DB");
 	@FXML
 	private Label occupation;
-	String occupString=new String("occup from DB");
+	String occupString = new String("occup from DB");
 	@FXML
 	private Label country;
-	String countryString=new String("country from DB");
+	String countryString = new String("country from DB");
 	@FXML
 	private Label email;
-	String emailString=new String("email from DB");
+	String emailString = new String("email from DB");
 	@FXML
 	private Label date_joined;
-	String date_joinedString=new String("date from DB");
+	String date_joinedString = new String("date from DB");
 	@FXML
 	private Label section;
-	String sectionString=new String("sect.  from DB");
+	String sectionString = new String("sect.  from DB");
 	@FXML
 	private Label rank;
-	String rankString=new String("rank from DB");
+	String rankString = new String("rank from DB");
 	@FXML
 	private Label allTimeRating;
-	String allTimeRatingString=new String("alltime rate from DB");
+	String allTimeRatingString = new String("alltime rate from DB");
 	@FXML
 	private Label attemptedTasks;
-	String attemptedTasksString=new String("attemped from DB");
+	String attemptedTasksString = new String("attemped from DB");
 	@FXML
 	private Label succTasks;
-	String succTaskString=new String("succ from DB");
+	String succTaskString = new String("succ from DB");
 	@FXML
 	private Label failedTasks;
-	String failedTasksString=new String("failed from DB");
+	String failedTasksString = new String("failed from DB");
 	@FXML
 	Button solvedProblems;
 
 	@FXML
 	Button backToMainPage;
-	public static DataFromDatabase  data;
-
+	public static DataFromDatabase data;
 
 	public void setScene(ActionEvent event, DataFromDatabase data) {
 
-		this.data=data;
+		this.data = data;
 		Parent root = null;
 		try {
 			root = FXMLLoader.load(getClass().getResource("MyAccountStudent.fxml"));
@@ -72,56 +71,56 @@ public class MyAccountStudent {
 		}
 
 		Scene scene = new Scene(root);
-		Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
+		Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		window.setScene(scene);
 		initialize(scene);
 		window.show();
 
 	}
-	public void initialize(Scene scene){
-		name=(Label)scene.lookup("#name");
+
+	public void initialize(Scene scene) {
+		name = (Label) scene.lookup("#name");
 		name.setText(nameString);
 
-		occupation=(Label)scene.lookup("#occupation");
+		occupation = (Label) scene.lookup("#occupation");
 		occupation.setText(occupString);
 
-		country=(Label)scene.lookup("#country");
+		country = (Label) scene.lookup("#country");
 		country.setText(countryString);
 
-		email=(Label)scene.lookup("#email");
+		email = (Label) scene.lookup("#email");
 		email.setText(emailString);
 
-		date_joined=(Label)scene.lookup("#date_joined");
+		date_joined = (Label) scene.lookup("#date_joined");
 		date_joined.setText(date_joinedString);
 
-		section=(Label)scene.lookup("#section");
+		section = (Label) scene.lookup("#section");
 		section.setText(sectionString);
 
-		rank=(Label)scene.lookup("#rank");
+		rank = (Label) scene.lookup("#rank");
 		rank.setText(rankString);
 
-		allTimeRating=(Label)scene.lookup("#allTimeRating");
+		allTimeRating = (Label) scene.lookup("#allTimeRating");
 		allTimeRating.setText(allTimeRatingString);
 
-		attemptedTasks=(Label)scene.lookup("#attemptedTasks");
+		attemptedTasks = (Label) scene.lookup("#attemptedTasks");
 		attemptedTasks.setText(attemptedTasksString);
 
-		succTasks=(Label)scene.lookup("#succTasks");
+		succTasks = (Label) scene.lookup("#succTasks");
 		succTasks.setText(succTaskString);
 
-		failedTasks=(Label)scene.lookup("#failedTasks");
+		failedTasks = (Label) scene.lookup("#failedTasks");
 		failedTasks.setText(failedTasksString);
 	}
-	public void backToMainPage(ActionEvent event) throws Exception{
-		StudentMenu studentMenu =new StudentMenu();
-		studentMenu.setScene(event,data);
-	}
-	public void goToSolvedProblems(ActionEvent event) throws Exception{
-		ProblemsList problemsList =new ProblemsList();
-		problemsList.setScene(event,data);
+
+	public void backToMainPage(ActionEvent event) throws Exception {
+		StudentMenu studentMenu = new StudentMenu();
+		studentMenu.setScene(event, data);
 	}
 
-
-
+	public void goToSolvedProblems(ActionEvent event) throws Exception {
+		ProblemsList problemsList = new ProblemsList();
+		problemsList.setScene(event, data);
+	}
 
 }
