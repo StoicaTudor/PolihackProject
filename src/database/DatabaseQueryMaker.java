@@ -1,5 +1,7 @@
 package database;
 
+import com.mysql.cj.x.protobuf.MysqlxDatatypes;
+
 import java.time.LocalDate;
 
 public class DatabaseQueryMaker {
@@ -25,9 +27,26 @@ public class DatabaseQueryMaker {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-
 	}
-
+	public String getSentProblemsByTutor(int userID){
+		StringBuilder string=new StringBuilder("SELECT * FROM problemm WHERE problemm.proposerID = ");
+		string.append(userID);
+		return string.toString();
+	}
+	public String getGivenFeedbackByTutor(int userID){
+		StringBuilder string=new StringBuilder("SELECT * FROM attemptedproblemss WHERE attemptedproblemss.tutorID = ");
+		string.append(userID);
+		return string.toString();
+	}
+	public String getUserIDByUsername(String username){
+		StringBuilder userIdQ=new StringBuilder(
+				"SELECT userr.id FROM userr WHERE userName =  ");
+		userIdQ.append("\"");
+		userIdQ.append(username);
+		userIdQ.append("\"");
+		System.out.println(userIdQ.toString());
+		return userIdQ.toString();
+	}
 	public String getPreferredSubjectsQuery(int userID) {
 
 		StringBuilder preferredSubjectsQ = new StringBuilder(
@@ -79,15 +98,15 @@ public class DatabaseQueryMaker {
 		return studentIQ.toString();
 	}
 
-	public String proposedProblemInsertQuery(String name, String task, String solution, int proposerId, int popularity,
-			int difficulty, int grade, String subject) {
+	public String proposedProblemInsertQuery(String name, String task, String solution, int proposerId,
+			String difficulty, int grade, String subject) {
 		StringBuilder problemIQ = new StringBuilder(
-				"INSERT INTO pandemicspecial.problemm VALUES (NULL, " +"'"+ name +"'"+ "," +"'"+ task +"'"+ "," + "'"+solution +"'"+ ",");
-		problemIQ.append(proposerId);// AICI AI DE REZOLVAT CU ID;
+				"INSERT INTO pandemicspecial.problemm VALUES (NULL, " +"'"+ task +"'"+ "," +"'"+ name +"'"+ "," + "'"+solution +"'"+ ",");
+		problemIQ.append(proposerId);
 		problemIQ.append(",");
-		problemIQ.append(popularity);
-		problemIQ.append(",");
+		problemIQ.append("'");
 		problemIQ.append(difficulty);
+		problemIQ.append("'");
 		problemIQ.append(",");
 		problemIQ.append(grade);
 		problemIQ.append(",");
@@ -131,6 +150,7 @@ public class DatabaseQueryMaker {
 		}
 		problemIQ.append(subjectID);
 		problemIQ.append(")");
+		System.out.println(problemIQ.toString());
 		return problemIQ.toString();
 	}
 
@@ -159,7 +179,23 @@ public class DatabaseQueryMaker {
 		solutionIQ.append(")");
 		return solutionIQ.toString();
 	}
-
+	public String nextAttemptedProblemQuery(){
+		return new String("SELECT * FROM attemptedproblemss WHERE tutorID IS NULL");
+	}
+	public String problemInfoForID(int problemID){
+		StringBuilder string=new StringBuilder(
+				"SELECT task,solution FROM problemm WHERE problemm.id="
+		);
+		string.append(problemID);
+		return string.toString();
+	}
+	public String unReviewedProblemForId(int problemID){
+		StringBuilder string = new StringBuilder(
+				"SELECT attemptedproblemss.problemID,attemptedproblemss.studentSolution,attemptedproblemss.tutorFeedback,attemptedproblemss.tutorRating FROM attemptedproblemss WHERE Id= "
+		);
+		string.append(problemID);
+		return string.toString();
+	}
 	public String tutorFeedbackUpdateQuery(int problemID, int tutorID, String tutorFeedback, double tutorRating) {
 		StringBuilder tutorFeedbackQ = new StringBuilder("UPDATE pandemicspecial.attemptedproblemss SET tutorID = ");
 		tutorFeedbackQ.append(tutorID);

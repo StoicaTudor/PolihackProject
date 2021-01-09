@@ -17,8 +17,9 @@ public class ProblemsList {
 	public static DataFromDatabase data;
 	@FXML
 	Button back;
+	int sessionUserId;
 
-	public void setScene(ActionEvent event, DataFromDatabase data) {
+	public void setScene(ActionEvent event, DataFromDatabase data,int userId) {
 
 		this.data = data;
 		Parent root = null;
@@ -30,6 +31,7 @@ public class ProblemsList {
 
 		Scene scene = new Scene(root);
 		Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		sessionUserId=userId;
 		window.setScene(scene);
 		window.show();
 
@@ -37,7 +39,7 @@ public class ProblemsList {
 
 	public void backToMyAcc(ActionEvent event) throws Exception {
 		MyAccountStudent myAcc = new MyAccountStudent();
-		myAcc.setScene(event, data);
+		myAcc.setScene(event,data,sessionUserId);
 	}
 
 }

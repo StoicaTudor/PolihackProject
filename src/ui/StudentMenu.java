@@ -58,14 +58,14 @@ public class StudentMenu {
 	private TextField task4;
 	@FXML
 	private TextField task5;
-
+	public static int sessionUserID;
 	public static DataFromDatabase data;
 	ArrayList<Problem> problems = new ArrayList<>();
 	private int nrOfPages = 0;
 	private int currentPage = 1;
 	Scene scene;
 
-	public void setScene(ActionEvent event, DataFromDatabase data) {
+	public void setScene(ActionEvent event, DataFromDatabase data,int userId) {
 
 		this.data = data;
 
@@ -77,6 +77,7 @@ public class StudentMenu {
 		}
 		scene = new Scene(root);
 		initializeChoiceBoxes();
+		sessionUserID=userId;
 		Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		window.setScene(scene);
 		window.show();
@@ -86,7 +87,7 @@ public class StudentMenu {
 	public void goToMyAcc(ActionEvent event) throws IOException {
 
 		MyAccountStudent myacc = new MyAccountStudent();
-		myacc.setScene(event, data);
+		myacc.setScene(event, data,sessionUserID);
 
 	}
 
@@ -96,33 +97,33 @@ public class StudentMenu {
 	}
 
 	public void solve1(ActionEvent event) throws IOException {
-		int problemID = problems.get((currentPage - 1) * 5 + 0).getProblemID();
+		int problemID = problems.get((currentPage - 1) * 5).getProblemID();
 		SolveProblem solveProblem = new SolveProblem();
-		solveProblem.setScene(event, data, problemID);
+		solveProblem.setScene(event, data, problemID,sessionUserID);
 	}
 
 	public void solve2(ActionEvent event) throws IOException {
 		int problemID = problems.get((currentPage - 1) * 5 + 1).getProblemID();
 		SolveProblem solveProblem = new SolveProblem();
-		solveProblem.setScene(event, data, problemID);
+		solveProblem.setScene(event, data, problemID,sessionUserID);
 	}
 
 	public void solve3(ActionEvent event) throws IOException {
 		int problemID = problems.get((currentPage - 1) * 5 + 2).getProblemID();
 		SolveProblem solveProblem = new SolveProblem();
-		solveProblem.setScene(event, data, problemID);
+		solveProblem.setScene(event, data, problemID,sessionUserID);
 	}
 
 	public void solve4(ActionEvent event) throws IOException {
 		int problemID = problems.get((currentPage - 1) * 5 + 3).getProblemID();
 		SolveProblem solveProblem = new SolveProblem();
-		solveProblem.setScene(event, data, problemID);
+		solveProblem.setScene(event, data, problemID,sessionUserID);
 	}
 
 	public void solve5(ActionEvent event) throws IOException {
 		int problemID = problems.get((currentPage - 1) * 5 + 4).getProblemID();
 		SolveProblem solveProblem = new SolveProblem();
-		solveProblem.setScene(event, data, problemID);
+		solveProblem.setScene(event, data, problemID,sessionUserID);
 	}
 
 	public void pressedPrevious(ActionEvent event) {

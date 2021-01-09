@@ -74,6 +74,7 @@ public class Database {
 				String email = resultSet0.getString(6);
 				LocalDate dateJoined = LocalDate.ofEpochDay(resultSet0.getLong(7));
 				int grade = resultSet0.getInt(8);
+				String fullName=resultSet0.getString(9);
 
 				List<Integer> attemptedProblems = new ArrayList<Integer>();
 				Set<String> preferredSubjects = new HashSet<String>();
@@ -127,7 +128,7 @@ public class Database {
 					ex.printStackTrace();
 				}
 
-				User user = data.getPersonalizedUser(userType, userID, userName, password, nationality, email,
+				User user = data.getPersonalizedUser(userType, userID, userName,fullName, password, nationality, email,
 						new ArrayList<Integer>(attemptedProblems), statistics, preferredSubjects, grade);
 
 				data.users.add(user); // add user to the great Set<User> users
@@ -173,22 +174,21 @@ public class Database {
 
 			while (resultSet0.next()) {
 
-				int problemID = resultSet0.getInt(1);
-				String problemName = resultSet0.getString(2);
-				String task = resultSet0.getString(3);
-				String solution = resultSet0.getString(4);
-				int proposerID = resultSet0.getInt(5);
-				int popularity = resultSet0.getInt(6);
-				Difficulty difficulty = Problem.getDifficultyInt(resultSet0.getInt(7));
-				int grade = resultSet0.getInt(8);
-				int subjectID = resultSet0.getInt(9);
+				int problemID = resultSet0.getInt("id");
+				String problemName = resultSet0.getString("problemName");
+				String task = resultSet0.getString("task");
+				String solution = resultSet0.getString("solution");
+				int proposerID = resultSet0.getInt("proposerID");
+				String difficulty=resultSet0.getString("difficulty");
+				int grade = resultSet0.getInt("grade");
+				int subjectID = resultSet0.getInt("subjectID");
 
 				try {
 					resultSet1 = statement1.executeQuery(queryMaker.getRetrieveSubjectByIDQuery(subjectID));
 					resultSet1.next();
 					String stringSubject = resultSet1.getString(1);
 
-					problems.add(new Problem(problemName, problemID, task, solution, popularity, difficulty,
+					problems.add(new Problem(problemName, problemID, task, solution, difficulty,
 							data.utility.convertStringSubjectToEnumSubject(stringSubject), proposerID, grade));
 				} catch (SQLException ex) {
 					ex.printStackTrace();
@@ -248,7 +248,7 @@ public class Database {
 		HashSet<String> preferredSubjects=new HashSet<>();
 		preferredSubjects.add("Mathematics");
 		
-		db.data.addNewUser(db.data.getPersonalizedUser(3, -1, "Ivan", "portocala", "Romania", "ivan@ivan.ivan", null,
+		db.data.addNewUser(db.data.getPersonalizedUser(3, -1, "Ivan", "Ivan SuntEu","portocala", "Romania", "ivan@ivan.ivan", null,
 				new Statistics(
 						0, 0, 0, 0, LocalDate.now()), preferredSubjects, 12));
 		
@@ -318,7 +318,6 @@ public class Database {
 			System.out.println(currentProblem.getProblemName());
 			System.out.println(currentProblem.getTask());
 			System.out.println(currentProblem.getSolution());
-			System.out.println(currentProblem.getPopularity());
 			System.out.println(currentProblem.getProblemID());
 			System.out.println(currentProblem.grade);
 			System.out.println();

@@ -11,10 +11,10 @@ public class Student extends User {
 
 	int currentGrade;
 
-	public Student(int id, String username, String password, String country, String email,
+	public Student(int id, String username,String fullname, String password, String country, String email,
 			ArrayList<Integer> attemptedProblems, Statistics statistics, Set<Subject> preferredSubjects, int grade) {
 
-		super(id, username, password, country, email, attemptedProblems, statistics, preferredSubjects, grade);
+		super(id, username,fullname, password, country, email, attemptedProblems, statistics, preferredSubjects, grade);
 		this.currentGrade = grade;
 	}
 

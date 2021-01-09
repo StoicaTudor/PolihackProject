@@ -9,22 +9,20 @@ public class Problem implements Comparable<Problem> {
 	private String task;
 	public String taskThumbnail;
 	private String solution;
-	private int popularity;
-	private Difficulty problemDifficulty;
+	private String problemDifficulty;
 	private Subject problemSubject;
 	private int proposerID;
 	public int grade;
 
 	// Problem() constructor
-	public Problem(String problemName, int problemID, String task, String solution, int popularity,
-			Difficulty problemDifficulty, Subject problemSubject, int proposerID, int grade) {
+	public Problem(String problemName, int problemID, String task, String solution,
+			String problemDifficulty, Subject problemSubject, int proposerID, int grade) {
 
 		this.proposerID = proposerID;
 		this.problemName = problemName;
 		this.problemID = problemID;
 		this.task = task;
 		this.solution = solution;
-		this.popularity = popularity;
 		this.problemDifficulty = problemDifficulty;
 		this.problemSubject = problemSubject;
 		this.grade = grade;
@@ -62,19 +60,13 @@ public class Problem implements Comparable<Problem> {
 		this.solution = solution;
 	}
 
-	public int getPopularity() {
-		return popularity;
-	}
 
-	public void setPopularity(int popularity) {
-		this.popularity = popularity;
-	}
 
-	public Difficulty getProblemDifficulty() {
+	public String getProblemDifficulty() {
 		return problemDifficulty;
 	}
 
-	public void setProblemDifficulty(Difficulty problemDifficulty) {
+	public void setProblemDifficulty(String problemDifficulty) {
 		this.problemDifficulty = problemDifficulty;
 	}
 
@@ -86,15 +78,6 @@ public class Problem implements Comparable<Problem> {
 		this.problemSubject = problemSubject;
 	}
 
-	@Override
-	public int compareTo(Problem problem) {
-		return (this.getPopularity() < problem.getPopularity()) ? 1 : 0;
-	}
-
-	public void setTaskThumbnail() {
-		// TO DO MIRUNA
-
-	}
 
 	public static Difficulty getDifficultyInt(int difficulty) {
 
@@ -136,5 +119,12 @@ public class Problem implements Comparable<Problem> {
 		default:
 			return Difficulty.EASY;
 		}
+	}
+
+	@Override
+
+	public int compareTo(Problem problem) {
+		if (this.getProblemDifficulty().equals(problemDifficulty)) return 1;
+		else return 0;
 	}
 }

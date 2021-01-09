@@ -34,10 +34,13 @@ public class ProposeProblem {
 	private javafx.scene.control.ScrollBar scrollbarTask;
 	@FXML
 	private Scrollbar scrollbarSolution;
+	@FXML
+	private  javafx.scene.control.TextArea problemName;
+	public static int sessionUserId;
 
 	public static DataFromDatabase data;
 
-	public void setScene(ActionEvent event, DataFromDatabase data) {
+	public void setScene(ActionEvent event, DataFromDatabase data,int userId) {
 		this.data = data;
 		Parent root = null;
 		try {
@@ -49,6 +52,7 @@ public class ProposeProblem {
 		initializeChoiceBoxesAndText(scene);
 		Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		window.setScene(scene);
+		sessionUserId=userId;
 		window.show();
 	}
 
@@ -79,17 +83,15 @@ public class ProposeProblem {
 		backButton.setVisible(true);
 	}
 
-	public void clickSubmit(ActionEvent event) {
-		// submit button clicked
-		// insert problem into DB
-
+	public void clickSubmit(ActionEvent event) throws Exception {
+		data.insertProposedProblem(sessionUserId, problemName.getText(), taskText.getText(),solutionText.getText(),difficultyChoice.getValue(),subjectChoice.getValue(),sectionChoice.getValue());
 		TutorMenu tutorMenu = new TutorMenu();
-		tutorMenu.setScene(event, data);
+		tutorMenu.setScene(event, data,sessionUserId);
 	}
 
 	public void clickBack(ActionEvent event) {
 		TutorMenu tutorMenu = new TutorMenu();
-		tutorMenu.setScene(event, data);
+		tutorMenu.setScene(event, data,sessionUserId);
 	}
 
 }

@@ -29,8 +29,9 @@ public class SolveProblem {
 	public static DataFromDatabase data;
 	int problemID;
 	Scene scene;
+	public static int sessionUserId;
 
-	public void setScene(ActionEvent event, DataFromDatabase data, int problemID) {
+	public void setScene(ActionEvent event, DataFromDatabase data, int problemID,int userId) {
 		this.data = data;
 		this.problemID = problemID;
 		Parent menu = null;
@@ -40,6 +41,7 @@ public class SolveProblem {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		sessionUserId=userId;
 		scene = new Scene(menu);
 		IDLabel = (Label) scene.lookup("#IDLabel");
 		StringBuilder id = new StringBuilder(problemID);
@@ -56,13 +58,13 @@ public class SolveProblem {
 		task = (TextArea) scene.lookup("#task");
 		// data.submitSolution(problemID,task.getText());
 		StudentMenu studentMenu = new StudentMenu();
-		studentMenu.setScene(event, data);
+		studentMenu.setScene(event, data,sessionUserId);
 	}
 
 	public void clickBack(ActionEvent event) {
 
 		StudentMenu studentMenu = new StudentMenu();
-		studentMenu.setScene(event, data);
+		studentMenu.setScene(event, data,sessionUserId);
 	}
 
 }

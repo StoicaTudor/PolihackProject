@@ -32,8 +32,9 @@ public class ReviewSolution {
 	@FXML
 	private Slider gradeSlider;
 	public static DataFromDatabase data;
+	public static int sessionUserId;
 
-	public void setScene(ActionEvent event, DataFromDatabase data) {
+	public void setScene(ActionEvent event, DataFromDatabase data,int userId) {
 		this.data = data;
 		Parent root = null;
 		try {
@@ -45,6 +46,7 @@ public class ReviewSolution {
 		initialize(scene);
 		Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		window.setScene(scene);
+		sessionUserId=userId;
 		window.show();
 	}
 
@@ -78,12 +80,12 @@ public class ReviewSolution {
 		System.out.println(feedback);
 
 		TutorMenu menu = new TutorMenu();
-		menu.setScene(action, data);
+		menu.setScene(action, data,sessionUserId);
 	}
 
 	public void backButtonPressed(ActionEvent action) {
 		TutorMenu menu = new TutorMenu();
-		menu.setScene(action, data);
+		menu.setScene(action, data,sessionUserId);
 	}
 
 }
