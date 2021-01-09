@@ -1,6 +1,7 @@
 package ui;
 
 import database.DataFromDatabase;
+import database.Database;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -25,7 +26,7 @@ public class MyAccountStudent {
 	String nameString = new String("name from DB");
 	@FXML
 	private Label occupation;
-	String occupString = new String("occup from DB");
+	String occupString = new String("Student");
 	@FXML
 	private Label country;
 	String countryString = new String("country from DB");
@@ -55,14 +56,14 @@ public class MyAccountStudent {
 	String failedTasksString = new String("failed from DB");
 	@FXML
 	Button solvedProblems;
-
 	@FXML
 	Button backToMainPage;
 	public static DataFromDatabase data;
+	public static int sessionUserId;
 
-	public void setScene(ActionEvent event, DataFromDatabase data) {
+	public void setScene(ActionEvent event, DataFromDatabase data,int userID) {
+	this.data=data;
 
-		this.data = data;
 		Parent root = null;
 		try {
 			root = FXMLLoader.load(getClass().getResource("MyAccountStudent.fxml"));
@@ -73,29 +74,30 @@ public class MyAccountStudent {
 		Scene scene = new Scene(root);
 		Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		window.setScene(scene);
-		initialize(scene);
+		sessionUserId=userID;
+		initialize(scene,data);
 		window.show();
 
 	}
 
-	public void initialize(Scene scene) {
+	public void initialize(Scene scene,DataFromDatabase data) {
 		name = (Label) scene.lookup("#name");
-		name.setText(nameString);
+		name.setText(data.getUserByID(sessionUserId).getFullname());
 
 		occupation = (Label) scene.lookup("#occupation");
 		occupation.setText(occupString);
 
 		country = (Label) scene.lookup("#country");
-		country.setText(countryString);
+		country.setText(data.getUserByID(sessionUserId).getCountry());
 
 		email = (Label) scene.lookup("#email");
-		email.setText(emailString);
+		email.setText(data.getUserByID(sessionUserId).getEmail());
 
 		date_joined = (Label) scene.lookup("#date_joined");
-		date_joined.setText(date_joinedString);
+		date_joined.setText("2021");
 
 		section = (Label) scene.lookup("#section");
-		section.setText(sectionString);
+		section.setText(Integer.toString(data.getUserByID(sessionUserId).getGrade()));
 
 		rank = (Label) scene.lookup("#rank");
 		rank.setText(rankString);
@@ -111,16 +113,20 @@ public class MyAccountStudent {
 
 		failedTasks = (Label) scene.lookup("#failedTasks");
 		failedTasks.setText(failedTasksString);
+
+
+
+
 	}
 
 	public void backToMainPage(ActionEvent event) throws Exception {
 		StudentMenu studentMenu = new StudentMenu();
-		studentMenu.setScene(event, data);
+		studentMenu.setScene(event, data,sessionUserId);
 	}
 
 	public void goToSolvedProblems(ActionEvent event) throws Exception {
 		ProblemsList problemsList = new ProblemsList();
-		problemsList.setScene(event, data);
+		problemsList.setScene(event, data,sessionUserId);
 	}
 
 }

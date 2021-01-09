@@ -7,10 +7,10 @@ import problem.Subject;
 
 public class Moderator extends Tutor{
 
-	public Moderator(int id, String username, String password, String country, String email,
+	public Moderator(int id, String username,String fullname, String password, String country, String email,
 			ArrayList<Integer> attemptedProblems, Statistics statistics, Set<Subject> preferredSubjects, int grade) {
 
-		super(id, username, password, country, email, attemptedProblems, statistics, preferredSubjects,grade);
+		super(id, username, fullname, password, country, email, attemptedProblems, statistics, preferredSubjects,grade);
 	}
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub

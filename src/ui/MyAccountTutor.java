@@ -12,6 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.stage.Stage;
+import user.Tutor;
 
 import java.io.IOException;
 
@@ -51,8 +52,9 @@ public class MyAccountTutor {
 	private ProgressBar moderatorProgress;
 	@FXML
 	private Button goBack;
+	public static int sessionUserId;
 
-	public void setScene(ActionEvent event, DataFromDatabase data) {
+	public void setScene(ActionEvent event, DataFromDatabase data,int userId) throws Exception{
 
 		this.data = data;
 		System.out.println((this.data == null) + " in my accout tutor");
@@ -66,22 +68,24 @@ public class MyAccountTutor {
 		Scene scene = new Scene(root);
 		Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		window.setScene(scene);
+		sessionUserId=userId;
 		initializeText(scene);
 		window.show();
 	}
 
-	private void initializeText(Scene scene) {
+	private void initializeText(Scene scene) throws Exception{
+
 		name = (Label) scene.lookup("#name");
-		name.setText(nameString);
+		name.setText(data.getUserByID(sessionUserId).getFullname());
 
 		occupation = (Label) scene.lookup("#occupation");
-		occupation.setText(occupString);
+		occupation.setText("Teacher");
 
 		country = (Label) scene.lookup("#country");
-		country.setText(countryString);
+		country.setText(data.getUserByID(sessionUserId).getCountry());
 
 		email = (Label) scene.lookup("#email");
-		email.setText(emailString);
+		email.setText(data.getUserByID(sessionUserId).getEmail());
 
 		date_joined = (Label) scene.lookup("#date_joined");
 		date_joined.setText(date_joinedString);
@@ -90,13 +94,10 @@ public class MyAccountTutor {
 		allTimeRating.setText(allTimeRatingString);
 
 		sentTasks = (Label) scene.lookup("#sentTasks");
-		sentTasks.setText(sentTasksString);
-
-		allTimeRating = (Label) scene.lookup("#allTimeRating");
-		allTimeRating.setText(allTimeRatingString);
+		sentTasks.setText(Integer.toString(data.getNrProposedProblemsByTutor(sessionUserId)));
 
 		feedbackGiven = (Label) scene.lookup("#feedbackGiven");
-		feedbackGiven.setText(feedbackGivenString);
+		feedbackGiven.setText(Integer.toString(data.getNrReviewedSolutionsByTutor(sessionUserId)));
 
 		moderatorProgress = (ProgressBar) scene.lookup("#moderatorProgress");
 		moderatorProgress.setProgress(0.5);
@@ -106,6 +107,6 @@ public class MyAccountTutor {
 
 	public void backToMain(ActionEvent event) {
 		TutorMenu tutorMenu = new TutorMenu();
-		tutorMenu.setScene(event, data);
+		tutorMenu.setScene(event, data,sessionUserId);
 	}
 }

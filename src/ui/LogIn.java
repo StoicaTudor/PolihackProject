@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 import user.UserType;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import database.DataFromDatabase;
 import database.Database;
@@ -18,6 +19,7 @@ import database.Database;
 public class LogIn {
 
 	DataFromDatabase data;
+	int sessionUserID;
 
 	public void setScene(ActionEvent event, DataFromDatabase data) {
 
@@ -36,11 +38,12 @@ public class LogIn {
 	}
 
 	@FXML
-	public void pressLogIn(ActionEvent event) {
+	public void pressLogIn(ActionEvent event) throws SQLException {
 
 		Database db = new Database();
 		db.retrieveDataFromDatabase();
 		this.data = db.data;
+		sessionUserID=data.getSessionUserID(username.getText());
 
 		UserType logInResult = data.validateSignIn(username.getText(), password.getText());
 		System.out.println(logInResult);
@@ -54,17 +57,17 @@ public class LogIn {
 
 		case STUDENT:
 			StudentMenu studentMenu = new StudentMenu();
-			studentMenu.setScene(event, data);
+			studentMenu.setScene(event, data,sessionUserID);
 			break;
 
 		case TUTOR:
 			tutorMenu = new TutorMenu();
-			tutorMenu.setScene(event, data);
+			tutorMenu.setScene(event, data,sessionUserID);
 			break;
 
 		case MODERATOR:
 			tutorMenu = new TutorMenu();
-			tutorMenu.setScene(event, data);
+			tutorMenu.setScene(event, data,sessionUserID);
 			System.out.println("");
 			break;
 

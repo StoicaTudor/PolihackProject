@@ -32,10 +32,10 @@ public class DataFromDatabase {
 	public Queue<Problem> problems;
 	public ArrayList<Solution> solutions;
 
-	int sessionUserID = 5; // Citadin
+	int sessionUserID; // Citadin=5 daca trb
 	public Utility utility = new Utility();
 
-	public DataFromDatabase(Connection connectio0n, Statement statement0, ResultSet resultSet0) {
+	public DataFromDatabase(Connection connection0, Statement statement0, ResultSet resultSet0) {
 
 		this.connection0 = connection0;
 		this.statement0 = statement0;
@@ -43,15 +43,22 @@ public class DataFromDatabase {
 		this.queryMaker = new DatabaseQueryMaker();
 	}
 
-	public void getData() {
 
+	public int getSessionUserID(String username) throws SQLException {
+		this.statement0.execute(queryMaker.getUserIDByUsername(username));
+		resultSet0= statement0.getResultSet();
+		if(resultSet0.next()){
+			sessionUserID=resultSet0.getInt(1);
+		}
+
+		return sessionUserID;
 	}
 
 	public static void main(String[] args) {
 
 	}
 
-	public User getPersonalizedUser(int userType, int userID, String userName, String password, String nationality,
+	public User getPersonalizedUser(int userType, int userID, String userName,String fullName, String password, String nationality,
 			String email, ArrayList<Integer> attemptedProblems, Statistics statistics, Set<String> preferredSubjects,
 			int grade) {
 
@@ -62,17 +69,17 @@ public class DataFromDatabase {
 		switch (userType) {
 
 		case 1: // student
-			return new Student(userID, userName, password, nationality, email,
+			return new Student(userID, userName,fullName, password, nationality, email,
 					new ArrayList<Integer>(attemptedProblems), statistics,
 					utility.convertStringSetToSubjectSet(preferredSubjects), grade);
 
 		case 2: // tutor
-			return new Tutor(userID, userName, password, nationality, email, new ArrayList<Integer>(attemptedProblems),
+			return new Tutor(userID, userName,fullName, password, nationality, email, new ArrayList<Integer>(attemptedProblems),
 					statistics, utility.convertStringSetToSubjectSet(preferredSubjects), grade);
 
 		case 3: // moderator
 
-			return new Moderator(userID, userName, password, nationality, email,
+			return new Moderator(userID, userName,fullName, password, nationality, email,
 					new ArrayList<Integer>(attemptedProblems), statistics,
 					utility.convertStringSetToSubjectSet(preferredSubjects), grade);
 
@@ -166,9 +173,9 @@ public class DataFromDatabase {
 					break;
 				}
 			}
-
-			if (problemIsAttempted == false && currentProblem.grade == filterGrade
-					&& currentProblem.getProblemDifficulty() == Problem.getDifficultyString(filteredDifficulty)
+//	currentProblem.getProblemDifficulty() == Problem.getDifficultyString(filteredDifficulty)
+			if (!problemIsAttempted && currentProblem.grade == filterGrade
+					&& currentProblem.getProblemDifficulty().equals(filteredDifficulty)
 					&& currentProblem.getProblemSubject() == this.utility
 							.convertStringSubjectToEnumSubject(filteredSubjects)) {
 
@@ -245,6 +252,28 @@ public class DataFromDatabase {
 		return (this.getUserByID(sessionUserID) instanceof Moderator);
 	}
 
+	public int getNrProposedProblemsByTutor(int sessionUserID) throws Exception{
+		this.statement0.execute(queryMaker.getSentProblemsByTutor(sessionUserID));
+		resultSet0= statement0.getResultSet();
+		int nrProp=0;
+		while(resultSet0.next())
+			nrProp++;
+		return nrProp;
+	}
+	public int getNrReviewedSolutionsByTutor(int sessionUserID)throws Exception{
+		this.statement0.execute(queryMaker.getGivenFeedbackByTutor(sessionUserID));
+		resultSet0= statement0.getResultSet();
+		int nrRev=0;
+		while(resultSet0.next())
+			nrRev++;
+		return nrRev;
+	}
+	public void insertProposedProblem(int sessionUserID,String problemName,String task,String solution,String difficulty,String subject,int grade)throws Exception{
+		User currUser=getUserByID(sessionUserID);
+		this.statement0.execute(queryMaker.proposedProblemInsertQuery(problemName,task,solution,sessionUserID,difficulty,grade,subject));
+		resultSet0=statement0.getResultSet();
+	}
+
 	public void submitSolution(int problemID, String solution) {
 
 		Solution studentSolution = new Solution(0, this.sessionUserID, problemID, solution, 0, 0, "", -1, "", -1);
@@ -300,6 +329,36 @@ public class DataFromDatabase {
 		// TODO
 		return null;
 	}
+	public ArrayList<String>getAProblemToReviewForTutor()throws Exception{
+		this.statement0.execute(queryMaker.unReviewedProblemForId(getNextUnrReviewedProblemId()));
+		resultSet0=statement0.getResultSet();
+		ArrayList<String>problem=new ArrayList<>();
+		int probID=0;
+		if(resultSet0.next()){
+			problem.add(resultSet0.getString("studentSolution"));
+			problem.add(resultSet0.getString("tutorFeedback"));
+			problem.add(resultSet0.getString("tutorRating"));
+			probID=Integer.parseInt(resultSet0.getString("problemID"));
+		}
+		this.statement0.execute(queryMaker.problemInfoForID(probID));
+		resultSet0=statement0.getResultSet();
+		if(resultSet0.next()){
+			problem.add(resultSet0.getString("task"));
+			problem.add(resultSet0.getString("solution"));
+		}
+		return problem;
+	}
+	public int getNextUnrReviewedProblemId()throws Exception{
+		this.statement0.execute(queryMaker.nextAttemptedProblemQuery());
+		resultSet0=statement0.getResultSet();
+		int attemptedProbId;
+		if (resultSet0.next()){
+			attemptedProbId=Integer.parseInt(resultSet0.getString("id"));
+			return attemptedProbId;
+	}
+	else return 0;
+	}
+
 
 	public void submitTutorFeedback(int tutorGrade, String tutorFeedback, int problemID, int userID) {
 

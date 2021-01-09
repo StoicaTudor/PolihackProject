@@ -10,23 +10,35 @@ public abstract class User {
 	private String username;
 	private String password;
 	private String country;
+	private String fullname;
 	public String email;
 	private ArrayList<Integer> attemptedProblems; // solution ID
 	private Statistics statistics;
 	private Set<Subject> preferredSubjects;
 	private int currentGrade;
 
-	public User(int id, String username, String password, String country, String email,
+	public User(int id, String username,String fullname, String password, String country, String email,
 			ArrayList<Integer> attemptedProblems, Statistics statistics, Set<Subject> preferredSubjects, int grade) {
 		this.id = id;
 		this.password = password;
 		this.username = username;
+		this.fullname=fullname;
 		this.country = country;
 		this.email = email;
 		this.attemptedProblems = attemptedProblems;
 		this.statistics = statistics;
 		this.preferredSubjects = preferredSubjects;
 		this.currentGrade = grade;
+	}
+	public String getEmail(){
+		return this.email;
+	}
+	public String getFullname() {
+		return fullname;
+	}
+
+	public void setFullname(String fullname) {
+		this.fullname = fullname;
 	}
 
 	public int getGrade() {

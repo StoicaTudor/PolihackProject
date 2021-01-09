@@ -34,8 +34,9 @@ public class TutorMenu {
 	private Button feedbackTutor;
 	@FXML
 	private Button logOut;
+	public static int sessionUserId;
 
-	public void setScene(ActionEvent event, DataFromDatabase data) {
+	public void setScene(ActionEvent event, DataFromDatabase data,int userId) {
 
 		this.data = data;
 		Parent root = null;
@@ -47,6 +48,7 @@ public class TutorMenu {
 
 		Scene scene = new Scene(root);
 		feedbackTutor = (Button) scene.lookup("#feedbackTutor");
+		sessionUserId=userId;
 
 		try {
 			if (this.data.isModerator() == false) {
@@ -62,28 +64,28 @@ public class TutorMenu {
 		window.show();
 	}
 
-	public void myAccPressed(ActionEvent action) {
+	public void myAccPressed(ActionEvent action)throws Exception {
 		MyAccountTutor myacc = new MyAccountTutor();
 
-		myacc.setScene(action,data);
+		myacc.setScene(action,data,sessionUserId);
 	}
 
 	public void reviewSolutionsPressed(ActionEvent action) {
 		ReviewSolution review = new ReviewSolution();
-		review.setScene(action, data);
+		review.setScene(action, data,sessionUserId);
 
 	}
 
 	public void proposeNewPressed(ActionEvent action) {
 		ProposeProblem propose = new ProposeProblem();
-		propose.setScene(action, data);
+		propose.setScene(action, data,sessionUserId);
 
 	}
 
-	public void feedbackTutorPressed(ActionEvent action) {
+	public void feedbackTutorPressed(ActionEvent action) throws Exception {
 		if (data.isModerator()) {
 			ReviewFeedback reviewFeedback = new ReviewFeedback();
-			reviewFeedback.setScene(action, data);
+			reviewFeedback.setScene(action, data,sessionUserId);
 		}
 
 	}
