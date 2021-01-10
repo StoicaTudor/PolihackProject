@@ -45,9 +45,14 @@ public class SolveProblem {
 
 		sessionUserId = userId;
 		scene = new Scene(menu);
+		initialize(problemTask);
 		Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		window.setScene(scene);
 		window.show();
+	}
+	public void initialize(String problemTask){
+		task=(TextArea)scene.lookup("#task");
+		task.setText(problemTask);
 	}
 
 	public void clickSubmit(ActionEvent event) {
@@ -64,7 +69,7 @@ public class SolveProblem {
 		try {
 			data.statement0.executeUpdate(new StringBuilder("INSERT INTO pandemicspecial.attemptedproblemss "
 					+ "(id, studentID, problemID, studentSolution, tutorID, moderatorID, tutorFeedback, tutorRating, moderatorFeedback, moderatorRating) VALUES "
-					+ "('NULL',").append(sessionUserId).append(',').append(problemID).append(',').append('"')
+					+ "(NULL,").append(sessionUserId).append(',').append(problemID).append(',').append('"')
 							.append(task.getText()).append('"').append(",-1,-1,").append('"').append('"').append(",-1,")
 							.append('"').append('"').append(",-1)").toString());
 		} catch (SQLException e) {
