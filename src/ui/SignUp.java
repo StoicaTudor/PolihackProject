@@ -12,7 +12,6 @@ import javafx.stage.Stage;
 import user.Statistics;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;

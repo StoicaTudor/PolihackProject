@@ -7,33 +7,46 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.SolveProblem">
-    <children>
-        <Text layoutX="15.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Task : " wrappingWidth="72.78277587890625">
-            <font>
-                <Font size="16.0" />
-            </font>
-        </Text>
-        <Text layoutX="15.0" layoutY="259.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your solution:" wrappingWidth="117.58282470703125">
-            <font>
-                <Font size="16.0" />
-            </font>
-        </Text>
-        <TextArea fx:id="solution" layoutX="15.0" layoutY="274.0" prefHeight="250.0" prefWidth="770.0" />
-        <TextArea fx:id="task" editable="false" layoutX="15.0" layoutY="74.0" prefHeight="150.0" prefWidth="770.0" />
-      <Label layoutX="15.0" layoutY="10.0" prefHeight="29.0" prefWidth="73.0" text="ID #">
-         <font>
-            <Font size="16.0" />
-         </font></Label>
-      <Button fx:id="submit" layoutX="700.0" layoutY="536.0" mnemonicParsing="false" onAction="#clickSubmit" prefHeight="40.0" prefWidth="80.0" text="Submit">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Button>
-      <Button fx:id="back" layoutX="598.0" layoutY="536.0" mnemonicParsing="false" onAction="#clickBack" prefHeight="40.0" prefWidth="80.0" text="Back">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Button>
-    </children>
+<AnchorPane prefHeight="600.0" prefWidth="800.0"
+	xmlns="http://javafx.com/javafx/11.0.1"
+	xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.SolveProblem">
+	<children>
+		<Text layoutX="15.0" layoutY="59.0" strokeType="OUTSIDE"
+			strokeWidth="0.0" text="Task : " wrappingWidth="72.78277587890625">
+			<font>
+				<Font size="16.0" />
+			</font>
+		</Text>
+		<Text layoutX="15.0" layoutY="259.0" strokeType="OUTSIDE"
+			strokeWidth="0.0" text="Your solution:"
+			wrappingWidth="117.58282470703125">
+			<font>
+				<Font size="16.0" />
+			</font>
+		</Text>
+		<TextArea fx:id="solution" layoutX="15.0" layoutY="274.0"
+			prefHeight="250.0" prefWidth="770.0" />
+		<TextArea fx:id="task" editable="false" layoutX="15.0"
+			layoutY="74.0" prefHeight="150.0" prefWidth="770.0" />
+		<Label layoutX="15.0" layoutY="10.0" prefHeight="29.0"
+			prefWidth="73.0" text="ID #">
+			<font>
+				<Font size="16.0" />
+			</font>
+		</Label>
+		<Button fx:id="submit" layoutX="700.0" layoutY="536.0"
+			mnemonicParsing="false" onAction="#clickSubmit" prefHeight="40.0"
+			prefWidth="80.0" text="Submit">
+			<font>
+				<Font size="16.0" />
+			</font>
+		</Button>
+		<Button fx:id="back" layoutX="598.0" layoutY="536.0"
+			mnemonicParsing="false" onAction="#clickBack" prefHeight="40.0"
+			prefWidth="80.0" text="Back">
+			<font>
+				<Font size="16.0" />
+			</font>
+		</Button>
+	</children>
 </AnchorPane>

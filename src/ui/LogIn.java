@@ -43,11 +43,12 @@ public class LogIn {
 		Database db = new Database();
 		db.retrieveDataFromDatabase();
 		this.data = db.data;
-		sessionUserID=data.getSessionUserID(username.getText());
+
+		sessionUserID = data.getSessionUserID(username.getText());
 
 		UserType logInResult = data.validateSignIn(username.getText(), password.getText());
-		System.out.println(logInResult);
-		
+
+
 		TutorMenu tutorMenu;
 		switch (logInResult) {
 
@@ -57,17 +58,17 @@ public class LogIn {
 
 		case STUDENT:
 			StudentMenu studentMenu = new StudentMenu();
-			studentMenu.setScene(event, data,sessionUserID);
+			studentMenu.setScene(event, data, sessionUserID);
 			break;
 
 		case TUTOR:
 			tutorMenu = new TutorMenu();
-			tutorMenu.setScene(event, data,sessionUserID);
+			tutorMenu.setScene(event, data, sessionUserID);
 			break;
 
 		case MODERATOR:
 			tutorMenu = new TutorMenu();
-			tutorMenu.setScene(event, data,sessionUserID);
+			tutorMenu.setScene(event, data, sessionUserID);
 			System.out.println("");
 			break;
 

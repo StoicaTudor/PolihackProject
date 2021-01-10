@@ -11,8 +11,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
+import problem.Solution;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class SolveProblem {
 
@@ -21,17 +23,16 @@ public class SolveProblem {
 	@FXML
 	Button back;
 	@FXML
-	Label IDLabel;
-	@FXML
 	TextArea task;
 	@FXML
 	TextArea solution;
 	public static DataFromDatabase data;
-	int problemID;
-	Scene scene;
+	private int problemID;
+	public static Scene scene;
 	public static int sessionUserId;
 
-	public void setScene(ActionEvent event, DataFromDatabase data, int problemID,int userId) {
+	public void setScene(ActionEvent event, DataFromDatabase data, String problemTask, int problemID, int userId) {
+
 		this.data = data;
 		this.problemID = problemID;
 		Parent menu = null;
@@ -41,30 +42,41 @@ public class SolveProblem {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		sessionUserId=userId;
+
+		sessionUserId = userId;
 		scene = new Scene(menu);
-		IDLabel = (Label) scene.lookup("#IDLabel");
-		StringBuilder id = new StringBuilder(problemID);
-		id.toString();
-		IDLabel.setText("ID #" + id);
 		Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		window.setScene(scene);
 		window.show();
 	}
 
 	public void clickSubmit(ActionEvent event) {
+
 		// submit button clicked
 		// insert problem into DB
 		task = (TextArea) scene.lookup("#task");
 		// data.submitSolution(problemID,task.getText());
 		StudentMenu studentMenu = new StudentMenu();
-		studentMenu.setScene(event, data,sessionUserId);
+		studentMenu.setScene(event, data, sessionUserId);
+
+		data.solutions.add(new Solution(-1, sessionUserId, problemID, task.getText(), -1, -1, "", -1, "", -1));
+
+		try {
+			data.statement0.executeUpdate(new StringBuilder("INSERT INTO pandemicspecial.attemptedproblemss "
+					+ "(id, studentID, problemID, studentSolution, tutorID, moderatorID, tutorFeedback, tutorRating, moderatorFeedback, moderatorRating) VALUES "
+					+ "('NULL',").append(sessionUserId).append(',').append(problemID).append(',').append('"')
+							.append(task.getText()).append('"').append(",-1,-1,").append('"').append('"').append(",-1,")
+							.append('"').append('"').append(",-1)").toString());
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		}
 	}
 
 	public void clickBack(ActionEvent event) {
 
 		StudentMenu studentMenu = new StudentMenu();
-		studentMenu.setScene(event, data,sessionUserId);
+		studentMenu.setScene(event, data, sessionUserId);
 	}
 
 }
