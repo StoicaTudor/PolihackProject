@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class ReviewSolution {
@@ -35,6 +36,7 @@ public class ReviewSolution {
 	public static DataFromDatabase data;
 	public static int sessionUserId;
 	public static ArrayList<String> problems;
+	public static int problemId;
 
 	public void setScene(ActionEvent event, DataFromDatabase data, int userId) {
 
@@ -63,18 +65,18 @@ public class ReviewSolution {
 			
 			e.printStackTrace();
 		}
-
+		problemId=Integer.parseInt(problems.get(5));
 		taskDescription = (javafx.scene.control.TextArea) scene.lookup("#taskDescription");
 		taskDescription.setText(problems.get(3));
 
 		offSolution = (javafx.scene.control.TextArea) scene.lookup("#offSolution");
-		offSolution.setText("");
+		offSolution.setText(problems.get(4));
 
 		studentSolution = (javafx.scene.control.TextArea) scene.lookup("#studentSolution");
-		studentSolution.setText("");
+		studentSolution.setText(problems.get(0));
 
 		tutorFeedback = (javafx.scene.control.TextArea) scene.lookup("#tutorFeedback");
-		tutorFeedback.setText("");
+
 
 		gradeSlider = (javafx.scene.control.Slider) scene.lookup("#gradeSlider");
 		gradeSlider.setValue(0);
@@ -87,12 +89,12 @@ public class ReviewSolution {
 
 	}
 
-	public void submitPressed(ActionEvent action) {
-		double grade = gradeSlider.getValue();// faceti ce vreti cu val asta o pui in db
+	public void submitPressed(ActionEvent action) throws SQLException {
+		int grade = (int) gradeSlider.getValue();// faceti ce vreti cu val asta o pui in db
 		System.out.println(grade);
 		String feedback = tutorFeedback.getText();
 		System.out.println(feedback);
-
+		data.submitTutorFeedback(grade,tutorFeedback.getText(),problemId,sessionUserId);
 		TutorMenu menu = new TutorMenu();
 		menu.setScene(action, data, sessionUserId);
 	}

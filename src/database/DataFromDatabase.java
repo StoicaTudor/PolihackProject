@@ -365,13 +365,18 @@ public class DataFromDatabase {
 			problem.add(resultSet0.getString("tutorFeedback"));
 			problem.add(resultSet0.getString("tutorRating"));
 			probID = Integer.parseInt(resultSet0.getString("problemID"));
+			System.out.println("seeeeeeeef"+probID);
 		}
 		this.statement0.execute(queryMaker.problemInfoForID(probID));
 		resultSet0 = statement0.getResultSet();
 		if (resultSet0.next()) {
+			System.out.println("intraaaaaaaaa");
 			problem.add(resultSet0.getString("task"));
 			problem.add(resultSet0.getString("solution"));
+			problem.add(Integer.toString(probID));
+			System.out.println(problem.get(5));
 		}
+		//System.out.println(problem.get(0));
 		return problem;
 	}
 
@@ -381,13 +386,15 @@ public class DataFromDatabase {
 		int attemptedProbId;
 		if (resultSet0.next()) {
 			attemptedProbId = Integer.parseInt(resultSet0.getString("id"));
+			System.out.println("--------------");
+			System.out.println(attemptedProbId);
 			return attemptedProbId;
 		} else
 			return 0;
 	}
 
-	public void submitTutorFeedback(int tutorGrade, String tutorFeedback, int problemID, int userID) {
-
+	public void submitTutorFeedback(int tutorGrade, String tutorFeedback, int problemID, int userID) throws SQLException {
+		this.statement0.executeUpdate(queryMaker.tutorFeedbackUpdateQuery(problemID,userID,tutorFeedback,tutorGrade));
 	}
 
 	public ArrayList<Solution> getSolvedProblemsFromStudentID(int studentID) {

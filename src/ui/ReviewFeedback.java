@@ -39,7 +39,7 @@ public class ReviewFeedback {
 		this.data = data;
 		Parent root = null;
 		try {
-			root = FXMLLoader.load(getClass().getResource("reviewSolution.fxml"));
+			root = FXMLLoader.load(getClass().getResource("reviewFeedback.fxml"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
