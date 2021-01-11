@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class ReviewSolution {
 
@@ -33,10 +34,14 @@ public class ReviewSolution {
 	private Slider gradeSlider;
 	public static DataFromDatabase data;
 	public static int sessionUserId;
+	public static ArrayList<String> problems;
 
-	public void setScene(ActionEvent event, DataFromDatabase data,int userId) {
+	public void setScene(ActionEvent event, DataFromDatabase data, int userId) {
+
 		this.data = data;
+
 		Parent root = null;
+
 		try {
 			root = FXMLLoader.load(getClass().getResource("reviewSolution.fxml"));
 		} catch (IOException e) {
@@ -46,13 +51,21 @@ public class ReviewSolution {
 		initialize(scene);
 		Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		window.setScene(scene);
-		sessionUserId=userId;
+		sessionUserId = userId;
 		window.show();
 	}
 
 	void initialize(Scene scene) {
+
+		try {
+			problems = data.getAProblemToReviewForTutor();
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
+
 		taskDescription = (javafx.scene.control.TextArea) scene.lookup("#taskDescription");
-		taskDescription.setText("");
+		taskDescription.setText(problems.get(3));
 
 		offSolution = (javafx.scene.control.TextArea) scene.lookup("#offSolution");
 		offSolution.setText("");
@@ -71,6 +84,7 @@ public class ReviewSolution {
 
 		submitButton = (javafx.scene.control.Button) scene.lookup("#submitButton");
 		submitButton.setVisible(true);
+
 	}
 
 	public void submitPressed(ActionEvent action) {
@@ -80,12 +94,12 @@ public class ReviewSolution {
 		System.out.println(feedback);
 
 		TutorMenu menu = new TutorMenu();
-		menu.setScene(action, data,sessionUserId);
+		menu.setScene(action, data, sessionUserId);
 	}
 
 	public void backButtonPressed(ActionEvent action) {
 		TutorMenu menu = new TutorMenu();
-		menu.setScene(action, data,sessionUserId);
+		menu.setScene(action, data, sessionUserId);
 	}
 
 }

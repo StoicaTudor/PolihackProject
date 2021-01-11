@@ -27,12 +27,12 @@ public class SolveProblem {
 	@FXML
 	TextArea solution;
 	public static DataFromDatabase data;
-	private int problemID;
+	public static int problemID;
 	public static Scene scene;
 	public static int sessionUserId;
 
 	public void setScene(ActionEvent event, DataFromDatabase data, String problemTask, int problemID, int userId) {
-
+		
 		this.data = data;
 		this.problemID = problemID;
 		Parent menu = null;
@@ -50,8 +50,9 @@ public class SolveProblem {
 		window.setScene(scene);
 		window.show();
 	}
-	public void initialize(String problemTask){
-		task=(TextArea)scene.lookup("#task");
+
+	public void initialize(String problemTask) {
+		task = (TextArea) scene.lookup("#task");
 		task.setText(problemTask);
 	}
 
@@ -67,11 +68,12 @@ public class SolveProblem {
 		data.solutions.add(new Solution(-1, sessionUserId, problemID, task.getText(), -1, -1, "", -1, "", -1));
 
 		try {
+			System.out.println("PROOOOOOOOBLEM ID ESTE  " + problemID);
 			data.statement0.executeUpdate(new StringBuilder("INSERT INTO pandemicspecial.attemptedproblemss "
 					+ "(id, studentID, problemID, studentSolution, tutorID, moderatorID, tutorFeedback, tutorRating, moderatorFeedback, moderatorRating) VALUES "
 					+ "(NULL,").append(sessionUserId).append(',').append(problemID).append(',').append('"')
-							.append(task.getText()).append('"').append(",-1,-1,").append('"').append('"').append(",-1,")
-							.append('"').append('"').append(",-1)").toString());
+							.append(solution.getText()).append('"').append(",-1,-1,").append('"').append('"')
+							.append(",-1,").append('"').append('"').append(",-1)").toString());
 		} catch (SQLException e) {
 
 			e.printStackTrace();

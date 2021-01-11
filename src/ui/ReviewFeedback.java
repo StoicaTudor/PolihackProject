@@ -35,7 +35,7 @@ public class ReviewFeedback {
 	public static DataFromDatabase data;
 	public static int sessionUserId;
 
-	public void setScene(ActionEvent event, DataFromDatabase data,int userId) throws Exception {
+	public void setScene(ActionEvent event, DataFromDatabase data, int userId) throws Exception {
 		this.data = data;
 		Parent root = null;
 		try {
@@ -47,26 +47,27 @@ public class ReviewFeedback {
 		initialize(scene);
 		Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		window.setScene(scene);
-		sessionUserId=userId;
+		sessionUserId = userId;
 		window.show();
 	}
 
 	void initialize(Scene scene) throws Exception {
-		ArrayList<String>problems=data.getAProblemToReviewForTutor();
+
+		ArrayList<String> problems = data.getAProblemToReviewForTutor();
 		taskDescription = (javafx.scene.control.TextArea) scene.lookup("#taskDescription");
 		taskDescription.setText(problems.get(3));
 
 		offSolution = (javafx.scene.control.TextArea) scene.lookup("#offSolution");
-		offSolution.setText(problems.get(4));
+		offSolution.setText(problems.get(3));
 
 		studentSolution = (javafx.scene.control.TextArea) scene.lookup("#studentSolution");
 		studentSolution.setText(problems.get(0));
 
-		tutorFeedback = (javafx.scene.control.TextArea) scene.lookup("#tutorFeedback");
-		tutorFeedback.setText(problems.get(1));
-
-		tutorRating = (javafx.scene.control.TextArea) scene.lookup("#tutorRating");
-		tutorFeedback.setText(problems.get(2));
+//		tutorFeedback = (javafx.scene.control.TextArea) scene.lookup("#tutorFeedback");
+//		tutorFeedback.setText("");
+//
+//		tutorRating = (javafx.scene.control.TextArea) scene.lookup("#tutorRating");
+//		tutorFeedback.setText(problems.get(2));
 
 		gradeSlider = (javafx.scene.control.Slider) scene.lookup("#gradeSlider");
 		gradeSlider.setValue(0);
@@ -83,12 +84,12 @@ public class ReviewFeedback {
 		String feedback = tutorFeedback.getText();
 
 		TutorMenu menu = new TutorMenu();
-		menu.setScene(action, data,sessionUserId);
+		menu.setScene(action, data, sessionUserId);
 	}
 
 	public void backButtonPressed(ActionEvent action) {
 		TutorMenu menu = new TutorMenu();
-		menu.setScene(action, data,sessionUserId);
+		menu.setScene(action, data, sessionUserId);
 	}
 
 }

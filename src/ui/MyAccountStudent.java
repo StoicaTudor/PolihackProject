@@ -61,8 +61,8 @@ public class MyAccountStudent {
 	public static DataFromDatabase data;
 	public static int sessionUserId;
 
-	public void setScene(ActionEvent event, DataFromDatabase data,int userID) {
-	this.data=data;
+	public void setScene(ActionEvent event, DataFromDatabase data, int userID) {
+		this.data = data;
 
 		Parent root = null;
 		try {
@@ -74,13 +74,13 @@ public class MyAccountStudent {
 		Scene scene = new Scene(root);
 		Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		window.setScene(scene);
-		sessionUserId=userID;
-		initialize(scene,data);
+		sessionUserId = userID;
+		initialize(scene, data);
 		window.show();
 
 	}
 
-	public void initialize(Scene scene,DataFromDatabase data) {
+	public void initialize(Scene scene, DataFromDatabase data) {
 		name = (Label) scene.lookup("#name");
 		name.setText(data.getUserByID(sessionUserId).getFullname());
 
@@ -114,19 +114,16 @@ public class MyAccountStudent {
 		failedTasks = (Label) scene.lookup("#failedTasks");
 		failedTasks.setText(failedTasksString);
 
-
-
-
 	}
 
 	public void backToMainPage(ActionEvent event) throws Exception {
 		StudentMenu studentMenu = new StudentMenu();
-		studentMenu.setScene(event, data,sessionUserId);
+		studentMenu.setScene(event, data, sessionUserId);
 	}
 
 	public void goToSolvedProblems(ActionEvent event) throws Exception {
 		ProblemsList problemsList = new ProblemsList();
-		problemsList.setScene(event, data,sessionUserId);
+		problemsList.setScene(event, data, sessionUserId);
 	}
 
 }

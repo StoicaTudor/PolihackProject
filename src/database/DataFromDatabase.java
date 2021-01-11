@@ -353,10 +353,13 @@ public class DataFromDatabase {
 	}
 
 	public ArrayList<String> getAProblemToReviewForTutor() throws Exception {
+		
 		this.statement0.execute(queryMaker.unReviewedProblemForId(getNextUnrReviewedProblemId()));
 		resultSet0 = statement0.getResultSet();
+		
 		ArrayList<String> problem = new ArrayList<>();
 		int probID = 0;
+		
 		if (resultSet0.next()) {
 			problem.add(resultSet0.getString("studentSolution"));
 			problem.add(resultSet0.getString("tutorFeedback"));
@@ -385,5 +388,30 @@ public class DataFromDatabase {
 
 	public void submitTutorFeedback(int tutorGrade, String tutorFeedback, int problemID, int userID) {
 
+	}
+
+	public ArrayList<Solution> getSolvedProblemsFromStudentID(int studentID) {
+
+		ArrayList<Solution> studentsSolutions = new ArrayList<Solution>();
+
+		for (Solution currentSolution : solutions) {
+
+			if (currentSolution.studentID == studentID) {
+				studentsSolutions.add(currentSolution);
+			}
+		}
+
+		return studentsSolutions;
+	}
+
+	public String getProblemByProblemID(int problemID) {
+
+		for (Problem currentProblem : problems) {
+			if (currentProblem.getProblemID() == problemID) {
+				return currentProblem.getTask();
+			}
+		}
+
+		return "";
 	}
 }

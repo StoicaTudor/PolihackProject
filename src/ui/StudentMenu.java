@@ -76,14 +76,14 @@ public class StudentMenu {
 
 	public void solve(ActionEvent event) throws Exception {
 
-		for (int i = 0; i < 5; i++) {
-			
-			String problemTask = this.problems.get((currentPage - 1) * 5 + i + 1).getTask();
-			int problemID = this.problems.get((currentPage - 1) * 5 + i + 1).getProblemID();
-			
-			SolveProblem solveProblem = new SolveProblem();
-			solveProblem.setScene(event, data, problemTask, problemID, sessionUserID);
-		}
+		int indexOfButton = (event.getSource().toString().charAt(event.getSource().toString().indexOf("solve") + 5))
+				- 48;
+
+		String problemTask = this.problems.get((currentPage - 1) * 5 + indexOfButton - 1).getTask();
+		int problemID = this.problems.get((currentPage - 1) * 5 + indexOfButton - 1).getProblemID();
+
+		SolveProblem solveProblem = new SolveProblem();
+		solveProblem.setScene(event, data, problemTask, problemID, sessionUserID);
 	}
 
 	public void previousPage(ActionEvent event) {
@@ -122,11 +122,11 @@ public class StudentMenu {
 		problems = data.getInitialListOfProblems();
 		showPage();
 
-		System.out.println(problems.size());
-
-		for (int i = 0; i < problems.size(); i++) {
-			System.out.println(i + " -----> " + problems.get(i).getTask());
-		}
+//		System.out.println(problems.size());
+//
+//		for (int i = 0; i < problems.size(); i++) {
+//			System.out.println(i + " -----> " + problems.get(i).getTask());
+//		}
 	}
 
 	public void showFilteredTasks() {
