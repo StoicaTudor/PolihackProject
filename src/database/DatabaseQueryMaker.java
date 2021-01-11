@@ -180,18 +180,18 @@ public class DatabaseQueryMaker {
 		return solutionIQ.toString();
 	}
 	public String nextAttemptedProblemQuery(){
-		return new String("SELECT * FROM attemptedproblemss WHERE tutorID IS NULL");
+		return new String("SELECT * FROM attemptedproblemss WHERE tutorID=-1");
 	}
 	public String problemInfoForID(int problemID){
 		StringBuilder string=new StringBuilder(
-				"SELECT task,solution FROM problemm WHERE problemm.id="
+				"SELECT problemm.task,problemm.solution FROM problemm WHERE problemm.id="
 		);
 		string.append(problemID);
 		return string.toString();
 	}
 	public String unReviewedProblemForId(int problemID){
 		StringBuilder string = new StringBuilder(
-				"SELECT attemptedproblemss.problemID,attemptedproblemss.studentSolution,attemptedproblemss.tutorFeedback,attemptedproblemss.tutorRating FROM attemptedproblemss WHERE Id= "
+				"SELECT attemptedproblemss.problemID,attemptedproblemss.studentSolution,attemptedproblemss.tutorFeedback,attemptedproblemss.tutorRating FROM attemptedproblemss WHERE id= "
 		);
 		string.append(problemID);
 		return string.toString();
