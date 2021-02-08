@@ -1,1 +1,2 @@
 # PolihackProject
+Along with 3 coleagues, I created a platform on which students can solve problems and have their solutions reviewed and feedbacked by tutors and moderators. Problems are from all sorts of domains (Computer Science, Mathematics, English, History, Geography, Science, etc) and have different difficulties. There is a logging in portal and each user can either review or solve the problems which come as a list. Problems can be filtered, based on difficulty, class, domain, etc.
